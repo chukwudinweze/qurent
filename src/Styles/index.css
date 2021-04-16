@@ -1,0 +1,33 @@
+/* gogle fonts import */
+@import url("https://fonts.googleapis.com/css2?family=Cardo&family=Fauna+One&display=swap");
+
+/* import slide for image carousel and slider */
+@import "@splidejs/splide/dist/css/themes/splide-default.min.css";
+
+/* variable declarartion */
+:root {
+  --banner__regular: "Cardo", serif;
+  --room__regular: "Fauna One", serif;
+  --heading: "Oswald", sans-serif;
+  --xs: red;
+}
+
+/* set html root font size and set overflow-x */
+html {
+  font-size: 16px;
+  overflow-x: hidden;
+}
+/* overide default styles */
+* {
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+}
