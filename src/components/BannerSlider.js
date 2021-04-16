@@ -46,10 +46,8 @@ const BannerSlider = () => {
         gap: "1rem",
         autoplay: "true",
         pauseOnHover: "false",
-        arrows: "slider",
-        width: "100%",
-        arrows: "false",
-        height: "400px",
+        arrows: "!false",
+        height: "300px",
       }}
       hasSliderWrapper
     >
@@ -58,12 +56,17 @@ const BannerSlider = () => {
           const { img, heading, detail, button } = bannerData;
           return (
             <SplideSlide>
-              <div className="slide__item">
-                <h1 className="h1">{heading}</h1>
-                <p>{detail}</p>
-                <button>
-                  <Link>{button}</Link>
-                </button>
+              <div
+                class="slide__wrapper"
+                style={{ backgroundImage: `url(${img})` }}
+              >
+                <div className="slide__item">
+                  <h1 className="h1">{heading}</h1>
+                  <p>{detail}</p>
+                  <button className="rent__home">
+                    <Link to="/homes">{button}</Link>
+                  </button>
+                </div>
               </div>
             </SplideSlide>
           );

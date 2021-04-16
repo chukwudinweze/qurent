@@ -1,11 +1,35 @@
+.slide__wrapper {
+  padding: 0.7rem;
+  border: 1px solid red;
+}
 .slide__item {
   border: 1px solid red;
-  padding: 1rem;
+  padding: 0.8rem;
   text-align: center;
 }
 
 .slide__item > .h1 {
   font-family: var(--heading);
-  font-size: 2.35rem;
+  font-size: 2rem;
   font-weight: bolder;
+  padding-bottom: 0.35rem;
+}
+
+.slide__item > p {
+  font-family: var(--room__regular);
+  font-size: 0.9rem;
+  line-height: 1.8rem;
+  font-weight: bold;
+}
+
+button.rent__home {
+  padding: 0.5rem;
+  border: 1px solid #20c063;
+  border-radius: 15px;
+  background: #fff;
+}
+
+button.rent__home > a {
+  color: #20c063;
+  font-size: 1.2rem;
 }
