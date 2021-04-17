@@ -37,6 +37,7 @@
   align-items: center;
   background: var(--orange__color);
   padding: 1rem;
+  cursor: pointer;
   /* padding-top: 0.885rem; */
 }
 
