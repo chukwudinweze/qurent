@@ -1,8 +1,8 @@
 import React from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
-import ImageSlide from "../images/qurent-banner.jpeg";
+import ImageSlide from "../images/hero-img_640px.jpg";
 import { Link } from "react-router-dom";
-import "../Styles/BannerSlider.css";
+import "../Styles/homeSlide.css";
 
 const bannerDatas = [
   {
@@ -34,39 +34,37 @@ const bannerDatas = [
     button: "rent home",
   },
 ];
-const BannerSlider = () => {
+const HomeSlide = () => {
   return (
-    
-      <Splide
-        options={{
-          type: "loop",
-          gap: "1rem",
-          autoplay: "true",
-          pauseOnHover: "false",
-          arrows: "!false",
-          height: "300px",
-        }}
-        hasSliderWrapper
-      >
-        {React.Children.toArray(
-          bannerDatas.map((bannerData) => {
-            const { img, heading, detail, button } = bannerData;
-            return (
-              <SplideSlide>
-                <div className="slide__item">
-                  <h1 className="h1">{heading}</h1>
-                  <p>{detail}</p>
-                  <button className="rent__home">
-                    <Link to="/homes">{button}</Link>
-                  </button>
-                </div>
-              </SplideSlide>
-            );
-          })
-        )}
-      </Splide>
-    
+    <Splide
+      options={{
+        type: "loop",
+        gap: "1rem",
+        autoplay: "true",
+        pauseOnHover: "false",
+        arrows: "true",
+      }}
+      hasSliderWrapper
+      className="home__slider"
+    >
+      {React.Children.toArray(
+        bannerDatas.map((bannerData) => {
+          const { img, heading, detail, button } = bannerData;
+          return (
+            <SplideSlide>
+              <div className="slide__item">
+                <h1 className="h1">{heading}</h1>
+                <p>{detail}</p>
+                <button className="rent__home">
+                  <Link to="/homes">{button}</Link>
+                </button>
+              </div>
+            </SplideSlide>
+          );
+        })
+      )}
+    </Splide>
   );
 };
 
-export default BannerSlider;
+export default HomeSlide;

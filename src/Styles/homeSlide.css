@@ -1,16 +1,20 @@
+.home__slider {
+  height: 210px;
+  background: var(--slide__color);
+  background: url(../images/slide-background-small.jpg);
+}
 .slide__item {
-  padding: 0.5rem;
-  margin-top: 0.5rem;
-  background: #fff;
+  background: var(--white);
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   border-radius: 10px;
-
   text-align: center;
+  padding-bottom: 0.5rem;
+  background: url(../images/slide-background-small.jpg);
 }
 
 .slide__item > .h1 {
   font-family: var(--heading);
-  font-size: 2rem;
+  font-size: 1.5625rem;
   font-weight: bolder;
   padding-bottom: 0.35rem;
 }
@@ -18,22 +22,22 @@
 .slide__item > p {
   font-family: var(--room__regular);
   font-size: 0.9rem;
-  line-height: 1.8rem;
+  line-height: 1.5625rem;
   font-weight: bold;
 }
 
 button.rent__home {
   padding: 0.5rem 0.8rem;
-  border: 2px solid #20c063;
+  border: 1.5px solid #20c063;
   border-radius: 12px;
-  background: #fff;
-  margin-top: 1rem;
+  background: transparent;
+  margin-top: 0.75rem;
 }
 
 button.rent__home > a {
   font-family: var(--room__regular);
   color: #20c063;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: bold;
   text-transform: capitalize;
 }

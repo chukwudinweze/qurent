@@ -1,5 +1,5 @@
 import React from "react";
-import BannerSlider from "../components/BannerSlider";
+import HomeSlide from "../components/HomeSlide";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
 
@@ -8,7 +8,8 @@ const Home = () => {
     <>
       <Header />
       <Hero />
-      <BannerSlider />
+      <HomeSlide />
+      guyiuoipooijuhjgjkl
     </>
   );
 };

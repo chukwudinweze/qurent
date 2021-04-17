@@ -1,6 +1,8 @@
 /* gogle fonts import */
 @import url("https://fonts.googleapis.com/css2?family=Cardo:wght@400;700&family=Fauna+One&family=Oswald:wght@300;400;700&display=swap");
 
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
 /* import slide for image carousel and slider */
 @import "@splidejs/splide/dist/css/themes/splide-default.min.css";
 
@@ -9,7 +11,11 @@
   --banner__regular: "Cardo", serif;
   --room__regular: "Fauna One", serif;
   --heading: "Oswald", sans-serif;
-  --xs: red;
+  --orange__color: rgb(243, 108, 74);
+  --brand__color: #20c063;
+  --roboto: "Roboto", sans-serif;
+  --white: #fff;
+  --slide__color: #f9f9fb;
 }
 
 /* set html root font size and set overflow-x */
