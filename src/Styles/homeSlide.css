@@ -1,7 +1,8 @@
 .home__slider {
-  height: 210px;
+  height: 200px;
   background: var(--slide__color);
   background: url(../images/slide-background-small.jpg);
+  margin-top: -0.3125rem;
 }
 .slide__item {
   background: var(--white);

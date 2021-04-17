@@ -5,21 +5,14 @@ import "../Styles/hero.css";
 
 const Hero = () => {
   return (
-    <Link to="/rooms">
-      <div className="hero">
-        <div className="searchInput__wrapper">
-          <input
-            type="text"
-            placeholder="Search House, Street, Neighbourhood"
-          />
-          <button type="button">
-            <SearchIcon
-              style={{ color: "#fff", transform: "scale(1.2, 1.2)" }}
-            />
-          </button>
-        </div>
-      </div>
-    </Link>
+    <section className="hero">
+      <Link to="/rooms" className="searchInput__wrapper">
+        <input type="text" placeholder="Search House, Street, Neighbourhood" />
+        <button type="button">
+          <SearchIcon style={{ color: "#fff", transform: "scale(1.2, 1.2)" }} />
+        </button>
+      </Link>
+    </section>
   );
 };
 
