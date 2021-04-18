@@ -1,0 +1,7 @@
+.categories {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  background: rgb(241, 239, 239);
+}

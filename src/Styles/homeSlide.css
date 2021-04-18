@@ -1,8 +1,15 @@
+/* import slide for image carousel and slider */
+@import "@splidejs/splide/dist/css/themes/splide-default.min.css";
+
+.slide__cover {
+  padding-bottom: 30px;
+  background: rgb(226, 225, 225);
+}
 .home__slider {
   height: 200px;
   background: var(--slide__color);
-  background: url(../images/slide-background-small.jpg);
   margin-top: -0.3125rem;
+  background: rgb(226, 225, 225);
 }
 .slide__item {
   background: var(--white);
@@ -10,7 +17,7 @@
   border-radius: 10px;
   text-align: center;
   padding-bottom: 0.5rem;
-  background: url(../images/slide-background-small.jpg);
+  background: rgb(226, 225, 225);
 }
 
 .slide__item > .h1 {

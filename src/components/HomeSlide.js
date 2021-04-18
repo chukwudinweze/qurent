@@ -36,34 +36,35 @@ const bannerDatas = [
 ];
 const HomeSlide = () => {
   return (
-    <Splide
-      options={{
-        type: "loop",
-        gap: "1rem",
-        autoplay: "true",
-        pauseOnHover: "false",
-        arrows: "true",
-      }}
-      hasSliderWrapper
-      className="home__slider"
-    >
-      {React.Children.toArray(
-        bannerDatas.map((bannerData) => {
-          const { img, heading, detail, button } = bannerData;
-          return (
-            <SplideSlide>
-              <div className="slide__item">
-                <h1 className="h1">{heading}</h1>
-                <p>{detail}</p>
-                <button className="rent__home">
-                  <Link to="/homes">{button}</Link>
-                </button>
-              </div>
-            </SplideSlide>
-          );
-        })
-      )}
-    </Splide>
+    <div className="slide__cover">
+      <Splide
+        options={{
+          type: "loop",
+          gap: "1rem",
+          autoplay: "true",
+          pauseOnHover: "false",
+          arrows: "true",
+        }}
+        className="home__slider"
+      >
+        {React.Children.toArray(
+          bannerDatas.map((bannerData) => {
+            const { img, heading, detail, button } = bannerData;
+            return (
+              <SplideSlide>
+                <div className="slide__item">
+                  <h1 className="h1">{heading}</h1>
+                  <p>{detail}</p>
+                  <button className="rent__home">
+                    <Link to="/homes">{button}</Link>
+                  </button>
+                </div>
+              </SplideSlide>
+            );
+          })
+        )}
+      </Splide>
+    </div>
   );
 };
 

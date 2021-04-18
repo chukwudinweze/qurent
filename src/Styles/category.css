@@ -1,0 +1,27 @@
+.category {
+  width: 115px;
+  height: 115px;
+  background: #f8f8f8;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.25rem;
+  margin-right: 0.25rem;
+}
+
+.icon__wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 95px;
+  height: 70px;
+  overflow: hidden;
+}
+
+.title {
+  font-size: 0.8125rem;
+  text-align: center;
+  text-transform: capitalize;
+  padding-top: 0.5rem;
+}
