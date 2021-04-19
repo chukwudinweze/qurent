@@ -1,22 +1,25 @@
 import React from "react";
 import "../Styles/category.css";
+import { Link } from "react-router-dom";
 
-const Category = ({ src, title }) => {
+const Category = ({ Icon, src, title }) => {
   return (
-    <nav className="category">
+    <Link className="category">
       <div
         className="icon__wrapper"
         style={{
-          background: `url(${src})`,
+          background: `url(${src && src})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
-        {/* <img src={src && src} alt={title && title} /> */}
+        {Icon && (
+          <Icon style={{ fontSize: "3.75rem", color: "rgb(182, 46, 46)" }} />
+        )}
       </div>
       <p className="title">{title && title}</p>
-    </nav>
+    </Link>
   );
 };
 
