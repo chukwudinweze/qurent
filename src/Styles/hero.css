@@ -35,7 +35,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--orange__color);
+  background: var(--orange__brand);
   padding: 1rem;
   cursor: pointer;
   /* padding-top: 0.885rem; */

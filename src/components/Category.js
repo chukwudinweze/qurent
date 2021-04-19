@@ -2,9 +2,9 @@ import React from "react";
 import "../Styles/category.css";
 import { Link } from "react-router-dom";
 
-const Category = ({ Icon, src, title }) => {
+const Category = ({ style, to, Icon, src, title }) => {
   return (
-    <Link className="category">
+    <Link to={to} style={style && { ...style }} className="category">
       <div
         className="icon__wrapper"
         style={{
@@ -14,9 +14,7 @@ const Category = ({ Icon, src, title }) => {
           backgroundPosition: "center",
         }}
       >
-        {Icon && (
-          <Icon style={{ fontSize: "3.75rem", color: "rgb(182, 46, 46)" }} />
-        )}
+        {Icon && <Icon style={{ fontSize: "3.75rem", color: style.color }} />}
       </div>
       <p className="title">{title && title}</p>
     </Link>

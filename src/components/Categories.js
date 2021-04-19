@@ -13,7 +13,16 @@ import "../Styles/categories.css";
 const Categories = () => {
   return (
     <div className="categories">
-      <Category Icon={AddCircleIcon} title="all category" to="/post-add" />
+      <Category
+        Icon={AddCircleIcon}
+        style={{
+          color: "rgb(218, 8, 8)",
+          fontSize: "1rem",
+          fontWeight: "700",
+        }}
+        title="post add"
+        to="/post-add"
+      />
       <Category src={Flat} title="flat" to="/flat" />
       <Category src={SelfContain} title="self contain" to="/self-contain" />
       <Category src={SingleRoom} title="single room" to="/single-room" />
