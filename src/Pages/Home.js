@@ -3,6 +3,7 @@ import HomeSlide from "../components/HomeSlide";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
 import Categories from "../components/Categories";
+import FeaturedRooms from "../components/FeaturedRooms";
 
 const Home = () => {
   return (
@@ -11,6 +12,7 @@ const Home = () => {
       <Hero />
       <HomeSlide />
       <Categories />
+      <FeaturedRooms />
     </section>
   );
 };

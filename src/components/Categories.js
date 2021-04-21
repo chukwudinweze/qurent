@@ -8,6 +8,7 @@ import Shop from "../images/q-shop.png";
 import OfficeSpace from "../images/q-office.png";
 import EventCenter from "../images/q-event-center.png";
 import Land from "../images/q-land.png";
+import Qservices from "../images/q-services.png";
 import "../Styles/categories.css";
 
 const Categories = () => {
@@ -34,6 +35,7 @@ const Categories = () => {
         to="/event-center"
       />
       <Category src={Land} title="land" to="/land" />
+      <Category src={Qservices} title="q-services" to="/services" />
     </div>
   );
 };

@@ -9,6 +9,7 @@ import Shops from "./Pages/Shops";
 import OfficeSpace from "./Pages/OfficeSpace";
 import EventCenter from "./Pages/EventCenter";
 import Land from "./Pages/Land";
+import Qservices from "./Pages/Qservices";
 import Error from "./Pages/Error";
 import "./Styles/index.css";
 import { Route, Switch } from "react-router-dom";
@@ -46,6 +47,9 @@ function App() {
         </Route>
         <Route exact path="/land">
           <Land />
+        </Route>
+        <Route exact path="/services">
+          <Qservices />
         </Route>
         <Route>
           <Error />
