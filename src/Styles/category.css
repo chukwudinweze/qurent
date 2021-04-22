@@ -3,7 +3,8 @@
   width: 33.333%;
   height: 130px;
   /* appearance */
-  font-size: 0.875rem;
+  font-family: var(--banner-regular-two);
+  font-size: var(--small__size);
   text-transform: capitalize;
   color: #000;
   background: #f8f8f8;

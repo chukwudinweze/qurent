@@ -21,8 +21,8 @@ const Categories = () => {
           fontSize: "1rem",
           fontWeight: "700",
         }}
-        title="post add"
-        to="/post-add"
+        title="post ads"
+        to="/post-ads"
       />
       <Category src={Flat} title="flat" to="/flat" />
       <Category src={SelfContain} title="self contain" to="/self-contain" />

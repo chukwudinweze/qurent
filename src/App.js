@@ -13,6 +13,7 @@ import Qservices from "./Pages/Qservices";
 import Error from "./Pages/Error";
 import "./Styles/index.css";
 import { Route, Switch } from "react-router-dom";
+import RoomDetails from "./Pages/RoomDetails";
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
         <Route exact path="/rooms">
           <Rooms />
         </Route>
-        <Route exact path="/post-add">
+        <Route exact path="/post-ads">
           <PostAdd />
         </Route>
         <Route exact path="/flat">
@@ -50,6 +51,9 @@ function App() {
         </Route>
         <Route exact path="/services">
           <Qservices />
+        </Route>
+        <Route exact path="/room-details">
+          <RoomDetails />
         </Route>
         <Route>
           <Error />

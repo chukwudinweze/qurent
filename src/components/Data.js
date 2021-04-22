@@ -41,7 +41,7 @@ const Data = [
     condition: "newly built",
     ceiling: "POP",
     floor: "tiled",
-    pictures: [One, Two, Three, Four, Five, Six],
+    pictures: [Six, Two, Three, Four, Five, One],
   },
   {
     id: 3,
@@ -60,7 +60,7 @@ const Data = [
     condition: "newly built",
     ceiling: "POP",
     floor: "tiled",
-    pictures: [One, Two, Three, Four, Five, Six],
+    pictures: [Five, Two, Three, Four, One, Six],
   },
   {
     id: 4,
@@ -79,7 +79,7 @@ const Data = [
     condition: "newly built",
     ceiling: "POP",
     floor: "tiled",
-    pictures: [One, Two, Three, Four, Five, Six],
+    pictures: [Four, Two, Three, One, Five, Six],
   },
   {
     id: 5,
@@ -98,7 +98,7 @@ const Data = [
     condition: "newly built",
     ceiling: "POP",
     floor: "tiled",
-    pictures: [One, Two, Three, Four, Five, Six],
+    pictures: [Two, One, Three, Four, Five, Six],
   },
   {
     id: 6,
@@ -136,7 +136,7 @@ const Data = [
     condition: "newly built",
     ceiling: "POP",
     floor: "tiled",
-    pictures: [One, Two, Three, Four, Five, Six],
+    pictures: [One, Three, Two, Four, Five, Six],
   },
   {
     id: 8,
@@ -174,7 +174,7 @@ const Data = [
     condition: "newly built",
     ceiling: "POP",
     floor: "tiled",
-    pictures: [One, Two, Three, Four, Five, Six],
+    pictures: [Three, Two, One, Four, Five, Six],
   },
   {
     id: 10,
