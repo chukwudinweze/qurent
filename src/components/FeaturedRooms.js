@@ -12,7 +12,7 @@ const FeaturedRooms = () => {
   }
   return (
     <section className="featured__rooms">
-      <h3>featured rooms</h3>
+      <h3>featured ads</h3>
       <article className="room__list">
         {featuredRooms.map((room) => {
           return <Room key={room.id} room={room} />;

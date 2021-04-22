@@ -6,6 +6,15 @@
   padding-top: 1.25rem;
 }
 
+.featured__rooms h3 {
+  font-family: var(--banner-regular-two);
+  font-weight: 700;
+  font-size: var(--medium__header);
+  text-transform: capitalize;
+  color: var(--black-color);
+  align-self: flex-start;
+  padding-left: 0.75rem;
+}
 .room__list {
   width: 100%;
   display: flex;

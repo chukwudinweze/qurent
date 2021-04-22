@@ -25,7 +25,7 @@
   font-family: var(--banner-regular-two);
   font-size: var(--small__size);
   text-align: left;
-  color: #000;
+  color: var(--black-color);
 }
 
 .price__fav__container {

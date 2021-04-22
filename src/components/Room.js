@@ -1,21 +1,10 @@
-import FavouriteIcon from "@material-ui/icons/Favourite";
+import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import React from "react";
 import { Link } from "react-router-dom";
 import "../Styles/room.css";
 
 const Room = ({ room }) => {
-  let {
-    id,
-    title,
-    details,
-    advantage,
-    price,
-    featured,
-    condition,
-    ceiling,
-    floor,
-    pictures,
-  } = room;
+  let { title, price, pictures } = room;
   // format title and price
   title = title.substring(0, 20);
   price = price.toString();
@@ -30,7 +19,7 @@ const Room = ({ room }) => {
         <p className="title">{title}...</p>
         <div className="price__fav__container">
           <p className="price">&#8358; {price && price}</p>
-          <FavouriteIcon style={{ color: "rgb(218, 8, 8)" }} />
+          <BookmarkBorderIcon sytle={{ color: "#20c063" }} />
         </div>
       </article>
     </Link>

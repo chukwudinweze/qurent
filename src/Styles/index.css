@@ -3,16 +3,21 @@
 
 /* variable declarartion */
 :root {
+  /* font family */
   --banner__regular: "Cardo", serif;
   --banner-regular-two: "Noto Serif", serif;
   --room__regular: "Fauna One", serif;
   --heading: "Oswald", sans-serif;
+  /* colors */
   --orange__brand: rgb(243, 108, 74);
   --red__brand: rgb(218, 8, 8);
   --brand__color: #20c063;
   --white: #fff;
+  --black-color: #000;
   --slide__color: #f9f9fb;
+  /* font size */
   --small__size: 0.875rem;
+  --medium__header: 1.25rem;
 }
 
 /* set html root font size and set overflow-x */
