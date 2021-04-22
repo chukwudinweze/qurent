@@ -23,7 +23,7 @@
 /* set html root font size and set overflow-x */
 html {
   font-size: 16px;
-  overflow-x: hidden;
+  overflow: auto;
 }
 /* overide default styles */
 * {
@@ -33,7 +33,7 @@ html {
 }
 
 body {
-  overflow-x: hidden;
+  overflow: auto;
 }
 
 a {

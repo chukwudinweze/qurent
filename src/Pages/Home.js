@@ -7,7 +7,10 @@ import FeaturedRooms from "../components/FeaturedRooms";
 
 const Home = () => {
   return (
-    <section className="main" style={{ background: "rgb(241, 239, 239)" }}>
+    <section
+      className="main"
+      style={{ background: "rgb(241, 239, 239)", position: "relative" }}
+    >
       <Header />
       <Hero />
       <HomeSlide />
