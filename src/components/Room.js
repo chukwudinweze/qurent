@@ -14,12 +14,15 @@ const Room = ({ room }) => {
     <Link to="/room-details" className="room__wrapper">
       <div className="image__container">
         <img src={pictures && main} alt={title} />
+        <p className="no__of__pictures">{pictures.length}</p>
       </div>
       <article class="room__details">
         <p className="title">{title}...</p>
         <div className="price__fav__container">
           <p className="price">&#8358; {price && price}</p>
-          <BookmarkBorderIcon sytle={{ color: "#20c063" }} />
+          <BookmarkBorderIcon
+            style={{ color: "#20c063", marginRight: "0.3125rem" }}
+          />
         </div>
       </article>
     </Link>
