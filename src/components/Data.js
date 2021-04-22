@@ -151,7 +151,7 @@ const Data = [
       " wardrope",
     ],
     price: 150000,
-    featured: true,
+    featured: false,
     condition: "newly built",
     ceiling: "POP",
     floor: "tiled",
@@ -208,7 +208,7 @@ const Data = [
       " wardrope",
     ],
     price: 50000,
-    featured: true,
+    featured: false,
     condition: "newly built",
     ceiling: "POP",
     floor: "tiled",
@@ -234,3 +234,5 @@ const Data = [
     pictures: [One, Two, Three, Four, Five, Six],
   },
 ];
+
+export default Data;
