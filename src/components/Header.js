@@ -5,7 +5,7 @@ import "../Styles/header.css";
 
 const Header = () => {
   return (
-    <div class="header">
+    <div className="header">
       <Logo className="logo" />
       <Avatar
         style={{

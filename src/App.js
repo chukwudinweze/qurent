@@ -14,6 +14,8 @@ import Error from "./Pages/Error";
 import "./Styles/index.css";
 import { Route, Switch } from "react-router-dom";
 import RoomDetails from "./Pages/RoomDetails";
+import SavedAds from "./Pages/SavedAds";
+import UserProfile from "./Pages/UserProfile";
 
 function App() {
   return (
@@ -54,6 +56,12 @@ function App() {
         </Route>
         <Route exact path="/room-details">
           <RoomDetails />
+        </Route>
+        <Route exact path="/saved-ads">
+          <SavedAds />
+        </Route>
+        <Route exact path="/profile">
+          <UserProfile />
         </Route>
         <Route>
           <Error />

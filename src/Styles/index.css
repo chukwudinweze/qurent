@@ -15,6 +15,7 @@
   --white: #fff;
   --black-color: #000;
   --slide__color: #f9f9fb;
+  --gray: rgb(241, 239, 239);
   /* font size */
   --small__size: 0.875rem;
   --medium__header: 1.25rem;
@@ -38,4 +39,9 @@ body {
 
 a {
   text-decoration: none;
+}
+
+ul,
+li {
+  list-style-type: none;
 }

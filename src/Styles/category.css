@@ -15,7 +15,7 @@
   align-items: center;
   text-align: center;
   /* border */
-  border: 2px solid rgb(241, 239, 239);
+  border: 2px solid var(--gray);
 }
 
 .icon__wrapper {

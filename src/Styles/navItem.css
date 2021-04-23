@@ -1,0 +1,11 @@
+.nav__link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--black__color);
+  font-size: 0.8rem;
+}
+
+.selected {
+  color: var(--brand__color);
+}
