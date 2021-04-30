@@ -5,6 +5,7 @@ import Hero from "../components/Hero";
 import Categories from "../components/Categories";
 import FeaturedRooms from "../components/FeaturedRooms";
 import NavLinks from "../components/NavLinks";
+import Footer from "../components/Footer";
 
 const Home = () => {
   return (
@@ -18,6 +19,7 @@ const Home = () => {
       <Categories />
       <FeaturedRooms />
       <NavLinks />
+      <Footer />
     </section>
   );
 };

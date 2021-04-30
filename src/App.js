@@ -16,6 +16,7 @@ import { Route, Switch } from "react-router-dom";
 import RoomDetails from "./Pages/RoomDetails";
 import SavedAds from "./Pages/SavedAds";
 import UserProfile from "./Pages/UserProfile";
+import NavLinks from "./components/NavLinks";
 
 function App() {
   return (
@@ -67,6 +68,7 @@ function App() {
           <Error />
         </Route>
       </Switch>
+      <NavLinks />
     </>
   );
 }
