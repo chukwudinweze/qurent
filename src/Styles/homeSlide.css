@@ -2,29 +2,28 @@
 @import "@splidejs/splide/dist/css/themes/splide-default.min.css";
 
 .slide__cover {
-  padding-bottom: 30px;
+  padding-bottom: 1.25rem;
   background: rgb(226, 225, 225);
 }
 .home__slider {
-  height: 200px;
+  height: 190px;
   background: var(--slide__color);
   margin-top: -0.3125rem;
   background: rgb(226, 225, 225);
 }
 .slide__item {
-  background: var(--white);
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   border-radius: 10px;
   text-align: center;
   padding-bottom: 0.5rem;
   background: rgb(226, 225, 225);
+  position: relative;
 }
 
-.slide__item > .h1 {
+.slide__item .h1 {
   font-family: var(--heading);
   font-size: 1.5625rem;
   font-weight: bolder;
-  padding-bottom: 0.35rem;
+  margin-top: 5px;
 }
 
 .slide__item > p {
@@ -32,6 +31,7 @@
   font-size: 0.9rem;
   line-height: 1.5625rem;
   font-weight: bold;
+  margin-top: -12px;
 }
 
 button.rent__home {

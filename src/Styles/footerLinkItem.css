@@ -1,0 +1,5 @@
+.footer__link__item {
+  color: var(--brand__color);
+  font-family: var(--banner-regular-two);
+  font-size: 0.8rem;
+}

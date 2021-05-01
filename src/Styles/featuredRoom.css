@@ -3,8 +3,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 1.25rem;
-  padding-bottom: 5rem;
+  /* padding-top: 1.25rem; */
+  padding-bottom: 2.5rem;
+  background: var(--gray);
 }
 
 .featured__rooms h3 {
