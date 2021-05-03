@@ -1,0 +1,32 @@
+.page__header {
+  width: 100%;
+  padding: 0.625rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  font-family: var(--heading);
+}
+.title__left {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.arrow__back__icon {
+  padding: 0, 4.5rem;
+  background: var(--white);
+  outline-color: var(--white);
+}
+
+.title__left > p {
+  font-size: 1.3rem;
+  color: var(--brand__color);
+}
+.title__right > button {
+  color: var(--red__brand);
+  background: var(--white);
+  outline-color: var(--white);
+}

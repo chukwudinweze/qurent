@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* padding-top: 1.25rem; */
+  padding-top: 1.25rem;
   padding-bottom: 2.5rem;
   background: var(--gray);
 }

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Loading from "./Loading";
-import Room from "./Room";
+import FeaturedRoom from "./FeaturedRoom";
 import Data from "./Data";
 import "../Styles/featuredRoom.css";
 
@@ -15,7 +15,7 @@ const FeaturedRooms = () => {
       <h3>featured ads</h3>
       <article className="room__list">
         {featuredRooms.map((room) => {
-          return <Room key={room.id} room={room} />;
+          return <FeaturedRoom key={room.id} room={room} />;
         })}
       </article>
     </section>
