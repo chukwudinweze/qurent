@@ -23,7 +23,7 @@
   border-radius: 0.312rem;
 }
 
-.searchInput__wrapper > input {
+.searchInput__wrapper .hero__search__input {
   flex: 1;
   width: 85%;
   padding: 1rem;
