@@ -12,7 +12,7 @@ const RenderLocation = (location) => {
       );
     case "Igbo Etiti":
       return React.Children.toArray(
-        Locations.udenu.map((location) => (
+        Locations.igboEtiti.map((location) => (
           <MenuItem value={location}>{location}</MenuItem>
         ))
       );

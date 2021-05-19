@@ -9,37 +9,10 @@ import { PhotoCamera } from "@material-ui/icons";
 import DeleteIcon from "@material-ui/icons/Delete";
 import LocalGvts from "./LocalGvts";
 import RenderLocation from "./RenderLocation";
+import AddCircleIcon from "@material-ui/icons/AddCircle";
+import FormRoomCategory from './FormRoomCategory'
 
-const categories = [
-  {
-    value: "Flat",
-    label: "Flat",
-  },
-  {
-    value: "Self Contain",
-    label: "Self Contain",
-  },
-  {
-    value: "Single Room",
-    label: "Single Room",
-  },
-  {
-    value: "Shop",
-    label: "Shop",
-  },
-  {
-    value: "Office Space",
-    label: "Office Space",
-  },
-  {
-    value: "Hall/Event Center",
-    label: "Hall/Event Center",
-  },
-  {
-    value: "Land",
-    label: "Land",
-  },
-];
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -109,7 +82,7 @@ const PostProperty = () => {
                   onChange={formik.handleChange}
                   helperText={formik.touched.email && formik.errors.email}
                 >
-                  {categories.map((category) => (
+                  {FormRoomCategory.map((category) => (
                     <MenuItem key={category.value} value={category.value}>
                       {category.label}
                     </MenuItem>
@@ -127,13 +100,20 @@ const PostProperty = () => {
                 helperText={formik.touched.localGvt && formik.errors.localGvt}
               >
                 {LocalGvts.map((localGvt) => (
-                  <MenuItem key={localGvt.value} value={localGvt.value}>
+                  <MenuItem
+                    key={localGvt.value}
+                    value={localGvt.value}
+                    onClick={() =>
+                      formik.setFieldValue("localGvt", `${localGvt.value}`)
+                    }
+                  >
                     {localGvt.label}
                   </MenuItem>
                 ))}
               </TextField>
               <div>
                 <TextField
+                  disabled={!formik.values.localGvt}
                   id="location"
                   name="location"
                   label="location*"
@@ -143,7 +123,7 @@ const PostProperty = () => {
                   onChange={formik.handleChange}
                   helperText={formik.touched.location && formik.errors.location}
                 >
-                  {RenderLocation("Igbo-eze North")}
+                  {RenderLocation(formik.values.localGvt)}
                 </TextField>
               </div>
               <div>
@@ -157,26 +137,35 @@ const PostProperty = () => {
                   helperText={formik.touched.location && formik.errors.location}
                 />
               </div>
+              <div>
+                <p className="no__of__pictures_hints">
+                  please add at least five 6 pictures, first picture is the
+                  banner of your room
+                </p>
+                <FieldArray name="pictures">
+                  {(fieldArrayProps) => {
+                    const { push, remove, form } = fieldArrayProps;
+                    const { values } = form;
+                    const { pictures } = values;
 
-              <FieldArray name="pictures">
-                {(fieldArrayProps) => {
-                  const { push, remove, form } = fieldArrayProps;
-                  const { values } = form;
-                  const { pictures } = values;
+                    return (
+                      <div>
+                        {pictures.map((picture, index) => (
+                          <span
+                            key={index}
+                            style={{
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                            }}
+                          >
+                            <Field
+                              name={`pictures[${index}]`}
+                              type="file"
+                              accept="image/x-png, image/jpeg"
+                              style={{ width: "80%" }}
+                            />
 
-                  return (
-                    <div>
-                      {pictures.map((picture, index) => (
-                        <div
-                          key={index}
-                          style={{ display: "flex", border: "1px solid red" }}
-                        >
-                          <Field
-                            name={`pictures[${index}]`}
-                            type="file"
-                            accept="image/x-png, image/jpeg"
-                          />
-                          {index > 0 && (
                             <IconButton
                               color="secondary"
                               onClick={() => remove(index)}
@@ -184,16 +173,28 @@ const PostProperty = () => {
                             >
                               <DeleteIcon />
                             </IconButton>
-                          )}
-                        </div>
-                      ))}
-                      <button type="button" onClick={() => push("")}>
-                        Add More Pictures
-                      </button>
-                    </div>
-                  );
-                }}
-              </FieldArray>
+                          </span>
+                        ))}
+                        <button
+                          type="button"
+                          style={{
+                            marginLeft: "10px",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                          }}
+                          onClick={() => push("")}
+                        >
+                          <AddCircleIcon />
+                          {pictures.length > 0
+                            ? "Add More Pictures"
+                            : "Add Picture"}
+                        </button>
+                      </div>
+                    );
+                  }}
+                </FieldArray>
+              </div>
               {/* <input
                   type="file"
                   name="picture"
