@@ -27,6 +27,7 @@ import PropertyFor from "./PropertyFor";
 import PropertyCondition from "./PropertyCondition";
 import NumberOfRooms from "./NumberOfRooms";
 import PropertyFacilities from "./PropertyFacilities";
+import MultipleSelect from "./FaciliProp";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -248,8 +249,8 @@ const PostProperty = () => {
               <div>
                 {/* select pictures created using formik fieldArray */}
                 <p className="no__of__pictures_hints">
-                  please add at least five 6 pictures, first picture is the
-                  banner of your room
+                  Please add at least 6 pictures, first picture is the main
+                  picture of your room.
                 </p>
                 <FieldArray name="pictures">
                   {(fieldArrayProps) => {
@@ -357,7 +358,7 @@ const PostProperty = () => {
                       type="text"
                       name="description"
                       id="description"
-                      label="Property address(optional)"
+                      label="Property Description(optional)"
                       multiline
                       rows={4}
                       variant="outlined"
@@ -369,11 +370,14 @@ const PostProperty = () => {
                 </ClickAwayListener>
               </div>
               <div>
+                <MultipleSelect />
+              </div>
+              <div>
                 <FormControl className={classes.formControl}>
-                  <InputLabel shrink>Facilities</InputLabel>
+                  <InputLabel id="demo-mutiple-checkbox-label">Tag</InputLabel>
                   <Select
-                    labelId="facilities"
-                    id="propertyFacilites"
+                    labelId="demo-mutiple-checkbox-label"
+                    id="demo-mutiple-checkbox"
                     multiple
                     value={formik.values.propertyFacilities}
                     // onChange={formik.handleChange}
@@ -381,17 +385,19 @@ const PostProperty = () => {
                     renderValue={(selected) => selected.join(", ")}
                     MenuProps={MenuProps}
                   >
-                    {PropertyFacilities.map((facilities) => (
-                      <MenuItem key={facilities} value={facilities}>
-                        <Checkbox
-                          checked={PropertyFacilities.indexOf(facilities) > -1}
-                        />
-                        <ListItemText primary={facilities} />
+                    {PropertyFacilities.map((name) => (
+                      //  onClick={() =>
+                      //   formik.setFieldValue("localGvt", `${localGvt.value}`)
+                      // }
+                      <MenuItem onChecked key={name} value={name}>
+                        <Checkbox />
+                        <ListItemText primary={name} />
                       </MenuItem>
                     ))}
                   </Select>
                 </FormControl>
               </div>
+
               <button type="submit">submit</button>
             </Form>
           </div>
