@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 import { Formik, Form, Field, ErrorMessage, FieldArray } from "formik";
-import * as Yup from "yup";
+import * as yup from "yup";
 import {
   Button,
   Checkbox,
@@ -28,6 +28,8 @@ import PropertyCondition from "./PropertyCondition";
 import NumberOfRooms from "./NumberOfRooms";
 import PropertyFacilities from "./PropertyFacilities";
 import MultipleSelect from "./FaciliProp";
+import Example from "./FaciliProp";
+import MultiSelect from "react-multi-select-component";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -70,29 +72,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const initialValues = {
-  localGvt: "",
-  category: "",
-  pictures: [""],
-  location: "",
-  propertyFor: "",
-  propertyAdress: "",
-  propertyCondition: "",
-  typeOfProperty: "",
-  numberOfRooms: "",
-  description: "",
-  propertyFacilities: [],
-  price: undefined,
-};
-
-const validationSchema = Yup.object({
-  localGvt: Yup.string().required("Required"),
-  category: Yup.string().required("Required"),
-  location: Yup.string().required("Required"),
-  propertyFor: Yup.string().required("Required"),
-  propertyAdress: Yup.string().required("Required"),
-  propertyCondition: Yup.string().required("Required"),
-  numberOfRooms: Yup.string().required("Required"),
+function getStyles(name, personName, theme) {
+  return {
+    fontWeight:
+      personName.indexOf(name) === -1
+        ? theme.typography.fontWeightRegular
+        : theme.typography.fontWeightMedium,
+  };
+}
+const validationSchema = yup.object({
+  localGvt: yup.string().required("Required"),
+  category: yup.string().required("Required"),
+  location: yup.string().required("Required"),
+  propertyFor: yup.string().required("Required"),
+  propertyAdress: yup.string().required("Required"),
+  propertyCondition: yup.string().required("Required"),
+  numberOfRooms: yup.string().required("Required"),
 });
 const onSubmit = (value) => {
   console.log(value);
@@ -133,14 +128,30 @@ const PostProperty = () => {
     setDescription_Tooltip(true);
   };
 
+  const [selected, setSelected] = useState([]);
+  const initialValues = {
+    localGvt: "",
+    category: "",
+    pictures: [""],
+    location: "",
+    propertyFor: "",
+    propertyAdress: "",
+    propertyCondition: "",
+    typeOfProperty: "",
+    numberOfRooms: "",
+    description: "",
+    propertyFacilities: [""],
+    price: undefined,
+  };
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
+      enableReinitialize
     >
       {(formik) => {
-        console.log(formik.values);
+        console.log(formik.values.propertyFacilities);
         return (
           <div className={classes.root}>
             <Form>
@@ -369,29 +380,42 @@ const PostProperty = () => {
                   </Tooltip>
                 </ClickAwayListener>
               </div>
-              <div>
+              {/* <div>
                 <MultipleSelect />
-              </div>
+              </div> */}
               <div>
                 <FormControl className={classes.formControl}>
-                  <InputLabel id="demo-mutiple-checkbox-label">Tag</InputLabel>
+                  <InputLabel id="demo-mutiple-chip-label">Chip</InputLabel>
                   <Select
-                    labelId="demo-mutiple-checkbox-label"
-                    id="demo-mutiple-checkbox"
+                    labelId="demo-mutiple-chip-label"
+                    id="demo-mutiple-chip"
                     multiple
                     value={formik.values.propertyFacilities}
-                    // onChange={formik.handleChange}
-                    input={<Input />}
-                    renderValue={(selected) => selected.join(", ")}
+                    onChange={(evt) =>
+                      formik.setFieldValue(
+                        "propertyFacilities",
+                        [].slice
+                          .call(evt.target.selectedOptions)
+                          .map((option) => option.value)
+                      )
+                    }
+                    input={<Input id="select-multiple-chip" />}
+                    renderValue={(selected) => (
+                      <div className={classes.chips}>
+                        {selected.map((value) => (
+                          <Chip
+                            key={value}
+                            label={value}
+                            className={classes.chip}
+                          />
+                        ))}
+                      </div>
+                    )}
                     MenuProps={MenuProps}
                   >
                     {PropertyFacilities.map((name) => (
-                      //  onClick={() =>
-                      //   formik.setFieldValue("localGvt", `${localGvt.value}`)
-                      // }
-                      <MenuItem onChecked key={name} value={name}>
-                        <Checkbox />
-                        <ListItemText primary={name} />
+                      <MenuItem key={name} value={name}>
+                        {name}
                       </MenuItem>
                     ))}
                   </Select>
