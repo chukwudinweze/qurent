@@ -2,12 +2,10 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
-import { Formik, Form, Field, ErrorMessage, FieldArray } from "formik";
+import { Formik, Form, Field, FieldArray } from "formik";
 import * as yup from "yup";
 import {
-  Button,
   Checkbox,
-  Chip,
   ClickAwayListener,
   FormControl,
   IconButton,
@@ -19,7 +17,7 @@ import {
   Select,
   Tooltip,
 } from "@material-ui/core";
-import { PhotoCamera } from "@material-ui/icons";
+
 import DeleteIcon from "@material-ui/icons/Delete";
 import LocalGvts from "./LocalGvts";
 import RenderLocation from "./RenderLocation";
@@ -29,10 +27,6 @@ import PropertyFor from "./PropertyFor";
 import PropertyCondition from "./PropertyCondition";
 import NumberOfRooms from "./NumberOfRooms";
 import PropertyFacilities from "./PropertyFacilities";
-import MultipleSelect from "./FaciliProp";
-import Example from "./FaciliProp";
-import MultiSelect from "react-multi-select-component";
-import clsx from "clsx";
 import NairaSymbol from "./NairaSymbol";
 
 const ITEM_HEIGHT = 48;
@@ -76,14 +70,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function getStyles(name, personName, theme) {
-  return {
-    fontWeight:
-      personName.indexOf(name) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
-  };
-}
 const validationSchema = yup.object({
   localGvt: yup.string().required("Required"),
   category: yup.string().required("Required"),
@@ -132,7 +118,6 @@ const PostProperty = () => {
     setDescription_Tooltip(true);
   };
 
-  const [selected, setSelected] = useState([]);
   const initialValues = {
     localGvt: "",
     category: "",
