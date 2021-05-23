@@ -12,8 +12,10 @@ import {
   FormControl,
   IconButton,
   Input,
+  InputAdornment,
   InputLabel,
   ListItemText,
+  OutlinedInput,
   Select,
   Tooltip,
 } from "@material-ui/core";
@@ -31,6 +33,7 @@ import MultipleSelect from "./FaciliProp";
 import Example from "./FaciliProp";
 import MultiSelect from "react-multi-select-component";
 import clsx from "clsx";
+import NairaSymbol from "./NairaSymbol";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -138,11 +141,10 @@ const PostProperty = () => {
     propertyFor: "",
     propertyAdress: "",
     propertyCondition: "",
-    typeOfProperty: "",
     numberOfRooms: "",
     description: "",
     propertyFacilities: [],
-    price: undefined,
+    amount: "",
   };
   return (
     <Formik
@@ -340,6 +342,13 @@ const PostProperty = () => {
 
               <div>
                 <TextField
+                  style={
+                    formik.values.category === "Flat"
+                      ? {
+                          display: "flex",
+                        }
+                      : { display: "none" }
+                  }
                   id="numberOfRooms"
                   name="numberOfRooms"
                   label="Bedrooms*"
@@ -384,7 +393,9 @@ const PostProperty = () => {
 
               <div>
                 <FormControl className={classes.formControl}>
-                  <InputLabel id="demo-mutiple-checkbox-label">Tag</InputLabel>
+                  <InputLabel id="demo-mutiple-checkbox-label">
+                    Facilities
+                  </InputLabel>
                   <Select
                     labelId="demo-mutiple-checkbox-label"
                     id="demo-mutiple-checkbox"
@@ -408,6 +419,30 @@ const PostProperty = () => {
                       </MenuItem>
                     ))}
                   </Select>
+                </FormControl>
+              </div>
+              <div>
+                <FormControl
+                  fullWidth
+                  className={classes.margin}
+                  variant="outlined"
+                >
+                  <InputLabel htmlFor="outlined-adornment-amount">
+                    Amount
+                  </InputLabel>
+                  <OutlinedInput
+                    name="amount"
+                    type="number"
+                    id="outlined-adornment-amount"
+                    value={formik.values.amount || ""}
+                    onChange={formik.handleChange}
+                    startAdornment={
+                      <InputAdornment position="start">
+                        <NairaSymbol />
+                      </InputAdornment>
+                    }
+                    labelWidth={60}
+                  />
                 </FormControl>
               </div>
               <button type="submit">submit</button>
