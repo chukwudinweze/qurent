@@ -141,7 +141,7 @@ const PostProperty = () => {
     typeOfProperty: "",
     numberOfRooms: "",
     description: "",
-    propertyFacilities: [""],
+    propertyFacilities: [],
     price: undefined,
   };
   return (
@@ -152,7 +152,7 @@ const PostProperty = () => {
       enableReinitialize
     >
       {(formik) => {
-        console.log(formik.values.propertyFacilities);
+        console.log(formik.values);
         return (
           <div className={classes.root}>
             <Form>
@@ -163,7 +163,7 @@ const PostProperty = () => {
                   label="category*"
                   select
                   variant="outlined"
-                  value={formik.values.category}
+                  value={formik.values.category || ""}
                   onChange={formik.handleChange}
                   helperText={formik.touched.category && formik.errors.category}
                 >
@@ -181,7 +181,7 @@ const PostProperty = () => {
                   label="Property for*"
                   select
                   variant="outlined"
-                  value={formik.values.propertyFor}
+                  value={formik.values.propertyFor || ""}
                   onChange={formik.handleChange}
                   helperText={
                     formik.touched.propertyFor && formik.errors.propertyFor
@@ -200,7 +200,7 @@ const PostProperty = () => {
                 label="Local government*"
                 select
                 variant="outlined"
-                value={formik.values.localGvt}
+                value={formik.values.localGvt || ""}
                 onChange={formik.handleChange}
                 helperText={formik.touched.localGvt && formik.errors.localGvt}
               >
@@ -224,7 +224,7 @@ const PostProperty = () => {
                   label="location*"
                   select
                   variant="outlined"
-                  value={formik.values.location}
+                  value={formik.values.location || ""}
                   onChange={formik.handleChange}
                   helperText={formik.touched.location && formik.errors.location}
                 >
@@ -248,7 +248,7 @@ const PostProperty = () => {
                       label="Property address*"
                       variant="outlined"
                       onClick={openLocationTooltip}
-                      value={formik.values.propertyAdress}
+                      value={formik.values.propertyAdress || ""}
                       onChange={formik.handleChange}
                       helperText={
                         formik.touched.propertyAdress &&
@@ -325,7 +325,7 @@ const PostProperty = () => {
                   label="Condition*"
                   select
                   variant="outlined"
-                  value={formik.values.propertyCondition}
+                  value={formik.values.propertyCondition || ""}
                   onChange={formik.handleChange}
                   helperText={
                     formik.touched.propertyCondition &&
@@ -345,7 +345,7 @@ const PostProperty = () => {
                   label="Bedrooms*"
                   select
                   variant="outlined"
-                  value={formik.values.numberOfRooms}
+                  value={formik.values.numberOfRooms || ""}
                   onChange={formik.handleChange}
                   helperText={
                     formik.touched.numberOfRooms && formik.errors.numberOfRooms
@@ -375,82 +375,36 @@ const PostProperty = () => {
                       rows={4}
                       variant="outlined"
                       onClick={open_description_Tooltip}
-                      value={formik.values.description}
+                      value={formik.values.description || ""}
                       onChange={formik.handleChange}
                     />
                   </Tooltip>
                 </ClickAwayListener>
               </div>
-              {/* <div>
-                <MultipleSelect />
-              </div> */}
+
               <div>
-                <Field
-                  component="select"
-                  name="propertyFacilities"
-                  // You need to set the new field value
-                  onChange={(evt) =>
-                    formik.setFieldValue(
-                      "propertyFacilities",
-                      [].slice
-                        .call(evt.target.selectedOptions)
-                        .map((option) => option.value)
-                    )
-                  }
-                  multiple={true}
-                >
-                  {PropertyFacilities.map((s) => (
-                    <option key={s} value={s}>
-                      {s}
-                    </option>
-                  ))}
-                </Field>
-                {/* just printing out the values */}
-                <hr />
-                <div>
-                  {formik.values.propertyFacilities.map((value, index) => {
-                    return <span key={index}>{value} </span>;
-                  })}
-                </div>
-              </div>
-              <div>
-                <FormControl
-                // className={clsx(classes.formControl, classes.noLabel)}
-                >
+                <FormControl className={classes.formControl}>
+                  <InputLabel id="demo-mutiple-checkbox-label">Tag</InputLabel>
                   <Select
+                    labelId="demo-mutiple-checkbox-label"
+                    id="demo-mutiple-checkbox"
                     multiple
-                    displayEmpty
-                    value={formik.values.propertyFacilities}
+                    value={formik.values.propertyFacilities || ""}
                     onChange={(e) =>
-                      formik.setFieldValue(
-                        "propertyFacilities",
-                        // [].slice
-                        //   .call(e.target.value)
-                        //   .map((option) => option.value)
-                        e.target.value
-                      )
+                      formik.setFieldValue("propertyFacilities", e.target.value)
                     }
                     input={<Input />}
-                    renderValue={(selected) => {
-                      if (selected.length === 0) {
-                        return <em>Facilities</em>;
-                      }
-
-                      return selected.join(", ");
-                    }}
+                    renderValue={(selected) => selected.join(", ")}
                     MenuProps={MenuProps}
-                    inputProps={{ "aria-label": "Without label" }}
                   >
-                    <MenuItem disabled value="">
-                      <em>Facilities</em>
-                    </MenuItem>
                     {PropertyFacilities.map((name) => (
-                      <MenuItem
-                        key={name}
-                        value={name}
-                        // style={getStyles(name, personName, theme)}
-                      >
-                        {name}
+                      <MenuItem key={name} value={name}>
+                        <Checkbox
+                          checked={
+                            formik.values.propertyFacilities.indexOf(name) > -1
+                          }
+                        />
+                        <ListItemText primary={name} />
                       </MenuItem>
                     ))}
                   </Select>
