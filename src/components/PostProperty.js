@@ -5,6 +5,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import { Formik, Form, Field, FieldArray } from "formik";
 import * as yup from "yup";
 import {
+  Button,
   Checkbox,
   ClickAwayListener,
   FormControl,
@@ -13,7 +14,6 @@ import {
   InputAdornment,
   InputLabel,
   ListItemText,
-  OutlinedInput,
   Select,
   Tooltip,
 } from "@material-ui/core";
@@ -44,9 +44,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: "4rem",
     marginBottom: "3rem",
-    width: "90%",
+    width: "100%",
     "& .MuiTextField-root": {
-      margin: theme.spacing(1),
+      marginBottom: "1rem",
       width: "100%",
       focused: {
         borderColor: "green",
@@ -78,6 +78,7 @@ const validationSchema = yup.object({
   propertyAdress: yup.string().required("Required"),
   propertyCondition: yup.string().required("Required"),
   numberOfRooms: yup.string().required("Required"),
+  amount: yup.number("input must be number").required("Required"),
 });
 const onSubmit = (value) => {
   console.log(value);
@@ -94,7 +95,7 @@ const validatePictured = (value) => {
 const PostProperty = () => {
   // material ui class
   const classes = useStyles();
-  // location tooltip state
+  // input location tooltip state
   const [locationTooltip, setlocationTooltip] = useState(false);
 
   // change the state of location input tooltip
@@ -106,7 +107,7 @@ const PostProperty = () => {
     setlocationTooltip(true);
   };
 
-  // description tooltip state
+  // input description description tooltip state
   const [description_Tooltip, setDescription_Tooltip] = useState(false);
 
   // change the state of description input tooltip
@@ -136,13 +137,13 @@ const PostProperty = () => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
-      enableReinitialize
     >
       {(formik) => {
+        // formik is an object with proerties like values, handleChange etc
         console.log(formik.values);
         return (
           <div className={classes.root}>
-            <Form>
+            <Form style={{ padding: "0 2rem", border: "1px solid red" }}>
               <div>
                 <TextField
                   id="category"
@@ -174,11 +175,11 @@ const PostProperty = () => {
                     formik.touched.propertyFor && formik.errors.propertyFor
                   }
                 >
-                  {React.Children.toArray(
-                    PropertyFor.map((value) => (
-                      <MenuItem value={value}>{value}</MenuItem>
-                    ))
-                  )}
+                  {PropertyFor.map((value, index) => (
+                    <MenuItem key={index} value={value}>
+                      {value}
+                    </MenuItem>
+                  ))}
                 </TextField>
               </div>
               <TextField
@@ -196,7 +197,7 @@ const PostProperty = () => {
                     key={localGvt.value}
                     value={localGvt.value}
                     onClick={() =>
-                      formik.setFieldValue("localGvt", `${localGvt.value}`)
+                      formik.setFieldValue("localGvt", localGvt.value)
                     }
                   >
                     {localGvt.label}
@@ -215,6 +216,7 @@ const PostProperty = () => {
                   onChange={formik.handleChange}
                   helperText={formik.touched.location && formik.errors.location}
                 >
+                  {/* RenderLocation() is a function that checks the value of localGvt to determine the location it will showcase in location input below */}
                   {RenderLocation(formik.values.localGvt)}
                 </TextField>
               </div>
@@ -245,12 +247,19 @@ const PostProperty = () => {
                   </Tooltip>
                 </ClickAwayListener>
               </div>
-              <div>
-                {/* select pictures created using formik fieldArray */}
-                <p className="no__of__pictures_hints">
+              <div
+                style={{
+                  border: "1px solid gray",
+                  marginBottom: "1rem",
+                  padding: "0.312rem",
+                  borderRadius: "5px",
+                }}
+              >
+                {/* select multiple pictures, created using formik fieldArray, refer to documentation for more info */}
+                <em style={{ fontSize: ".87rem" }}>
                   Please add at least 6 pictures, first picture is the main
                   picture of your room.
-                </p>
+                </em>
                 <FieldArray name="pictures">
                   {(fieldArrayProps) => {
                     const { push, remove, form } = fieldArrayProps;
@@ -284,10 +293,32 @@ const PostProperty = () => {
                             </IconButton>
                           </span>
                         ))}
-                        <button
+                        {/* <Button
+                          type="button"
+                          variant="contained"
+                          onClick={() => push("")}
+                        >
+                          <AddCircleIcon />
+                          {pictures.length > 0
+                            ? "Add More Pictures"
+                            : "Add Picture"}
+                        </Button> */}
+
+                        <Button
+                          style={{ width: "80%" }}
+                          type="button"
+                          variant="contained"
+                          className={classes.button}
+                          startIcon={<AddCircleIcon />}
+                          onClick={() => push("")}
+                        >
+                          {pictures.length > 0
+                            ? "Add More Pictures"
+                            : "Add Picture"}
+                        </Button>
+                        {/* <button
                           type="button"
                           style={{
-                            marginLeft: "10px",
                             display: "flex",
                             justifyContent: "center",
                             alignItems: "center",
@@ -298,7 +329,7 @@ const PostProperty = () => {
                           {pictures.length > 0
                             ? "Add More Pictures"
                             : "Add Picture"}
-                        </button>
+                        </button> */}
                       </div>
                     );
                   }}
@@ -327,6 +358,7 @@ const PostProperty = () => {
 
               <div>
                 <TextField
+                  // if the value of the category is flat, display this textfield, if not don't display it to the user
                   style={
                     formik.values.category === "Flat"
                       ? {
@@ -382,10 +414,12 @@ const PostProperty = () => {
                     Facilities
                   </InputLabel>
                   <Select
-                    labelId="demo-mutiple-checkbox-label"
-                    id="demo-mutiple-checkbox"
+                    style={{ minWidth: "20rem" }}
+                    labelId="facilities-label"
+                    id="facilities"
                     multiple
                     value={formik.values.propertyFacilities || ""}
+                    // onchange, push selected item to the empty array(propertyFacility initialValue)
                     onChange={(e) =>
                       formik.setFieldValue("propertyFacilities", e.target.value)
                     }
@@ -393,42 +427,38 @@ const PostProperty = () => {
                     renderValue={(selected) => selected.join(", ")}
                     MenuProps={MenuProps}
                   >
-                    {PropertyFacilities.map((name) => (
-                      <MenuItem key={name} value={name}>
+                    {PropertyFacilities.map((facility) => (
+                      <MenuItem key={facility} value={facility}>
+                        {/* let an item in the options be checked if and only if it exits in the propertyFacilities array */}
                         <Checkbox
                           checked={
-                            formik.values.propertyFacilities.indexOf(name) > -1
+                            formik.values.propertyFacilities.indexOf(facility) >
+                            -1
                           }
                         />
-                        <ListItemText primary={name} />
+                        <ListItemText primary={facility} />
                       </MenuItem>
                     ))}
                   </Select>
                 </FormControl>
               </div>
+
               <div>
-                <FormControl
-                  fullWidth
-                  className={classes.margin}
+                <TextField
+                  label="Amount*"
+                  id="amount"
+                  name="amount"
+                  type="number"
                   variant="outlined"
-                >
-                  <InputLabel htmlFor="outlined-adornment-amount">
-                    Amount
-                  </InputLabel>
-                  <OutlinedInput
-                    name="amount"
-                    type="number"
-                    id="outlined-adornment-amount"
-                    value={formik.values.amount || ""}
-                    onChange={formik.handleChange}
-                    startAdornment={
+                  helperText={formik.touched.amount && formik.errors.amount}
+                  InputProps={{
+                    startAdornment: (
                       <InputAdornment position="start">
                         <NairaSymbol />
                       </InputAdornment>
-                    }
-                    labelWidth={60}
-                  />
-                </FormControl>
+                    ),
+                  }}
+                />
               </div>
               <button type="submit">submit</button>
             </Form>
