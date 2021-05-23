@@ -30,6 +30,7 @@ import PropertyFacilities from "./PropertyFacilities";
 import MultipleSelect from "./FaciliProp";
 import Example from "./FaciliProp";
 import MultiSelect from "react-multi-select-component";
+import clsx from "clsx";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -384,44 +385,77 @@ const PostProperty = () => {
                 <MultipleSelect />
               </div> */}
               <div>
-                <FormControl className={classes.formControl}>
-                  <InputLabel id="demo-mutiple-chip-label">Chip</InputLabel>
+                <Field
+                  component="select"
+                  name="propertyFacilities"
+                  // You need to set the new field value
+                  onChange={(evt) =>
+                    formik.setFieldValue(
+                      "propertyFacilities",
+                      [].slice
+                        .call(evt.target.selectedOptions)
+                        .map((option) => option.value)
+                    )
+                  }
+                  multiple={true}
+                >
+                  {PropertyFacilities.map((s) => (
+                    <option key={s} value={s}>
+                      {s}
+                    </option>
+                  ))}
+                </Field>
+                {/* just printing out the values */}
+                <hr />
+                <div>
+                  {formik.values.propertyFacilities.map((value, index) => {
+                    return <span key={index}>{value} </span>;
+                  })}
+                </div>
+              </div>
+              <div>
+                <FormControl
+                // className={clsx(classes.formControl, classes.noLabel)}
+                >
                   <Select
-                    labelId="demo-mutiple-chip-label"
-                    id="demo-mutiple-chip"
                     multiple
+                    displayEmpty
                     value={formik.values.propertyFacilities}
-                    onChange={(evt) =>
+                    onChange={(e) =>
                       formik.setFieldValue(
                         "propertyFacilities",
-                        [].slice
-                          .call(evt.target.selectedOptions)
-                          .map((option) => option.value)
+                        // [].slice
+                        //   .call(e.target.value)
+                        //   .map((option) => option.value)
+                        e.target.value
                       )
                     }
-                    input={<Input id="select-multiple-chip" />}
-                    renderValue={(selected) => (
-                      <div className={classes.chips}>
-                        {selected.map((value) => (
-                          <Chip
-                            key={value}
-                            label={value}
-                            className={classes.chip}
-                          />
-                        ))}
-                      </div>
-                    )}
+                    input={<Input />}
+                    renderValue={(selected) => {
+                      if (selected.length === 0) {
+                        return <em>Facilities</em>;
+                      }
+
+                      return selected.join(", ");
+                    }}
                     MenuProps={MenuProps}
+                    inputProps={{ "aria-label": "Without label" }}
                   >
+                    <MenuItem disabled value="">
+                      <em>Facilities</em>
+                    </MenuItem>
                     {PropertyFacilities.map((name) => (
-                      <MenuItem key={name} value={name}>
+                      <MenuItem
+                        key={name}
+                        value={name}
+                        // style={getStyles(name, personName, theme)}
+                      >
                         {name}
                       </MenuItem>
                     ))}
                   </Select>
                 </FormControl>
               </div>
-
               <button type="submit">submit</button>
             </Form>
           </div>
