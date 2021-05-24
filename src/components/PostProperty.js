@@ -9,6 +9,7 @@ import {
   Checkbox,
   ClickAwayListener,
   FormControl,
+  FormControlLabel,
   IconButton,
   Input,
   InputAdornment,
@@ -29,44 +30,28 @@ import NumberOfRooms from "./NumberOfRooms";
 import PropertyFacilities from "./PropertyFacilities";
 import NairaSymbol from "./NairaSymbol";
 
-const ITEM_HEIGHT = 48;
+const ITEM_HEIGHT = 80;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
   PaperProps: {
     style: {
       maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
+      width: "95vw",
     },
   },
 };
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginTop: "4rem",
-    marginBottom: "3rem",
-    width: "100%",
     "& .MuiTextField-root": {
       marginBottom: "1rem",
       width: "100%",
-      focused: {
-        borderColor: "green",
-      },
     },
   },
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
-    maxWidth: 300,
-  },
-  chips: {
-    display: "flex",
-    flexWrap: "wrap",
-  },
-  chip: {
-    margin: 2,
-  },
-  noLabel: {
-    marginTop: theme.spacing(3),
+    maxWidth: 270,
   },
 }));
 
@@ -79,6 +64,7 @@ const validationSchema = yup.object({
   propertyCondition: yup.string().required("Required"),
   numberOfRooms: yup.string().required("Required"),
   amount: yup.number("input must be number").required("Required"),
+  acceptTerms: yup.bool().oneOf([true], "Accept Terms & Conditions"),
 });
 const onSubmit = (value) => {
   console.log(value);
@@ -131,6 +117,7 @@ const PostProperty = () => {
     description: "",
     propertyFacilities: [],
     amount: "",
+    acceptTerms: false,
   };
   return (
     <Formik
@@ -143,7 +130,15 @@ const PostProperty = () => {
         console.log(formik.values);
         return (
           <div className={classes.root}>
-            <Form style={{ padding: "0 2rem", border: "1px solid red" }}>
+            <Form
+              style={{
+                padding: "0 2rem",
+                border: "1px solid red",
+                // marginTop: "4rem",
+                marginBottom: "3rem",
+                width: "100%",
+              }}
+            >
               <div>
                 <TextField
                   id="category"
@@ -293,16 +288,6 @@ const PostProperty = () => {
                             </IconButton>
                           </span>
                         ))}
-                        {/* <Button
-                          type="button"
-                          variant="contained"
-                          onClick={() => push("")}
-                        >
-                          <AddCircleIcon />
-                          {pictures.length > 0
-                            ? "Add More Pictures"
-                            : "Add Picture"}
-                        </Button> */}
 
                         <Button
                           style={{ width: "80%" }}
@@ -316,20 +301,6 @@ const PostProperty = () => {
                             ? "Add More Pictures"
                             : "Add Picture"}
                         </Button>
-                        {/* <button
-                          type="button"
-                          style={{
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                          }}
-                          onClick={() => push("")}
-                        >
-                          <AddCircleIcon />
-                          {pictures.length > 0
-                            ? "Add More Pictures"
-                            : "Add Picture"}
-                        </button> */}
                       </div>
                     );
                   }}
@@ -414,9 +385,10 @@ const PostProperty = () => {
                     Facilities
                   </InputLabel>
                   <Select
-                    style={{ minWidth: "20rem" }}
+                    style={{ minWidth: "18rem", marginBottom: "1rem" }}
                     labelId="facilities-label"
                     id="facilities"
+                    name="propertyFacilities"
                     multiple
                     value={formik.values.propertyFacilities || ""}
                     // onchange, push selected item to the empty array(propertyFacility initialValue)
@@ -460,6 +432,19 @@ const PostProperty = () => {
                   }}
                 />
               </div>
+              <div>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={formik.values.acceptTerms}
+                      onChange={() => formik.setFieldValue("acceptTerms", true)}
+                      name="acceptTerms"
+                    />
+                  }
+                  label="Terms and Conditions"
+                />
+              </div>
+              <br />
               <button type="submit">submit</button>
             </Form>
           </div>

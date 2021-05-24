@@ -84,48 +84,6 @@ export default function MultipleSelect() {
   return (
     <div>
       <FormControl className={classes.formControl}>
-        <InputLabel id="demo-mutiple-name-label">Name</InputLabel>
-        <Select
-          labelId="demo-mutiple-name-label"
-          id="demo-mutiple-name"
-          multiple
-          value={personName}
-          onChange={handleChange}
-          input={<Input />}
-          MenuProps={MenuProps}
-        >
-          {names.map((name) => (
-            <MenuItem
-              key={name}
-              value={name}
-              style={getStyles(name, personName, theme)}
-            >
-              {name}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-      <FormControl className={classes.formControl}>
-        <InputLabel id="demo-mutiple-checkbox-label">Tag</InputLabel>
-        <Select
-          labelId="demo-mutiple-checkbox-label"
-          id="demo-mutiple-checkbox"
-          multiple
-          value={personName}
-          onChange={handleChange}
-          input={<Input />}
-          renderValue={(selected) => selected.join(", ")}
-          MenuProps={MenuProps}
-        >
-          {names.map((name) => (
-            <MenuItem key={name} value={name}>
-              <Checkbox checked={personName.indexOf(name) > -1} />
-              <ListItemText primary={name} />
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-      <FormControl className={classes.formControl}>
         <InputLabel id="demo-mutiple-chip-label">Chip</InputLabel>
         <Select
           labelId="demo-mutiple-chip-label"

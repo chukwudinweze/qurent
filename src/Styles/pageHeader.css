@@ -1,3 +1,7 @@
+.header__wrapper {
+  padding-bottom: 5rem;
+}
+
 .page__header {
   background: var(--white);
   width: 100%;
