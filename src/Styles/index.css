@@ -35,6 +35,7 @@ html {
 
 body {
   overflow: auto;
+  background: var(--gray);
 }
 
 a {

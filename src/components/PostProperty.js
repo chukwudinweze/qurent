@@ -29,6 +29,7 @@ import PropertyCondition from "./PropertyCondition";
 import NumberOfRooms from "./NumberOfRooms";
 import PropertyFacilities from "./PropertyFacilities";
 import NairaSymbol from "./NairaSymbol";
+import "../Styles/pageHeader.css";
 
 const ITEM_HEIGHT = 80;
 const ITEM_PADDING_TOP = 8;
@@ -129,12 +130,20 @@ const PostProperty = () => {
         // formik is an object with proerties like values, handleChange etc
         console.log(formik.values);
         return (
-          <div className={classes.root}>
+          <div
+            style={{
+              backgroundColor: "rgb(241, 239, 239)",
+              padding: "0.7rem",
+              marginBottom: "8rem",
+            }}
+            className={classes.root}
+          >
             <Form
               style={{
-                padding: "0 1rem",
-                marginBottom: "3rem",
+                backgroundColor: "#f9f9fb",
+                padding: "0.6rem 0.6rem 1.5rem",
                 width: "100%",
+                boxShadow: "0 0 5px #888",
               }}
             >
               <div>
@@ -213,6 +222,7 @@ const PostProperty = () => {
                   {RenderLocation(formik.values.localGvt)}
                 </TextField>
               </div>
+
               <div>
                 {/* ClickAwayListener: material ui close tooltip onclick outside the target element(property address) */}
                 <ClickAwayListener onClickAway={closeLocationTooltip}>
@@ -286,7 +296,7 @@ const PostProperty = () => {
                             </IconButton>
                           </span>
                         ))}
-
+                        {/* if the number of picture is less than one, let button label be "add picture", when the number is upto one or greater than one, let button label be "add more pictures" */}
                         <Button
                           style={{ width: "80%" }}
                           type="button"
@@ -459,7 +469,21 @@ const PostProperty = () => {
                 />
               </div>
               <br />
-              <button type="submit">submit</button>
+              <Button
+                style={{
+                  width: "100%",
+                  backgroundColor: "#20c063",
+                  color: "white",
+                  // padding: ".5rem 0",
+                }}
+                size="large"
+                type="submit"
+                variant="contained"
+                disableElevation
+                className={classes.button}
+              >
+                Post Ad
+              </Button>
             </Form>
           </div>
         );
