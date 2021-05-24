@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
-    maxWidth: 270,
+    maxWidth: 300,
   },
 }));
 
@@ -64,7 +64,7 @@ const validationSchema = yup.object({
   propertyCondition: yup.string().required("Required"),
   numberOfRooms: yup.string().required("Required"),
   amount: yup.number("input must be number").required("Required"),
-  acceptTerms: yup.bool().oneOf([true], "Accept Terms & Conditions"),
+  acceptTerms: yup.bool().oneOf([true]),
 });
 const onSubmit = (value) => {
   console.log(value);
@@ -132,9 +132,7 @@ const PostProperty = () => {
           <div className={classes.root}>
             <Form
               style={{
-                padding: "0 2rem",
-                border: "1px solid red",
-                // marginTop: "4rem",
+                padding: "0 1rem",
                 marginBottom: "3rem",
                 width: "100%",
               }}
@@ -385,7 +383,7 @@ const PostProperty = () => {
                     Facilities
                   </InputLabel>
                   <Select
-                    style={{ minWidth: "18rem", marginBottom: "1rem" }}
+                    style={{ marginBottom: "1rem" }}
                     labelId="facilities-label"
                     id="facilities"
                     name="propertyFacilities"
@@ -434,11 +432,27 @@ const PostProperty = () => {
               </div>
               <div>
                 <FormControlLabel
+                  style={
+                    formik.touched.acceptTerms && formik.errors.acceptTerms
+                      ? { color: "red" }
+                      : null
+                  }
                   control={
                     <Checkbox
-                      checked={formik.values.acceptTerms}
-                      onChange={() => formik.setFieldValue("acceptTerms", true)}
+                      // if the value changes to true, turn the color to green
+                      style={
+                        formik.values.acceptTerms
+                          ? { color: "#20c063" }
+                          : { color: "gray" }
+                      }
                       name="acceptTerms"
+                      checked={formik.values.acceptTerms}
+                      onChange={() =>
+                        formik.setFieldValue(
+                          "acceptTerms",
+                          !formik.values.acceptTerms
+                        )
+                      }
                     />
                   }
                   label="Terms and Conditions"
