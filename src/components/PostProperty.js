@@ -56,17 +56,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const validationSchema = yup.object({
-  localGvt: yup.string().required("Required"),
-  category: yup.string().required("Required"),
-  location: yup.string().required("Required"),
-  propertyFor: yup.string().required("Required"),
-  propertyAdress: yup.string().required("Required"),
-  propertyCondition: yup.string().required("Required"),
-  numberOfRooms: yup.string().required("Required"),
-  amount: yup.number("input must be number").required("Required"),
-  acceptTerms: yup.bool().oneOf([true]),
-});
 const onSubmit = (value) => {
   console.log(value);
 };
@@ -82,10 +71,22 @@ const validatePictured = (value) => {
 const PostProperty = () => {
   // material ui class
   const classes = useStyles();
-  // input location tooltip state
+  // property title tooltip state(material ui tooltip api)
+  const [titleTooltip, setTitleTooltip] = useState(false);
+
+  // change the state of Title input tooltip(material ui tooltip api)
+  const closeTitleTooltip = () => {
+    setTitleTooltip(false);
+  };
+
+  const openTitleTooltip = () => {
+    setTitleTooltip(true);
+  };
+
+  // input location tooltip state(material ui tooltip api)
   const [locationTooltip, setlocationTooltip] = useState(false);
 
-  // change the state of location input tooltip
+  // change the state of location input tooltip(material ui tooltip api)
   const closeLocationTooltip = () => {
     setlocationTooltip(false);
   };
@@ -117,9 +118,30 @@ const PostProperty = () => {
     numberOfRooms: "",
     description: "",
     propertyFacilities: [],
-    amount: "",
+    price: undefined,
     acceptTerms: false,
+    title: "",
   };
+
+  const validationSchema = yup.object({
+    localGvt: yup.string().required("Required"),
+    category: yup.string().required("Required"),
+    location: yup.string().required("Required"),
+    propertyFor: yup.string().required("Required"),
+    propertyAdress: yup.string().required("Required"),
+    propertyCondition: yup.string().required("Required"),
+    numberOfRooms: yup.string().required("Required"),
+    price: yup
+      .number()
+      .positive("price can't be negative")
+      .integer("Decimal point is not accepted")
+      .min(1000, "Price should be more than 1000")
+      .max(1000000000, "Price is too long")
+      .required("Required"),
+
+    acceptTerms: yup.bool().oneOf([true]),
+    title: yup.string().required("Required"),
+  });
   return (
     <Formik
       initialValues={initialValues}
@@ -221,6 +243,31 @@ const PostProperty = () => {
                   {/* RenderLocation() is a function that checks the value of localGvt to determine the location it will showcase in location input below */}
                   {RenderLocation(formik.values.localGvt)}
                 </TextField>
+              </div>
+
+              <div>
+                {/* ClickAwayListener: material ui close tooltip onclick outside the target element(property address) */}
+                <ClickAwayListener onClickAway={closeTitleTooltip}>
+                  <Tooltip
+                    open={titleTooltip}
+                    title="Example: Newly built 3 bedroom flat opposite UNN main gate"
+                    placement="top"
+                    arrow
+                    disableHoverListener
+                  >
+                    <TextField
+                      type="text"
+                      name="title"
+                      id="title"
+                      label="Title*"
+                      variant="outlined"
+                      onClick={openTitleTooltip}
+                      value={formik.values.title || ""}
+                      onChange={formik.handleChange}
+                      helperText={formik.touched.title && formik.errors.title}
+                    />
+                  </Tooltip>
+                </ClickAwayListener>
               </div>
 
               <div>
@@ -425,12 +472,14 @@ const PostProperty = () => {
 
               <div>
                 <TextField
-                  label="Amount*"
-                  id="amount"
-                  name="amount"
+                  label="price*"
+                  id="price"
+                  name="price"
                   type="number"
                   variant="outlined"
-                  helperText={formik.touched.amount && formik.errors.amount}
+                  value={formik.values.price || ""}
+                  onChange={formik.handleChange}
+                  helperText={formik.touched.price && formik.errors.price}
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
