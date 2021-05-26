@@ -48,6 +48,12 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: "1rem",
       width: "100%",
     },
+    "&$focused$notchedOutline": {
+      borderColor: "orange",
+    },
+    "&$focused": {
+      borderColor: "orange",
+    },
   },
   formControl: {
     margin: theme.spacing(1),
@@ -121,26 +127,38 @@ const PostProperty = () => {
     price: undefined,
     acceptTerms: false,
     title: "",
+    phoneNumber: undefined,
   };
+  // phone number regex validation for yup
+  const phoneRegExp =
+    /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
   const validationSchema = yup.object({
-    localGvt: yup.string().required("Required"),
-    category: yup.string().required("Required"),
-    location: yup.string().required("Required"),
-    propertyFor: yup.string().required("Required"),
-    propertyAdress: yup.string().required("Required"),
-    propertyCondition: yup.string().required("Required"),
-    numberOfRooms: yup.string().required("Required"),
+    localGvt: yup.string().required("Local government is required"),
+    category: yup.string().required("Property category is required"),
+    location: yup.string().required("Location is required"),
+    propertyFor: yup
+      .string()
+      .required("Indicate if you want to sell or rent out"),
+    propertyAdress: yup.string().required("Address is required"),
+    propertyCondition: yup
+      .string()
+      .required("Condition of property is equired"),
+    numberOfRooms: yup.string().required("Number of rooms isequired"),
     price: yup
       .number()
       .positive("price can't be negative")
       .integer("Decimal point is not accepted")
       .min(1000, "Price should be more than 1000")
       .max(1000000000, "Price is too long")
-      .required("Required"),
+      .required("Price is required"),
 
     acceptTerms: yup.bool().oneOf([true]),
-    title: yup.string().required("Required"),
+    title: yup.string().required("Title is required"),
+    phoneNumber: yup
+      .string()
+      .matches(phoneRegExp, "Phone number is not valid")
+      .required("Phone number is required"),
   });
   return (
     <Formik
@@ -207,6 +225,12 @@ const PostProperty = () => {
                 </TextField>
               </div>
               <TextField
+                InputProps={{
+                  classes: {
+                    focused: classes.focused,
+                    notchedOutline: classes.notchedOutline,
+                  },
+                }}
                 id="localGvt"
                 name="localGvt"
                 label="Local government*"
@@ -469,10 +493,24 @@ const PostProperty = () => {
                   </Select>
                 </FormControl>
               </div>
-
               <div>
                 <TextField
-                  label="price*"
+                  type="number"
+                  name="phoneNumber"
+                  id="phoneNumber"
+                  label="Phone Number*"
+                  variant="outlined"
+                  onClick={openLocationTooltip}
+                  value={formik.values.phoneNumber || ""}
+                  onChange={formik.handleChange}
+                  helperText={
+                    formik.touched.phoneNumber && formik.errors.phoneNumber
+                  }
+                />
+              </div>
+              <div>
+                <TextField
+                  label="Price per annum*"
                   id="price"
                   name="price"
                   type="number"
@@ -489,6 +527,7 @@ const PostProperty = () => {
                   }}
                 />
               </div>
+
               <div>
                 <FormControlLabel
                   style={
