@@ -29,7 +29,7 @@ import PropertyCondition from "./PropertyCondition";
 import NumberOfRooms from "./NumberOfRooms";
 import PropertyFacilities from "./PropertyFacilities";
 import NairaSymbol from "./NairaSymbol";
-import "../Styles/pageHeader.css";
+import "../Styles/postproperty.css";
 
 const ITEM_HEIGHT = 80;
 const ITEM_PADDING_TOP = 8;
@@ -47,12 +47,6 @@ const useStyles = makeStyles((theme) => ({
     "& .MuiTextField-root": {
       marginBottom: "1rem",
       width: "100%",
-    },
-    "&$focused$notchedOutline": {
-      borderColor: "orange",
-    },
-    "&$focused": {
-      borderColor: "orange",
     },
   },
   formControl: {
@@ -225,12 +219,6 @@ const PostProperty = () => {
                 </TextField>
               </div>
               <TextField
-                InputProps={{
-                  classes: {
-                    focused: classes.focused,
-                    notchedOutline: classes.notchedOutline,
-                  },
-                }}
                 id="localGvt"
                 name="localGvt"
                 label="Local government*"

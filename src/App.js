@@ -17,6 +17,18 @@ import RoomDetails from "./Pages/RoomDetails";
 import SavedAds from "./Pages/SavedAds";
 import UserProfile from "./Pages/UserProfile";
 import NavLinks from "./components/NavLinks";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core";
+
+// overides blue color as the primary color from material ui
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#20c063",
+      light: "#20c063",
+      dark: "#20c063",
+    },
+  },
+});
 
 function App() {
   return (
@@ -28,9 +40,14 @@ function App() {
         <Route exact path="/rooms">
           <Rooms />
         </Route>
-        <Route exact path="/post-ads">
-          <PostAdd />
-        </Route>
+
+        {/* themeProvider applies the custom theme to post app component */}
+        <ThemeProvider theme={theme}>
+          <Route exact path="/post-ads">
+            <PostAdd />
+          </Route>
+        </ThemeProvider>
+
         <Route exact path="/flat">
           <Flat />
         </Route>
