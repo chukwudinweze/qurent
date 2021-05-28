@@ -29,6 +29,8 @@ import PropertyCondition from "./PropertyCondition";
 import NumberOfRooms from "./NumberOfRooms";
 import PropertyFacilities from "./PropertyFacilities";
 import NairaSymbol from "./NairaSymbol";
+import { useDispatch } from "react-redux";
+import { postProperty } from "../actions/products";
 import "../Styles/postproperty.css";
 
 const ITEM_HEIGHT = 80;
@@ -56,10 +58,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const onSubmit = (value) => {
-  console.log(value);
-};
-
 const validatePictured = (value) => {
   let error;
   if (value.length <= 5) {
@@ -69,6 +67,7 @@ const validatePictured = (value) => {
 };
 
 const PostProperty = () => {
+  // ......................................................................
   // material ui class
   const classes = useStyles();
   // property title tooltip state(material ui tooltip api)
@@ -106,6 +105,7 @@ const PostProperty = () => {
   const open_description_Tooltip = () => {
     setDescription_Tooltip(true);
   };
+  // ..................................................................
 
   const initialValues = {
     localGvt: "",
@@ -138,7 +138,12 @@ const PostProperty = () => {
     propertyCondition: yup
       .string()
       .required("Condition of property is equired"),
-    numberOfRooms: yup.string().required("Number of rooms isequired"),
+    numberOfRooms: yup
+      .string()
+      .when("category", {
+        is: "Flat",
+        then: yup.string().required("Number of rooms is required"),
+      }),
     price: yup
       .number()
       .positive("price can't be negative")
@@ -154,6 +159,13 @@ const PostProperty = () => {
       .matches(phoneRegExp, "Phone number is not valid")
       .required("Phone number is required"),
   });
+
+  // send user input to the redux store
+  const dispatch = useDispatch();
+  const onSubmit = (value) => {
+    dispatch(postProperty(value));
+  };
+
   return (
     <Formik
       initialValues={initialValues}
@@ -162,7 +174,6 @@ const PostProperty = () => {
     >
       {(formik) => {
         // formik is an object with proerties like values, handleChange etc
-        console.log(formik.values);
         return (
           <div
             style={{
