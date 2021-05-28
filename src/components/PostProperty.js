@@ -122,6 +122,7 @@ const PostProperty = () => {
     acceptTerms: false,
     title: "",
     phoneNumber: undefined,
+    featured: true,
   };
   // phone number regex validation for yup
   const phoneRegExp =
@@ -138,12 +139,10 @@ const PostProperty = () => {
     propertyCondition: yup
       .string()
       .required("Condition of property is equired"),
-    numberOfRooms: yup
-      .string()
-      .when("category", {
-        is: "Flat",
-        then: yup.string().required("Number of rooms is required"),
-      }),
+    numberOfRooms: yup.string().when("category", {
+      is: "Flat",
+      then: yup.string().required("Number of rooms is required"),
+    }),
     price: yup
       .number()
       .positive("price can't be negative")
