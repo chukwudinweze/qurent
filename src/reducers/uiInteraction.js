@@ -1,5 +1,6 @@
 const InitialState = {
   expand: false,
+  loading: false,
 };
 const uiInteraction = (state = InitialState, action) => {
   switch (action.type) {
@@ -7,6 +8,11 @@ const uiInteraction = (state = InitialState, action) => {
       return {
         ...state,
         expand: !state.expand,
+      };
+    case "SET_LOADING":
+      return {
+        ...state,
+        loading: action.value,
       };
     default:
       return state;

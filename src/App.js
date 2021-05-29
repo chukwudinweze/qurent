@@ -32,61 +32,71 @@ const theme = createMuiTheme({
 
 function App() {
   return (
-    <>
+    //  themeProvider applies the custom theme to post app component
+    <ThemeProvider theme={theme}>
       <Switch>
         <Route exact path="/">
           <Home />
         </Route>
+
         <Route exact path="/rooms">
           <Rooms />
         </Route>
 
-        {/* themeProvider applies the custom theme to post app component */}
-        <ThemeProvider theme={theme}>
-          <Route exact path="/post-ads">
-            <PostAdd />
-          </Route>
-        </ThemeProvider>
+        <Route exact path="/post-ads">
+          <PostAdd />
+        </Route>
 
         <Route exact path="/flat">
           <Flat />
         </Route>
+
         <Route exact path="/self-contain">
           <SelfContain />
         </Route>
+
         <Route exact path="/single-room">
           <SingleRoom />
         </Route>
+
         <Route exact path="/shops">
           <Shops />
         </Route>
+
         <Route exact path="/office-space">
           <OfficeSpace />
         </Route>
+
         <Route exact path="/event-center">
           <EventCenter />
         </Route>
+
         <Route exact path="/land">
           <Land />
         </Route>
+
         <Route exact path="/services">
           <Qservices />
         </Route>
+
         <Route exact path="/room-details">
           <RoomDetails />
         </Route>
+
         <Route exact path="/saved-ads">
           <SavedAds />
         </Route>
+
         <Route exact path="/profile">
           <UserProfile />
         </Route>
+
         <Route>
           <Error />
         </Route>
       </Switch>
       <NavLinks />
-    </>
+    </ThemeProvider>
   );
 }
 
