@@ -30,7 +30,7 @@ import NumberOfRooms from "./NumberOfRooms";
 import PropertyFacilities from "./PropertyFacilities";
 import NairaSymbol from "./NairaSymbol";
 import { useDispatch } from "react-redux";
-import { postProperty } from "../actions/products";
+import { startPostProperty } from "../actions/products";
 import "../Styles/postproperty.css";
 
 const ITEM_HEIGHT = 80;
@@ -162,7 +162,7 @@ const PostProperty = () => {
   // send user input to the redux store
   const dispatch = useDispatch();
   const onSubmit = (value) => {
-    dispatch(postProperty(value));
+    dispatch(startPostProperty(value));
   };
 
   return (

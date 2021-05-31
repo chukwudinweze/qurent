@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^12.8.3",
     "firebase": "^8.6.3",
     "formik": "^2.2.6",
+    "image-to-base64": "^2.2.0",
     "normalize.css": "^8.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
