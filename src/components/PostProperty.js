@@ -123,10 +123,11 @@ const PostProperty = () => {
     title: "",
     phoneNumber: undefined,
     featured: true,
+    file: [],
   };
-  // phone number regex validation for yup
+  // phone number regex match for yup validation below
   const phoneRegExp =
-    /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+    /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
 
   const validationSchema = yup.object({
     localGvt: yup.string().required("Local government is required"),
@@ -162,7 +163,8 @@ const PostProperty = () => {
   // send user input to the redux store
   const dispatch = useDispatch();
   const onSubmit = (value) => {
-    dispatch(startPostProperty(value));
+    // dispatch(startPostProperty(value));
+    console.log(value);
   };
 
   return (
@@ -383,7 +385,35 @@ const PostProperty = () => {
                   }}
                 </FieldArray>
               </div>
-
+              <div>
+                {/* <input
+                  id="file"
+                  name="file"
+                  type="file"
+                  multiple={true}
+                  onChange={(e) => formik.setFieldValue("file", e.target.files)}
+                  placeholder="image"
+                ></input> */}
+                <input
+                  accept="image/*"
+                  className={classes.input}
+                  style={{ display: "none" }}
+                  multiple
+                  type="file"
+                  id="file"
+                  name="file"
+                  onChange={(e) => formik.setFieldValue("file", e.target.files)}
+                />
+                <label htmlFor="file">
+                  <Button
+                    variant="raised"
+                    component="span"
+                    className={classes.button}
+                  >
+                    Upload
+                  </Button>
+                </label>
+              </div>
               <div>
                 <TextField
                   id="propertyCondition"

@@ -10,6 +10,7 @@ const FeaturedRoom = ({ room }) => {
   price = price.toLocaleString();
 
   const [main, ...minor] = pictures;
+  console.log("mainPics", main);
   return (
     <Link to="/room-details" className="room__wrapper">
       <div className="image__container">
