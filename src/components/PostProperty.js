@@ -110,7 +110,7 @@ const PostProperty = () => {
   const initialValues = {
     localGvt: "",
     category: "",
-    pictures: [""],
+    pictures: "",
     location: "",
     propertyFor: "",
     propertyAdress: "",
@@ -123,7 +123,6 @@ const PostProperty = () => {
     title: "",
     phoneNumber: undefined,
     featured: true,
-    file: [],
   };
   // phone number regex match for yup validation below
   const phoneRegExp =
@@ -163,8 +162,7 @@ const PostProperty = () => {
   // send user input to the redux store
   const dispatch = useDispatch();
   const onSubmit = (value) => {
-    // dispatch(startPostProperty(value));
-    console.log(value);
+    dispatch(startPostProperty(value));
   };
 
   return (
@@ -329,91 +327,40 @@ const PostProperty = () => {
                   borderRadius: "5px",
                 }}
               >
-                {/* select multiple pictures, created using formik fieldArray, refer to documentation for more info */}
+                {/* select multiple pictures */}
                 <em style={{ fontSize: ".87rem" }}>
                   Please add at least 6 pictures, first picture is the main
                   picture of your room.
                 </em>
-                <FieldArray name="pictures">
-                  {(fieldArrayProps) => {
-                    const { push, remove, form } = fieldArrayProps;
-                    const { values } = form;
-                    const { pictures } = values;
-
-                    return (
-                      <div>
-                        {pictures.map((picture, index) => (
-                          <span
-                            key={index}
-                            style={{
-                              display: "flex",
-                              justifyContent: "center",
-                              alignItems: "center",
-                            }}
-                          >
-                            <Field
-                              name={`pictures[${index}]`}
-                              type="file"
-                              accept="image/x-png, image/jpeg"
-                              style={{ width: "80%" }}
-                            />
-
-                            <IconButton
-                              color="secondary"
-                              onClick={() => remove(index)}
-                              aria-label="delete"
-                            >
-                              <DeleteIcon />
-                            </IconButton>
-                          </span>
-                        ))}
-                        {/* if the number of picture is less than one, let button label be "add picture", when the number is upto one or greater than one, let button label be "add more pictures" */}
-                        <Button
-                          style={{ width: "80%" }}
-                          type="button"
-                          variant="contained"
-                          className={classes.button}
-                          startIcon={<AddCircleIcon />}
-                          onClick={() => push("")}
-                        >
-                          {pictures.length > 0
-                            ? "Add More Pictures"
-                            : "Add Picture"}
-                        </Button>
-                      </div>
-                    );
-                  }}
-                </FieldArray>
+                <div>
+                  <input
+                    accept="image/*"
+                    className={classes.input}
+                    style={{ display: "none" }}
+                    multiple
+                    type="file"
+                    id="pictures"
+                    name="pictures"
+                    onChange={(e) =>
+                      formik.setFieldValue("pictures", [...e.target.files])
+                    }
+                  />
+                  <label htmlFor="pictures">
+                    <Button
+                      variant="raised"
+                      component="span"
+                      className={classes.button}
+                    >
+                      Upload
+                    </Button>
+                  </label>
+                </div>
+                <p>
+                  {formik.values.pictures && formik.values.pictures.length}{" "}
+                  pictures selected
+                </p>
               </div>
-              <div>
-                {/* <input
-                  id="file"
-                  name="file"
-                  type="file"
-                  multiple={true}
-                  onChange={(e) => formik.setFieldValue("file", e.target.files)}
-                  placeholder="image"
-                ></input> */}
-                <input
-                  accept="image/*"
-                  className={classes.input}
-                  style={{ display: "none" }}
-                  multiple
-                  type="file"
-                  id="file"
-                  name="file"
-                  onChange={(e) => formik.setFieldValue("file", e.target.files)}
-                />
-                <label htmlFor="file">
-                  <Button
-                    variant="raised"
-                    component="span"
-                    className={classes.button}
-                  >
-                    Upload
-                  </Button>
-                </label>
-              </div>
+
               <div>
                 <TextField
                   id="propertyCondition"

@@ -1,53 +1,50 @@
-import React from "react";
-import { Formik, Form, Field } from "formik";
+{/* <FieldArray name="pictures">
+                  {(fieldArrayProps) => {
+                    const { push, remove, form } = fieldArrayProps;
+                    const { values } = form;
+                    const { pictures } = values;
 
-const styles = {
-  fontFamily: "sans-serif",
-  textAlign: "center",
-};
+                    return (
+                      <div>
+                        {pictures.map((picture, index) => (
+                          <span
+                            key={index}
+                            style={{
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                            }}
+                          >
+                            <Field
+                              name={`pictures[${index}]`}
+                              type="file"
+                              accept="image/x-png, image/jpeg"
+                              style={{ width: "80%" }}
+                            />
 
-const curSelection = ["foo"];
-const availableSelection = ["foo", "bar", "john"];
-
-const FaciliProp = () => (
-  <div style={styles}>
-    <Formik
-      initialValues={{
-        names: curSelection,
-      }}
-      render={(
-        // we need to use setFieldValue from Formik
-        { values, setFieldValue }
-      ) => (
-        <Form>
-          <Field
-            component="select"
-            name="names"
-            // You need to set the new field value
-            onChange={(evt) =>
-              setFieldValue(
-                "names",
-                [].slice
-                  .call(evt.target.selectedOptions)
-                  .map((option) => option.value)
-              )
-            }
-            multiple={true}
-          >
-            {availableSelection.map((s) => (
-              <option key={s} value={s}>
-                {s}
-              </option>
-            ))}
-          </Field>
-
-          {/* just printing out the values */}
-          <hr />
-          <strong>{JSON.stringify(values)}</strong>
-        </Form>
-      )}
-    />
-  </div>
-);
-
-export default FaciliProp;
+                            <IconButton
+                              color="secondary"
+                              onClick={() => remove(index)}
+                              aria-label="delete"
+                            >
+                              <DeleteIcon />
+                            </IconButton>
+                          </span>
+                        ))}
+                        {/* if the number of picture is less than one, let button label be "add picture", when the number is upto one or greater than one, let button label be "add more pictures" */}
+                        <Button
+                          style={{ width: "80%" }}
+                          type="button"
+                          variant="contained"
+                          className={classes.button}
+                          startIcon={<AddCircleIcon />}
+                          onClick={() => push("")}
+                        >
+                          {pictures.length > 0
+                            ? "Add More Pictures"
+                            : "Add Picture"}
+                        </Button>
+                      </div>
+                    );
+                  }}
+                </FieldArray> */}
