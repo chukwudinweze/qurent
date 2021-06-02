@@ -1,0 +1,9 @@
+.textField {
+  border: 1px solid red !important;
+  color: green !important;
+  display: none !important;
+}
+
+.textField:focus {
+  border: 1px solid yellowgreen;
+}
