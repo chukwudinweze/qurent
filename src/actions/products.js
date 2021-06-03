@@ -30,15 +30,14 @@ export const startPostProperty = (room) => {
             .child(file.name)
             .getDownloadURL()
             .then((url) => {
-              storageImgUrl = [...storageImgUrl, url];
-              console.log(storageImgUrl);
+              storageImgUrl.push(storageImgUrl, url);
+              console.log("i am dispatching many times");
+            })
+            .then(() => {
+              dispatch(postProperty({ ...room, pictures: storageImgUrl }));
             })
             .catch((error) => {
               console.log("error", error);
-            })
-
-            .then(() => {
-              dispatch(postProperty({ ...room, pictures: storageImgUrl }));
             });
         }
       );
