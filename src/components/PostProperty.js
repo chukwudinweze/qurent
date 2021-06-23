@@ -2,15 +2,13 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
-import { Formik, Form, Field, FieldArray } from "formik";
-import * as yup from "yup";
+import { Formik, Form } from "formik";
 import {
   Button,
   Checkbox,
   ClickAwayListener,
   FormControl,
   FormControlLabel,
-  IconButton,
   Input,
   InputAdornment,
   InputLabel,
@@ -18,11 +16,8 @@ import {
   Select,
   Tooltip,
 } from "@material-ui/core";
-
-import DeleteIcon from "@material-ui/icons/Delete";
 import LocalGvts from "./LocalGvts";
 import RenderLocation from "./RenderLocation";
-import AddCircleIcon from "@material-ui/icons/AddCircle";
 import FormRoomCategory from "./FormRoomCategory";
 import PropertyFor from "./PropertyFor";
 import PropertyCondition from "./PropertyCondition";
@@ -31,6 +26,8 @@ import PropertyFacilities from "./PropertyFacilities";
 import NairaSymbol from "./NairaSymbol";
 import { useDispatch } from "react-redux";
 import { startPostProperty } from "../actions/products";
+import validationSchema from "./validationSchema";
+import postPropertyInitialValue from './postPropertyInitialValue'
 import "../Styles/postproperty.css";
 
 const ITEM_HEIGHT = 80;
@@ -57,14 +54,6 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 300,
   },
 }));
-
-const validatePictured = (value) => {
-  let error;
-  if (value.length <= 5) {
-    error = "Pictures must be more than six";
-  }
-  return error;
-};
 
 const PostProperty = () => {
   // ......................................................................
@@ -107,59 +96,7 @@ const PostProperty = () => {
   };
   // ..................................................................
 
-  const initialValues = {
-    localGvt: "",
-    category: "",
-    pictures: "",
-    location: "",
-    propertyFor: "",
-    propertyAdress: "",
-    propertyCondition: "",
-    numberOfRooms: "",
-    description: "",
-    propertyFacilities: [],
-    price: undefined,
-    acceptTerms: false,
-    title: "",
-    phoneNumber: undefined,
-    featured: true,
-  };
-  // phone number regex match for yup validation below
-  const phoneRegExp =
-    /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
-
-  const validationSchema = yup.object({
-    localGvt: yup.string().required("Local government is required"),
-    category: yup.string().required("Property category is required"),
-    location: yup.string().required("Location is required"),
-    propertyFor: yup
-      .string()
-      .required("Indicate if you want to sell or rent out"),
-    propertyAdress: yup.string().required("Address is required"),
-    propertyCondition: yup
-      .string()
-      .required("Condition of property is equired"),
-    numberOfRooms: yup.string().when("category", {
-      is: "Flat",
-      then: yup.string().required("Number of rooms is required"),
-    }),
-    price: yup
-      .number()
-      .positive("price can't be negative")
-      .integer("Decimal point is not accepted")
-      .min(1000, "Price should be more than 1000")
-      .max(1000000000, "Price is too long")
-      .required("Price is required"),
-
-    acceptTerms: yup.bool().oneOf([true]),
-    title: yup.string().required("Title is required"),
-    phoneNumber: yup
-      .string()
-      .matches(phoneRegExp, "Phone number is not valid")
-      .required("Phone number is required"),
-  });
-
-  // send user input to the redux store
+  // dispatching to the redux store
   const dispatch = useDispatch();
   const onSubmit = (value) => {
     dispatch(startPostProperty(value));
@@ -167,7 +104,7 @@ const PostProperty = () => {
 
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={postPropertyInitialValue}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
     >

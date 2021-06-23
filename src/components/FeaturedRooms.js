@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Loading from "./Loading";
 import FeaturedRoom from "./FeaturedRoom";
-import Data from "./Data";
 import { useSelector } from "react-redux";
 import "../Styles/featuredRoom.css";
 
 const FeaturedRooms = () => {
   // read states from redux store
-  const rooms = useSelector((state) => state.products);
+  const rooms = useSelector((state) => state.products.properties);
   const featuredRooms = rooms.filter((room) => room.featured);
   const loading = useSelector((state) => state.uiInteraction.loading);
 

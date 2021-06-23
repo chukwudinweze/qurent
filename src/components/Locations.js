@@ -30,6 +30,7 @@ const Locations = {
     "Obollo-Afor",
     "Amalla",
   ],
+
   igboEtiti: ["ukehe", "Ekwegbe", "Ozalla", "Ohodo", "Aku", "Ohebedim"],
   uzoUwani: [
     "Adaba",
