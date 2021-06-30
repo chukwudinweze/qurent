@@ -1,4 +1,4 @@
-import { storage, dbStore, timestamp } from "../components/firebase/firebase";
+import { storage, dbStore, timeCreated } from "../components/firebase/firebase";
 import upLoadToFirestore from "../components/firebase/upLoadToFirestore";
 import { ErrorMsg, setError, setLoading } from "../actions/uiInteraction";
 
@@ -46,18 +46,23 @@ export const startPostProperty = (property) => {
         }
       );
     });
+
     setTimeout(() => {
       dispatch(
         postProperty({
           ...property,
           pictures: storeImgUrls,
-          createdAt: timestamp,
+          createdAt: timeCreated,
         })
       );
     }, 10000);
 
     setTimeout(() => {
-      upLoadToFirestore({ ...property, pictures: storeImgUrls });
+      upLoadToFirestore({
+        ...property,
+        pictures: storeImgUrls,
+        createdAt: timeCreated,
+      });
     }, 75000);
   };
 };
@@ -70,19 +75,22 @@ const fetchData = (data) => ({
 export const startFetchData = () => {
   return (dispatch) => {
     dispatch(setLoading(true));
-    dbStore.collection("rooms").onSnapshot((snap) => {
-      snap.forEach((doc) => {
-        if (!doc.empty) {
-          dispatch(fetchData({ ...doc.data(), id: doc.id }));
-        } else {
-          dispatch(
-            ErrorMsg("Looks like nothing could be found here at the moment")
-          );
-          dispatch(setError(true));
-        }
+    dbStore
+      .collection("rooms")
+      .orderBy("createdAt")
+      .onSnapshot((snap) => {
+        snap.forEach((doc) => {
+          if (!doc.empty) {
+            dispatch(fetchData({ ...doc.data(), id: doc.id }));
+          } else {
+            dispatch(
+              ErrorMsg("Looks like nothing could be found here at the moment")
+            );
+            dispatch(setError(true));
+          }
+        });
+        dispatch(setLoading(false));
       });
-      dispatch(setLoading(false));
-    });
   };
 };
 
