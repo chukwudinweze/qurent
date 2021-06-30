@@ -1,25 +1,32 @@
+import { useEffect } from "react";
 import { dbStore } from "./firebase";
-import { useDispatch } from "react-redux";
 import { setLoading } from "../actions/uiInteraction";
+import { useDispatch } from "react-redux";
+import { fetchData } from "../../actions/products";
+import { ErrorMsg, setError } from "../../actions/uiInteraction";
 
-const FetchData = () => {
+const useFetchData = (property) => {
   const dispatch = useDispatch();
-  const dataRef = dbStore.collection("rooms");
+  useEffect(() => {
+    dispatch(setLoading(true));
+    const unsub = dbStore
+      .collection(property)
 
-  dataRef
-    .get()
-    .then((doc) => {
-      dispatch(setLoading(true));
-      if (doc.exits) {
-        console.log("data", doc.data);
-      } else {
-        console.log("no such document");
-      }
-    })
-    .catch((error) => {
-      console.log("Errr", error);
-    });
-  dispatch(setLoading(false));
+      .orderBy("createdAt", "desc")
+      .onSnapshot((snap) => {
+        snap.forEach((doc) => {
+          dispatch(fetchData({ ...doc.data(), id: doc.id }));
+        });
+      })
+      .catch((error) => {
+        dispatch(setError(true));
+        dispatch(ErrorMsg(`${error}, Error fetching data`));
+      })
+      .then(() => {
+        dispatch(setLoading(false));
+      });
+    return () => unsub();
+  }, [property, dispatch]);
 };
 
-export default FetchData;
+export default useFetchData;

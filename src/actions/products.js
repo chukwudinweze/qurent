@@ -1,24 +1,23 @@
-import { storage } from "../components/firebase/firebase";
+import { storage, dbStore, timestamp } from "../components/firebase/firebase";
 import upLoadToFirestore from "../components/firebase/upLoadToFirestore";
-import formatPictures from "../components/formatPictures";
+import { ErrorMsg, setError, setLoading } from "../actions/uiInteraction";
 
 export const postProperty = (property) => ({
   type: "POST_PROPERTY",
   property,
 });
 
-// export const addToSavedProperty = (id) => ({
-//   type: "ADD_TO_SAVED_PROPERTY",
-//   id,
-// });
-
 // redux middleware dispatching to redux store and to the firebase
 export const startPostProperty = (property) => {
   const { pictures } = property;
-  const formatedPictures = formatPictures(pictures)
+  let fileLists = [];
+  for (let i = 0; i < pictures.length; i++) {
+    let file = pictures[i];
+    fileLists = [...fileLists, file];
+  }
   return (dispatch) => {
     let storeImgUrls = [];
-    formatedPictures.forEach((file) => {
+    fileLists.forEach((file) => {
       const uploadTask = storage.ref(`images/${file.name}`).put(file);
       uploadTask.on(
         "state_changed",
@@ -26,7 +25,10 @@ export const startPostProperty = (property) => {
           console.log(snapShot);
         },
         (error) => {
-          console.log(error);
+          dispatch(error(true));
+          dispatch(
+            "ooops, your property could not upload, check yourr network and try again"
+          );
         },
         // below is a call back to get url from firebase storage
         () => {
@@ -44,9 +46,14 @@ export const startPostProperty = (property) => {
         }
       );
     });
-    // refering to the code below. we wait for all the returning promise to finish up; set time out will make sure that all the returning url from firebase storgae which is a promise, has all been fetched and all pushed to the new array created up above i.e storeImgUrls array up above. without setTimeOut, if we dispatch synchronously, we would be dispatching empty array because url has not been fetched yet at the time of sync dispatch.
     setTimeout(() => {
-      dispatch(postProperty({ ...property, pictures: storeImgUrls }));
+      dispatch(
+        postProperty({
+          ...property,
+          pictures: storeImgUrls,
+          createdAt: timestamp,
+        })
+      );
     }, 10000);
 
     setTimeout(() => {
@@ -54,3 +61,32 @@ export const startPostProperty = (property) => {
     }, 75000);
   };
 };
+
+const fetchData = (data) => ({
+  type: "FETCH_DATA",
+  data,
+});
+
+export const startFetchData = () => {
+  return (dispatch) => {
+    dispatch(setLoading(true));
+    dbStore.collection("rooms").onSnapshot((snap) => {
+      snap.forEach((doc) => {
+        if (!doc.empty) {
+          dispatch(fetchData({ ...doc.data(), id: doc.id }));
+        } else {
+          dispatch(
+            ErrorMsg("Looks like nothing could be found here at the moment")
+          );
+          dispatch(setError(true));
+        }
+      });
+      dispatch(setLoading(false));
+    });
+  };
+};
+
+// export const addToSavedProperty = (id) => ({
+//   type: "ADD_TO_SAVED_PROPERTY",
+//   id,
+// });

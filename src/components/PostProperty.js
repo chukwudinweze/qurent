@@ -27,7 +27,6 @@ import NairaSymbol from "./NairaSymbol";
 import { useDispatch } from "react-redux";
 import { startPostProperty } from "../actions/products";
 import validationSchema from "./validationSchema";
-import postPropertyInitialValue from './postPropertyInitialValue'
 import "../Styles/postproperty.css";
 
 const ITEM_HEIGHT = 80;
@@ -101,10 +100,28 @@ const PostProperty = () => {
   const onSubmit = (value) => {
     dispatch(startPostProperty(value));
   };
+  const initialValues = {
+    localGvt: "",
+    category: "",
+    pictures: [],
+    location: "",
+    propertyFor: "",
+    propertyAdress: "",
+    propertyCondition: "",
+    numberOfRooms: "",
+    description: "",
+    propertyFacilities: [],
+    price: undefined,
+    acceptTerms: false,
+    title: "",
+    phoneNumber: undefined,
+    featured: true,
+    createdAt: "",
+  };
 
   return (
     <Formik
-      initialValues={postPropertyInitialValue}
+      initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
     >

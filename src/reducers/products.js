@@ -9,6 +9,8 @@ const products = (state = initialState, action) => {
         ...state,
         properties: [...state.properties, action.property],
       };
+    case "FETCH_DATA":
+      return { ...state, properties: [...state.properties, action.data] };
     // case "ADD_TO_SAVED_PROPERTY":
     //   return state.properties.find((property) => {
     //     if (property.id === action.id) {
