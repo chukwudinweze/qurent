@@ -116,7 +116,6 @@ const PostProperty = () => {
     title: "",
     phoneNumber: undefined,
     featured: true,
-    createdAt: "",
   };
 
   return (

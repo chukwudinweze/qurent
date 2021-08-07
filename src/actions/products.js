@@ -1,4 +1,5 @@
-import { storage, dbStore, timeCreated } from "../components/firebase/firebase";
+import firebase from "firebase";
+import { storage, dbStore } from "../components/firebase/firebase";
 import upLoadToFirestore from "../components/firebase/upLoadToFirestore";
 import { ErrorMsg, setError, setLoading } from "../actions/uiInteraction";
 
@@ -52,7 +53,6 @@ export const startPostProperty = (property) => {
         postProperty({
           ...property,
           pictures: storeImgUrls,
-          createdAt: timeCreated,
         })
       );
     }, 10000);
@@ -61,38 +61,73 @@ export const startPostProperty = (property) => {
       upLoadToFirestore({
         ...property,
         pictures: storeImgUrls,
-        createdAt: timeCreated,
+        createdAt: firebase.firestore.serverTimestamp(),
       });
     }, 75000);
   };
 };
 
-const fetchData = (data) => ({
+export const fetchData = (data) => ({
   type: "FETCH_DATA",
   data,
 });
 
-export const startFetchData = () => {
-  return (dispatch) => {
-    dispatch(setLoading(true));
-    dbStore
-      .collection("rooms")
-      .orderBy("createdAt")
-      .onSnapshot((snap) => {
-        snap.forEach((doc) => {
-          if (!doc.empty) {
-            dispatch(fetchData({ ...doc.data(), id: doc.id }));
-          } else {
-            dispatch(
-              ErrorMsg("Looks like nothing could be found here at the moment")
-            );
-            dispatch(setError(true));
-          }
-        });
-        dispatch(setLoading(false));
-      });
-  };
-};
+export const fetchFeaturedRooms = (data) => ({
+  type: "FETCH_FEATURED_ROOMS",
+  data,
+});
+
+export const fetchFlats = (data) => ({
+  type: "FETCH_FLATS",
+  data,
+});
+
+export const fetchSingleRooms = (data) => ({
+  type: "FETCH_SINGLE_ROOMS",
+  data,
+});
+
+export const fetchStores = (data) => ({
+  type: "FETCH_STORES",
+  data,
+});
+
+export const fetchSelfContain = (data) => ({
+  type: "FETCH_SELF_CONTAIN",
+  data,
+});
+
+export const fetchOfficeSpace = (data) => ({
+  type: "FETCH_OFFICE_SPACE",
+  data,
+});
+
+export const fetchLands = (data) => ({
+  type: "FETCH_LANDS",
+  data,
+});
+
+// export const startFetchData = () => {
+//   return (dispatch) => {
+//     dispatch(setLoading(true));
+//     dbStore
+//       .collection("rooms")
+//       .orderBy("createdAt", "desc")
+//       .onSnapshot((snap) => {
+//         snap.forEach((doc) => {
+//           if (!doc.empty) {
+//             dispatch(fetchData({ ...doc.data(), id: doc.id }));
+//           } else {
+//             dispatch(
+//               ErrorMsg("Looks like nothing could be found here at the moment")
+//             );
+//             dispatch(setError(true));
+//           }
+//         });
+//         dispatch(setLoading(false));
+//       });
+//   };
+// };
 
 // export const addToSavedProperty = (id) => ({
 //   type: "ADD_TO_SAVED_PROPERTY",
