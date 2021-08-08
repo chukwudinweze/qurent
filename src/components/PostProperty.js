@@ -116,6 +116,7 @@ const PostProperty = () => {
     title: "",
     phoneNumber: undefined,
     featured: true,
+    id: "",
   };
 
   return (

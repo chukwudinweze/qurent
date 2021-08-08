@@ -12,24 +12,25 @@ const FeaturedRoom = ({ room }) => {
   price = price.toLocaleString();
 
   const [main, ...minor] = pictures;
-  console.log("mainPics", main);
   return (
-    <Link to="/room-details" className="room__wrapper">
-      <div className="image__container">
-        <img src={pictures && main} alt={title} />
-        <p className="no__of__pictures">{pictures.length}</p>
-      </div>
-      <article className="room__details">
-        <p className="title">{title}...</p>
-        <div className="price__fav__container">
-          <p className="price">&#8358; {price && price}</p>
-          <BookmarkBorderIcon
-            // onClick={dispatch(id)}
-            style={{ color: "#20c063", marginRight: "0.3125rem" }}
-          />
+    room && (
+      <Link to="/room-details" className="room__wrapper">
+        <div className="image__container">
+          <img src={pictures && main} alt={title} />
+          <p className="no__of__pictures">{pictures.length}</p>
         </div>
-      </article>
-    </Link>
+        <article className="room__details">
+          <p className="title">{title}...</p>
+          <div className="price__fav__container">
+            <p className="price">&#8358; {price && price}</p>
+            <BookmarkBorderIcon
+              // onClick={dispatch(id)}
+              style={{ color: "#20c063", marginRight: "0.3125rem" }}
+            />
+          </div>
+        </article>
+      </Link>
+    )
   );
 };
 

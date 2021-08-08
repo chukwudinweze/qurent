@@ -1,20 +1,16 @@
-import React, { useEffect } from "react";
 import Loading from "./Loading";
 import FeaturedRoom from "./FeaturedRoom";
 import { useSelector } from "react-redux";
 import "../Styles/featuredRoom.css";
 import useFetchData from "../components/firebase/FetchData";
 import { fetchFeaturedRooms } from "../actions/products";
-// import { fetchFeaturedRooms } from "../actions/products/";
 
 const FeaturedRooms = () => {
   // call custom hook to fetch data
-  useFetchData("category", "flat", fetchFeaturedRooms);
+  useFetchData("featured", true,fetchFeaturedRooms);
 
-  const rooms = useSelector((state) => state.products.properties);
-  // const featuredRooms = rooms.filter((room) => room.featured);
+  const featuredRooms = useSelector((state) => state.products.featuredRooms);
 
-  const featuredRooms = rooms.filter((room) => room.featured);
   const loading = useSelector((state) => state.uiInteraction.loading);
 
   if (loading) {
