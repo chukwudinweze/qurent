@@ -10,7 +10,7 @@ const useFetchData = (field, value, action) => {
     dispatch(setLoading(true));
     dbStore
       .collection("rooms")
-      .where(field, "===", value)
+      .where(field, "==", value)
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
