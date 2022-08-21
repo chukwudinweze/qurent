@@ -2,6 +2,7 @@ import firebase from "firebase";
 import { storage, dbStore } from "../components/firebase/firebase";
 import upLoadToFirestore from "../components/firebase/upLoadToFirestore";
 import { ErrorMsg, setError, setLoading } from "../actions/uiInteraction";
+import { useEffect } from "react";
 
 export const postProperty = (property) => ({
   type: "POST_PROPERTY",
@@ -22,16 +23,17 @@ export const startPostProperty = (property) => {
       const uploadTask = storage.ref(`images/${file.name}`).put(file);
       uploadTask.on(
         "state_changed",
-        (snapShot) => {
-          console.log(snapShot);
+        (snapshot) => {
+          const progress = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+          console.log(progress);
         },
         (error) => {
+          console.log(error);
           dispatch(error(true));
-          dispatch(
-            "ooops, your property could not upload, check yourr network and try again"
-          );
         },
-        // below is a call back to get url from firebase storage
+        // call back to get url from firebase storage
         () => {
           storage
             .ref("images")
@@ -39,6 +41,7 @@ export const startPostProperty = (property) => {
             .getDownloadURL()
             .then((url) => {
               storeImgUrls.push(url);
+              console.log(url);
               console.log("i am dispatching many times");
             })
             .catch((error) => {
@@ -49,21 +52,12 @@ export const startPostProperty = (property) => {
     });
 
     setTimeout(() => {
-      dispatch(
-        postProperty({
-          ...property,
-          pictures: storeImgUrls,
-        })
-      );
-    }, 10000);
-
-    setTimeout(() => {
       upLoadToFirestore({
         ...property,
         pictures: storeImgUrls,
-        createdAt: firebase.firestore.serverTimestamp(),
+        createdAt: new Date().getTime().toString(),
       });
-    }, 75000);
+    }, 10000);
   };
 };
 
