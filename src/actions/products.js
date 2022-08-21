@@ -71,7 +71,7 @@ export const startPostProperty = (property) => {
       createdAt: new Date().getTime().toString(),
     };
 
-    const ft = async (data) => {
+    const upLoadToFirestore = async (data) => {
       try {
         const response = await fetch(
           "https://qurent-a1b03-default-rtdb.firebaseio.com/rooms.json",
@@ -94,11 +94,10 @@ export const startPostProperty = (property) => {
         dispatch(setError(error));
       }
     };
-
+    let time = fileLists.length * 5000;
     setTimeout(() => {
-      ft(enhanceData);
-      // upLoadToFirestore(enhanceData);
-    }, 10000);
+      upLoadToFirestore(enhanceData);
+    }, time);
   };
 };
 
