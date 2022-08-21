@@ -51,13 +51,29 @@ export const startPostProperty = (property) => {
       );
     });
 
-    setTimeout(() => {
-      upLoadToFirestore({
-        ...property,
-        pictures: storeImgUrls,
-        createdAt: new Date().getTime().toString(),
-      });
-    }, 10000);
+    // setTimeout(() => {
+    //   dispatch(
+    //     postProperty({
+    //       ...property,
+    //       pictures: storeImgUrls,
+    //     })
+    //   );
+    // }, 10000);
+
+    const enhanceData = {
+      ...property,
+      pictures: storeImgUrls,
+      createdAt: new Date().getTime().toString(),
+    };
+
+    try {
+      setTimeout(() => {
+        upLoadToFirestore(enhanceData);
+      }, 10000);
+    } catch (error) {
+      console.log(error);
+      dispatch(setError(error));
+    }
   };
 };
 
@@ -100,30 +116,3 @@ export const fetchLands = (data) => ({
   type: "FETCH_LANDS",
   data,
 });
-
-// export const startFetchData = () => {
-//   return (dispatch) => {
-//     dispatch(setLoading(true));
-//     dbStore
-//       .collection("rooms")
-//       .orderBy("createdAt", "desc")
-//       .onSnapshot((snap) => {
-//         snap.forEach((doc) => {
-//           if (!doc.empty) {
-//             dispatch(fetchData({ ...doc.data(), id: doc.id }));
-//           } else {
-//             dispatch(
-//               ErrorMsg("Looks like nothing could be found here at the moment")
-//             );
-//             dispatch(setError(true));
-//           }
-//         });
-//         dispatch(setLoading(false));
-//       });
-//   };
-// };
-
-// export const addToSavedProperty = (id) => ({
-//   type: "ADD_TO_SAVED_PROPERTY",
-//   id,
-// });

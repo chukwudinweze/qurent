@@ -3,6 +3,8 @@ const InitialState = {
   loading: false,
   error: false,
   errorMsg: "",
+  success: false,
+  successMsg: "",
 };
 const uiInteraction = (state = InitialState, action) => {
   switch (action.type) {
@@ -16,10 +18,17 @@ const uiInteraction = (state = InitialState, action) => {
         ...state,
         loading: action.value,
       };
+    case "SUCCESS_MESSAGE":
+      return {
+        ...state,
+        success: true,
+        successMsg: action.value,
+      };
     case "ERROR":
       return {
         ...state,
-        error: action.value,
+        error: true,
+        errorMsg: action.errorMsg,
       };
     case "ERROR_MESSAGE":
       return {

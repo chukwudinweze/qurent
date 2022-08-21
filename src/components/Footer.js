@@ -6,6 +6,7 @@ import FooterLinkItem from "./FooterLinkItem";
 import { useDispatch, useSelector } from "react-redux";
 import { expandFooter } from "../actions/uiInteraction";
 import "../Styles/footer.css";
+
 const Footer = () => {
   const expand = useSelector((state) => state.uiInteraction.expand);
   const dispatch = useDispatch();

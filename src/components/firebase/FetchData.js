@@ -21,8 +21,7 @@ const useFetchData = (field, value, action) => {
         });
       })
       .catch((error) => {
-        dispatch(setError(true));
-        dispatch(ErrorMsg(`${error}, Error fetching data`));
+        dispatch(setError(`${error}, Error fetching data`));
         console.log(`error: ${error}`);
         dispatch(setLoading(false));
       });

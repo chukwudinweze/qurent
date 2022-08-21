@@ -7,12 +7,12 @@ export const setLoading = (value) => ({
   value,
 });
 
-export const setError = (value) => ({
+export const setError = (ErrorMsg) => ({
   type: "ERROR",
-  value,
+  ErrorMsg,
 });
 
-export const ErrorMsg = (errorMsg) => ({
-  type: "ERROR_MESSAGE",
-  errorMsg,
+export const successMsg = (successMsg) => ({
+  type: "SUCCESS_MESSAGE",
+  successMsg,
 });

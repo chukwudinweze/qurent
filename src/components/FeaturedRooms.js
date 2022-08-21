@@ -6,7 +6,7 @@ import "../Styles/featuredRoom.css";
 import useFetchData from "../components/firebase/FetchData";
 import { fetchFeaturedRooms } from "../actions/products";
 import { useEffect } from "react";
-import { ErrorMsg, setError, setLoading } from "../actions/uiInteraction";
+import { setError, setLoading } from "../actions/uiInteraction";
 import { dbStore } from "./firebase/firebase";
 
 const FeaturedRooms = React.memo(() => {
@@ -31,8 +31,7 @@ const FeaturedRooms = React.memo(() => {
         });
       })
       .catch((error) => {
-        dispatch(setError(true));
-        dispatch(ErrorMsg(`${error}, Error fetching data`));
+        dispatch(setError(`${error}, Error fetching data`));
         console.log(`error: ${error}`);
         dispatch(setLoading(false));
       });
