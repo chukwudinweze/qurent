@@ -1,7 +1,12 @@
 import firebase from "firebase";
 import { storage, dbStore } from "../components/firebase/firebase";
 import upLoadToFirestore from "../components/firebase/upLoadToFirestore";
-import { ErrorMsg, setError, setLoading } from "../actions/uiInteraction";
+import {
+  ErrorMsg,
+  setError,
+  setLoading,
+  successMsg,
+} from "../actions/uiInteraction";
 import { useEffect } from "react";
 
 export const postProperty = (property) => ({
@@ -66,14 +71,34 @@ export const startPostProperty = (property) => {
       createdAt: new Date().getTime().toString(),
     };
 
-    try {
-      setTimeout(() => {
-        upLoadToFirestore(enhanceData);
-      }, 10000);
-    } catch (error) {
-      console.log(error);
-      dispatch(setError(error));
-    }
+    const ft = async (data) => {
+      try {
+        const response = await fetch(
+          "https://qurent-a1b03-default-rtdb.firebaseio.com/rooms.json",
+          {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+              "Content-type": "application/json",
+            },
+          }
+        );
+        if (response.ok) {
+          console.log("happy i am successful");
+          dispatch(successMsg("uploaded successfully"));
+        } else {
+          throw new Error("Upload unsuccessful, Please try again later");
+        }
+      } catch (error) {
+        console.log(error);
+        dispatch(setError(error));
+      }
+    };
+
+    setTimeout(() => {
+      ft(enhanceData);
+      // upLoadToFirestore(enhanceData);
+    }, 10000);
   };
 };
 
