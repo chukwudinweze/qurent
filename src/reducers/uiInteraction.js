@@ -27,7 +27,7 @@ const uiInteraction = (state = InitialState, action) => {
     case "ERROR":
       return {
         ...state,
-        error: true,
+        error: action.value,
         errorMsg: action.errorMsg,
       };
     case "ERROR_MESSAGE":

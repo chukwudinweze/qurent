@@ -94,8 +94,10 @@ const PostProperty = () => {
     setDescription_Tooltip(true);
   };
   // ..................................................................
+  // get the current state. This is mainly used to style post ad button
   const loading = useSelector((state) => state.uiInteraction.loading);
   const success = useSelector((state) => state.uiInteraction.success);
+  const error = useSelector((state) => state.uiInteraction.error);
 
   // dispatching to the redux store
   const dispatch = useDispatch();
@@ -129,7 +131,6 @@ const PostProperty = () => {
         onSubmit={onSubmit}
       >
         {(formik) => {
-          console.log(formik);
           // formik is an object with proerties like values, handleChange etc
           return (
             <div
@@ -150,6 +151,7 @@ const PostProperty = () => {
               >
                 <div>
                   <TextField
+                    error={formik.touched.category && formik.errors.category}
                     id="category"
                     name="category"
                     label="category*"
@@ -170,6 +172,9 @@ const PostProperty = () => {
                 </div>
                 <div>
                   <TextField
+                    error={
+                      formik.touched.propertyFor && formik.errors.propertyFor
+                    }
                     id="propertyFor"
                     name="propertyFor"
                     label="Property for*"
@@ -189,6 +194,7 @@ const PostProperty = () => {
                   </TextField>
                 </div>
                 <TextField
+                  error={formik.touched.localGvt && formik.errors.localGvt}
                   id="localGvt"
                   name="localGvt"
                   label="Local government*"
@@ -212,6 +218,7 @@ const PostProperty = () => {
                 </TextField>
                 <div>
                   <TextField
+                    error={formik.touched.location && formik.errors.location}
                     disabled={!formik.values.localGvt}
                     id="location"
                     name="location"
@@ -240,6 +247,7 @@ const PostProperty = () => {
                       disableHoverListener
                     >
                       <TextField
+                        error={formik.touched.title && formik.errors.title}
                         type="text"
                         name="title"
                         id="title"
@@ -291,10 +299,16 @@ const PostProperty = () => {
                     marginBottom: "1rem",
                     padding: "0.312rem",
                     borderRadius: "5px",
+                    fontFamily: "var(--banner__regular)",
                   }}
                 >
                   {/* select multiple pictures */}
-                  <em style={{ fontSize: ".85rem" }}>
+                  <em
+                    style={{
+                      fontSize: ".80rem",
+                      color: "var(--gray__font__color)",
+                    }}
+                  >
                     Please add at least 4 pictures for better exposure. The
                     first picture selected is the cover picture of the property.
                   </em>
@@ -316,6 +330,7 @@ const PostProperty = () => {
                         style={{
                           backgroundColor: "var(--brand__color)",
                           color: "white",
+                          marginTop: ".7rem",
                         }}
                         variant="outlined"
                         component="span"
@@ -329,9 +344,9 @@ const PostProperty = () => {
                   {!formik.values.pictures.length > 0 ? (
                     <p
                       style={{
-                        fontSize: ".85rem",
+                        fontSize: "0.70rem",
                         color: "var(--red__brand)",
-                        marginTop: "1rem",
+                        marginTop: "0.7rem",
                       }}
                     >
                       No picture selected
@@ -339,9 +354,9 @@ const PostProperty = () => {
                   ) : (
                     <p
                       style={{
-                        fontSize: ".85rem",
+                        fontSize: "0.70rem",
                         color: "var(--brand__color)",
-                        marginTop: "1rem",
+                        marginTop: "0.7rem",
                       }}
                     >
                       {formik.values.pictures && formik.values.pictures.length}{" "}
@@ -568,7 +583,10 @@ const PostProperty = () => {
                 <Button
                   style={{
                     width: "100%",
-                    backgroundColor: "var(--brand__color)",
+                    backgroundColor: error
+                      ? "var(--red__brand)"
+                      : "var(--brand__color)",
+                    textTransform: error ? "none" : "uppercase",
                     color: "white",
                   }}
                   disabled={loading}
@@ -578,8 +596,9 @@ const PostProperty = () => {
                   disableElevation
                   className={classes.button}
                 >
-                  {!loading && "Post Ad"}
-                  {loading && "Loading..."}
+                  {!loading && !error && "Post Ad"}
+                  {!error && loading && "Loading..."}
+                  {!loading && error && "Something went wrong. Tap to retry"}
                 </Button>
               </Form>
             </div>

@@ -18,6 +18,7 @@ export const startPostProperty = (property) => {
   return (dispatch) => {
     dispatch(setLoading(true));
     dispatch(setSuccess(false));
+    dispatch(setError(false));
     let storeImgUrls = [];
     fileLists.forEach((file) => {
       const uploadTask = storage.ref(`images/${file.name}`).put(file);
@@ -82,7 +83,7 @@ export const startPostProperty = (property) => {
         }
       } catch (error) {
         console.log("errorrrrrr", error, error.message);
-        dispatch(setError(error));
+        dispatch(setError(true));
       }
       dispatch(setLoading(false));
       dispatch(setSuccess(false, "ended"));
