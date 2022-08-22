@@ -41,7 +41,11 @@ const RenderLocation = (location) => {
         ))
       );
     default:
-      return;
+      return React.Children.toArray(
+        Locations.nsukka.map((location) => (
+          <MenuItem value={location}>{location}</MenuItem>
+        ))
+      );
   }
 };
 

@@ -85,8 +85,9 @@ export const startPostProperty = (property) => {
         dispatch(setError(error));
       }
       dispatch(setLoading(false));
-      // dispatch(setSuccess(false, "ended"));
+      dispatch(setSuccess(false, "ended"));
     };
+
     let time = fileLists.length * 10000;
     setTimeout(() => {
       upLoadToFirestore(enhanceData);

@@ -46,9 +46,7 @@ function App() {
         </Route>
 
         <Route exact path="/post-ads">
-          {/* {!success && <PostAdd />}
-          {success && <Redirect to="/self_contain" />} */}
-          {!success ? <PostAdd /> : <Redirect to="/rooms" />}
+          <PostAdd />
         </Route>
 
         <Route exact path="/flat">
