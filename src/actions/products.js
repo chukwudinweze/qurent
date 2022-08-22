@@ -1,13 +1,6 @@
-import firebase from "firebase";
-import { storage, dbStore } from "../components/firebase/firebase";
-import upLoadToFirestore from "../components/firebase/upLoadToFirestore";
-import {
-  ErrorMsg,
-  setError,
-  setLoading,
-  successMsg,
-} from "../actions/uiInteraction";
-import { useEffect } from "react";
+import { storage } from "../components/firebase/firebase";
+import { setError, setLoading, setSuccess } from "../actions/uiInteraction";
+import { Message } from "@material-ui/icons";
 
 export const postProperty = (property) => ({
   type: "POST_PROPERTY",
@@ -23,6 +16,8 @@ export const startPostProperty = (property) => {
     fileLists = [...fileLists, file];
   }
   return (dispatch) => {
+    dispatch(setLoading(true));
+    dispatch(setSuccess(false));
     let storeImgUrls = [];
     fileLists.forEach((file) => {
       const uploadTask = storage.ref(`images/${file.name}`).put(file);
@@ -35,8 +30,8 @@ export const startPostProperty = (property) => {
           console.log(progress);
         },
         (error) => {
-          console.log(error);
-          dispatch(error(true));
+          console.log("fre:..........", error);
+          dispatch(setError(true));
         },
         // call back to get url from firebase storage
         () => {
@@ -55,15 +50,6 @@ export const startPostProperty = (property) => {
         }
       );
     });
-
-    // setTimeout(() => {
-    //   dispatch(
-    //     postProperty({
-    //       ...property,
-    //       pictures: storeImgUrls,
-    //     })
-    //   );
-    // }, 10000);
 
     const enhanceData = {
       ...property,
@@ -85,16 +71,23 @@ export const startPostProperty = (property) => {
         );
         if (response.ok) {
           console.log("happy i am successful");
-          dispatch(successMsg("uploaded successfully"));
+          dispatch(setSuccess(true, "uploaded successfully"));
         } else {
-          throw new Error("Upload unsuccessful, Please try again later");
+          return response.json().then((data) => {
+            console.log("be baaaack");
+            console.log("vfr", data);
+
+            throw new Error("Upload unsuccessful, Please try again later");
+          });
         }
       } catch (error) {
-        console.log(error);
+        console.log("errorrrrrr", error, error.message);
         dispatch(setError(error));
       }
+      dispatch(setLoading(false));
+      // dispatch(setSuccess(false, "ended"));
     };
-    let time = fileLists.length * 5000;
+    let time = fileLists.length * 10000;
     setTimeout(() => {
       upLoadToFirestore(enhanceData);
     }, time);

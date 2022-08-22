@@ -18,11 +18,11 @@ const uiInteraction = (state = InitialState, action) => {
         ...state,
         loading: action.value,
       };
-    case "SUCCESS_MESSAGE":
+    case "SET_SUCCESS":
       return {
         ...state,
-        success: true,
-        successMsg: action.value,
+        success: action.value,
+        successMsg: action.successMsg,
       };
     case "ERROR":
       return {

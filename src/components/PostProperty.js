@@ -27,7 +27,9 @@ import NairaSymbol from "./NairaSymbol";
 import { useDispatch } from "react-redux";
 import { startPostProperty } from "../actions/products";
 import validationSchema from "./validationSchema";
+
 import "../Styles/postproperty.css";
+import { useSelector } from "react-redux";
 
 const ITEM_HEIGHT = 80;
 const ITEM_PADDING_TOP = 8;
@@ -94,6 +96,7 @@ const PostProperty = () => {
     setDescription_Tooltip(true);
   };
   // ..................................................................
+  const loading = useSelector((state) => state.uiInteraction.loading);
 
   // dispatching to the redux store
   const dispatch = useDispatch();
@@ -491,15 +494,16 @@ const PostProperty = () => {
                   width: "100%",
                   backgroundColor: "#20c063",
                   color: "white",
-                  // padding: ".5rem 0",
                 }}
+                disabled={loading}
                 size="large"
                 type="submit"
                 variant="contained"
                 disableElevation
                 className={classes.button}
               >
-                Post Ad
+                {!loading && "Post Ad"}
+                {loading && "Loading..."}
               </Button>
             </Form>
           </div>

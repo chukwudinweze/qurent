@@ -12,7 +12,8 @@ export const setError = (ErrorMsg) => ({
   ErrorMsg,
 });
 
-export const successMsg = (successMsg) => ({
-  type: "SUCCESS_MESSAGE",
+export const setSuccess = (value, successMsg = "") => ({
+  type: "SET_SUCCESS",
+  value,
   successMsg,
 });

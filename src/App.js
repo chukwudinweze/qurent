@@ -12,12 +12,13 @@ import Land from "./Pages/Land";
 import Qservices from "./Pages/Qservices";
 import Error from "./Pages/Error";
 import "./Styles/index.css";
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import RoomDetails from "./Pages/RoomDetails";
 import SavedAds from "./Pages/SavedAds";
 import UserProfile from "./Pages/UserProfile";
 import NavLinks from "./components/NavLinks";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
+import { useSelector } from "react-redux";
 
 // overides blue color as the primary color from material ui
 const theme = createMuiTheme({
@@ -31,6 +32,7 @@ const theme = createMuiTheme({
 });
 
 function App() {
+  const success = useSelector((state) => state.uiInteraction.sucess);
   return (
     //  themeProvider applies the custom theme to post app component
     <ThemeProvider theme={theme}>
@@ -44,7 +46,9 @@ function App() {
         </Route>
 
         <Route exact path="/post-ads">
-          <PostAdd />
+          {/* {!success && <PostAdd />}
+          {success && <Redirect to="/self_contain" />} */}
+          {!success ? <PostAdd /> : <Redirect to="/rooms" />}
         </Route>
 
         <Route exact path="/flat">
