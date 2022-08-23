@@ -22,10 +22,8 @@ const products = (state = initialState, action) => {
       });
 
       if (duplicateData) {
-        console.log("cateDatat", "duplicateData");
         return { ...state };
       } else {
-        console.log("SdupkicateDatat", state.properties.id);
         return { ...state, properties: [...state.properties, action.data] };
       }
 

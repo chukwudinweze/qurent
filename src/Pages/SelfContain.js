@@ -1,7 +1,8 @@
 import React from "react";
+import RoomSelfContain from "../components/RoomSelfContain";
 
 const SelfContain = () => {
-  return <section className="self__contain">hello from self contain</section>;
+  return <RoomSelfContain />;
 };
 
 export default SelfContain;

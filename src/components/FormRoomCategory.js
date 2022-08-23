@@ -4,11 +4,11 @@ const FormRoomCategory = [
     label: "Flat",
   },
   {
-    value: "Self Contain",
+    value: "Self-Contain",
     label: "Self Contain",
   },
   {
-    value: "Single Room",
+    value: "Single-Room",
     label: "Single Room",
   },
   {
@@ -16,11 +16,11 @@ const FormRoomCategory = [
     label: "Shop",
   },
   {
-    value: "Office Space",
+    value: "Office-Space",
     label: "Office Space",
   },
   {
-    value: "Hall/Event Center",
+    value: "Event-Center",
     label: "Hall/Event Center",
   },
   {

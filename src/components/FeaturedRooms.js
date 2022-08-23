@@ -18,7 +18,7 @@ const FeaturedRooms = () => {
       dispatch(setLoading(true));
       try {
         const response = await fetch(
-          "https://qurent-a1b03-default-rtdb.firebaseio.com/rooms.json"
+          "https://qurent-a1b03-default-rtdb.firebaseio.com/rooms.json?"
         );
         if (!response.ok) {
           throw new Error("could not fetch rooms, please try again later");
@@ -44,7 +44,10 @@ const FeaturedRooms = () => {
             phoneNumber: data[key].phoneNumber,
             featured: data[key].featured,
           };
-          dispatch(setFetchData(loadedRoom));
+          if (loadedRoom.category === "Self Contain") {
+            console.log(loadedRoom);
+            dispatch(setFetchData(loadedRoom));
+          }
         }
       } catch (error) {
         console.log(error.message);
