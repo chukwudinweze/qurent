@@ -5,11 +5,12 @@ import "../Styles/room.css";
 // import { useDispatch } from "react-redux";
 
 const FeaturedRoom = ({ room }) => {
-  // const dispatch = useDispatch();
   let { title, price, pictures, id } = room;
   // format title and price
-  title = title.substring(0, 20);
-  price = price.toLocaleString();
+  if (title && price && pictures) {
+    title = title.substring(0, 20);
+    price = price.toLocaleString();
+  }
 
   const [main, ...minor] = pictures;
   return (
@@ -17,7 +18,7 @@ const FeaturedRoom = ({ room }) => {
       <Link to="/room-details" className="room__wrapper">
         <div className="image__container">
           <img src={pictures && main} alt={title} />
-          <p className="no__of__pictures">{pictures.length}</p>
+          <p className="no__of__pictures">{pictures && pictures.length}</p>
         </div>
         <article className="room__details">
           <p className="title">{title}...</p>

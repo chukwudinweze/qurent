@@ -17,7 +17,18 @@ const products = (state = initialState, action) => {
         properties: [...state.properties, action.property],
       };
     case "FETCH_DATA":
-      return { ...state, properties: [...state.properties, action.data] };
+      let duplicateData = state.properties.find((cv) => {
+        return cv.id === action.data.id;
+      });
+
+      if (duplicateData) {
+        console.log("cateDatat", "duplicateData");
+        return { ...state };
+      } else {
+        console.log("SdupkicateDatat", state.properties.id);
+        return { ...state, properties: [...state.properties, action.data] };
+      }
+
     case "FETCH_FEATURED_ROOMS":
       return { ...state, featuredRooms: [...state.featuredRooms, action.data] };
 

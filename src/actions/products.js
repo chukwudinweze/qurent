@@ -75,14 +75,10 @@ export const startPostProperty = (property) => {
           dispatch(setSuccess(true, "uploaded successfully"));
         } else {
           return response.json().then((data) => {
-            console.log("be baaaack");
-            console.log("vfr", data);
-
             throw new Error("Upload unsuccessful, Please try again later");
           });
         }
       } catch (error) {
-        console.log("errorrrrrr", error, error.message);
         dispatch(setError(true));
       }
       dispatch(setLoading(false));
@@ -100,6 +96,12 @@ export const fetchData = (data) => ({
   type: "FETCH_DATA",
   data,
 });
+
+export const setFetchData = (data) => {
+  return (dispatch) => {
+    dispatch(fetchData(data));
+  };
+};
 
 export const fetchFeaturedRooms = (data) => ({
   type: "FETCH_FEATURED_ROOMS",

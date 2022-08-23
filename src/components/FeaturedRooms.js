@@ -1,45 +1,67 @@
 import React from "react";
 import Loading from "./Loading";
 import FeaturedRoom from "./FeaturedRoom";
-import { useDispatch, useSelector } from "react-redux";
 import "../Styles/featuredRoom.css";
-import useFetchData from "../components/firebase/FetchData";
-import { fetchFeaturedRooms } from "../actions/products";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { setError, setLoading } from "../actions/uiInteraction";
-import { dbStore } from "./firebase/firebase";
+import { useCallback } from "react";
+import { setError, setLoading, setSuccess } from "../actions/uiInteraction";
+import { fetchData, setFetchData } from "../actions/products";
 
-const FeaturedRooms = React.memo(() => {
-  // call custom hook to fetch data
-
-  // useFetchData("featured", true, fetchFeaturedRooms);
-
+const FeaturedRooms = () => {
+  const featuredRooms = useSelector((state) => state.products.properties);
+  const loading = useSelector((state) => state.uiInteraction.loading);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(setLoading(true));
-    dbStore
-      .collection("rooms")
-      .where("featured", "==", true)
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          let data = { ...doc.data(), id: doc.id };
-          dispatch(fetchFeaturedRooms(data));
-          console.log(data);
-          dispatch(setLoading(false));
-        });
-      })
-      .catch((error) => {
-        dispatch(setError(`${error}, Error fetching data`));
-        console.log(`error: ${error}`);
-        dispatch(setLoading(false));
-      });
+  const makd = useCallback(() => {
+    const fetchData = async () => {
+      dispatch(setLoading(true));
+      try {
+        const response = await fetch(
+          "https://qurent-a1b03-default-rtdb.firebaseio.com/rooms.json"
+        );
+        if (!response.ok) {
+          throw new Error("could not fetch rooms, please try again later");
+        }
+        const data = await response.json();
+
+        for (const key in data) {
+          let loadedRoom = {
+            id: key,
+            localGvt: data[key].localGvt,
+            category: data[key].category,
+            pictures: data[key].pictures,
+            location: data[key].location,
+            propertyFor: data[key].propertyFor,
+            propertyAdress: data[key].propertyAdress,
+            propertyCondition: data[key].propertyCondition,
+            numberOfRooms: data[key].numberOfRooms,
+            description: data[key].description,
+            propertyFacilities: data[key].propertyFacilities,
+            price: data[key].price,
+            acceptTerms: data[key].acceptTerms,
+            title: data[key].title,
+            phoneNumber: data[key].phoneNumber,
+            featured: data[key].featured,
+          };
+          dispatch(setFetchData(loadedRoom));
+        }
+      } catch (error) {
+        console.log(error.message);
+        dispatch(setError(true));
+      }
+      dispatch(setLoading(false));
+    };
+    fetchData();
   }, [dispatch]);
 
-  const featuredRooms = useSelector((state) => state.products.featuredRooms);
-
-  const loading = useSelector((state) => state.uiInteraction.loading);
+  useEffect(() => {
+    try {
+      makd();
+    } catch (error) {
+      dispatch(setError(true));
+    }
+  }, [makd, dispatch]);
 
   if (loading) {
     return <Loading title="featured rooms" />;
@@ -48,34 +70,12 @@ const FeaturedRooms = React.memo(() => {
     <section className="featured__rooms">
       <h3>featured ads</h3>
       <article className="room__list">
-        {featuredRooms.map((room, index) => {
-          return <FeaturedRoom key={index} room={room} />;
+        {featuredRooms.map((room) => {
+          return <FeaturedRoom key={room.id} room={room} />;
         })}
       </article>
     </section>
   );
-});
-// const FeaturedRooms = () => {
-//   // call custom hook to fetch data
-//   useFetchData("featured", true,fetchFeaturedRooms);
-
-//   const featuredRooms = useSelector((state) => state.products.featuredRooms);
-
-//   const loading = useSelector((state) => state.uiInteraction.loading);
-
-//   if (loading) {
-//     return <Loading title="featured rooms" />;
-//   }
-//   return (
-//     <section className="featured__rooms">
-//       <h3>featured ads</h3>
-//       <article className="room__list">
-//         {featuredRooms.map((room, index) => {
-//           return <FeaturedRoom key={index} room={room} />;
-//         })}
-//       </article>
-//     </section>
-//   );
-// };
+};
 
 export default FeaturedRooms;
