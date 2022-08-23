@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useCallback } from "react";
 import { setError, setLoading, setSuccess } from "../actions/uiInteraction";
-import { fetchData, setFetchData } from "../actions/products";
+import { setFetchData } from "../actions/products";
 
 const FeaturedRooms = () => {
   const featuredRooms = useSelector((state) => state.products.properties);

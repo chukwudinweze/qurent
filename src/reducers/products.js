@@ -49,17 +49,6 @@ const products = (state = initialState, action) => {
 
     case "FETCH_LANDS":
       return { ...state, lands: [...state.lands, action.data] };
-
-    // case "ADD_TO_SAVED_PROPERTY":
-    //   return state.properties.find((property) => {
-    //     if (property.id === action.id) {
-    //       return {
-    //         ...state,
-    //         savedProperties: [...state.savedProperties, action.property],
-    //       };
-    //     }
-    //     return state.savedProperties;
-    //   });
     default:
       return state;
   }
