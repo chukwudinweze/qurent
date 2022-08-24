@@ -2,23 +2,22 @@ import React from "react";
 import Loading from "./Loading";
 import FeaturedRoom from "./FeaturedRoom";
 import "../Styles/featuredRoom.css";
-import { useDispatch, useSelector } from "react-redux";
-import { setError, setLoading, setSuccess } from "../actions/uiInteraction";
-import { setFetchData } from "../actions/products";
-import { array } from "yup/lib/locale";
+import { useSelector } from "react-redux";
+import useFetchData from "./useFetchApi";
+import { fetchFlats } from "../actions/products";
+import { useEffect } from "react";
 
 const RoomSelfContain = () => {
-  const properties = useSelector((state) => state.products.properties);
+  const url = "https://qurent-a1b03-default-rtdb.firebaseio.com/rooms.json";
+  const { fetchData } = useFetchData(url, "Self Contain", fetchFlats);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  const flats = useSelector((state) => state.products.flats);
   const loading = useSelector((state) => state.uiInteraction.loading);
-
-  const dispatch = useDispatch();
-
-  dispatch(setLoading(true));
-  const selfconRooms = properties.filter((property) => {
-    return property.category === "Flat";
-  });
-
-  dispatch(setLoading(false));
+  const error = useSelector((state) => state.uiInteraction.error);
 
   if (loading) {
     return <Loading title="featured rooms" />;
@@ -27,7 +26,7 @@ const RoomSelfContain = () => {
     <section className="featured__rooms">
       <h3>Room Self Contain</h3>
       <article className="room__list">
-        {selfconRooms.map((room) => {
+        {flats.map((room) => {
           return <FeaturedRoom key={room.id} room={room} />;
         })}
       </article>

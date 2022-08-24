@@ -10,6 +10,7 @@ const initialState = {
   savedProperties: [],
 };
 const products = (state = initialState, action) => {
+  let duplicateData;
   switch (action.type) {
     case "POST_PROPERTY":
       return {
@@ -17,8 +18,8 @@ const products = (state = initialState, action) => {
         properties: [...state.properties, action.property],
       };
     case "FETCH_DATA":
-      let duplicateData = state.properties.find((cv) => {
-        return cv.id === action.data.id;
+      duplicateData = state.properties.find((property) => {
+        return property.id === action.data.id;
       });
 
       if (duplicateData) {
@@ -28,25 +29,84 @@ const products = (state = initialState, action) => {
       }
 
     case "FETCH_FEATURED_ROOMS":
-      return { ...state, featuredRooms: [...state.featuredRooms, action.data] };
+      duplicateData = state.featuredRooms.find((property) => {
+        return property.id === action.data.id;
+      });
+
+      if (duplicateData) {
+        return { ...state };
+      } else {
+        return {
+          ...state,
+          featuredRooms: [...state.featuredRooms, action.data],
+        };
+      }
 
     case "FETCH_FLATS":
-      return { ...state, flats: [...state.flats, action.data] };
+      duplicateData = state.flats.find((property) => {
+        return property.id === action.data.id;
+      });
+
+      if (duplicateData) {
+        return { ...state };
+      } else {
+        return { ...state, flats: [...state.flats, action.data] };
+      }
 
     case "FETCH_SINGLE_ROOMS":
-      return { ...state, singleRooms: [...state.singleRooms, action.data] };
+      duplicateData = state.singleRooms.find((property) => {
+        return property.id === action.data.id;
+      });
+      if (duplicateData) {
+        return { ...state };
+      } else {
+        return { ...state, singleRooms: [...state.singleRooms, action.data] };
+      }
 
     case "FETCH_STORES":
-      return { ...state, stores: [...state.stores, action.data] };
+      duplicateData = state.stores.find((property) => {
+        return property.id === action.data.id;
+      });
+
+      if (duplicateData) {
+        return { ...state };
+      } else {
+        return { ...state, stores: [...state.stores, action.data] };
+      }
 
     case "FETCH_SELF_CONTAIN":
-      return { ...state, selfContain: [...state.selfContain, action.data] };
+      duplicateData = state.selfContain.find((property) => {
+        return property.id === action.data.id;
+      });
+
+      if (duplicateData) {
+        return { ...state };
+      } else {
+        return { ...state, selfContain: [...state.selfContain, action.data] };
+      }
 
     case "FETCH_OFFICES":
-      return { ...state, offices: [...state.offices, action.data] };
+      duplicateData = state.offices.find((property) => {
+        return property.id === action.data.id;
+      });
+
+      if (duplicateData) {
+        return { ...state };
+      } else {
+        return { ...state, offices: [...state.offices, action.data] };
+      }
 
     case "FETCH_LANDS":
-      return { ...state, lands: [...state.lands, action.data] };
+      duplicateData = state.lands.find((property) => {
+        return property.id === action.data.id;
+      });
+
+      if (duplicateData) {
+        return { ...state };
+      } else {
+        return { ...state, lands: [...state.lands, action.data] };
+      }
+
     default:
       return state;
   }
