@@ -1,7 +1,12 @@
 import React from "react";
+import SingleRoom from "../components/SingleRoom";
 
 const Qservices = () => {
-  return <div>hello from services</div>;
+  return (
+    <section>
+      <SingleRoom />
+    </section>
+  );
 };
 
 export default Qservices;

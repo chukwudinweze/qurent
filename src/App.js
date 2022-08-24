@@ -4,7 +4,7 @@ import Rooms from "./Pages/Rooms";
 import PostAdd from "./Pages/PostAdd";
 import Flat from "./Pages/Flat";
 import SelfContain from "./Pages/SelfContain";
-import SingleRoom from "./Pages/SingleRoom";
+import SingleRoomPage from "./Pages/SingleRoomPage";
 import Shops from "./Pages/Shops";
 import OfficeSpace from "./Pages/OfficeSpace";
 import EventCenter from "./Pages/EventCenter";
@@ -12,7 +12,7 @@ import Land from "./Pages/Land";
 import Qservices from "./Pages/Qservices";
 import Error from "./Pages/Error";
 import "./Styles/index.css";
-import { Redirect, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import RoomDetails from "./Pages/RoomDetails";
 import SavedAds from "./Pages/SavedAds";
 import UserProfile from "./Pages/UserProfile";
@@ -58,7 +58,7 @@ function App() {
         </Route>
 
         <Route exact path="/single-room">
-          <SingleRoom />
+          <SingleRoomPage />
         </Route>
 
         <Route exact path="/shops">

@@ -2,7 +2,6 @@ import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import React from "react";
 import { Link } from "react-router-dom";
 import "../Styles/room.css";
-// import { useDispatch } from "react-redux";
 
 const FeaturedRoom = ({ room }) => {
   let { title, price, pictures, id } = room;

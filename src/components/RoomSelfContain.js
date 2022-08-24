@@ -1,15 +1,14 @@
 import React from "react";
 import Loading from "./Loading";
-import FeaturedRoom from "./FeaturedRoom";
-import "../Styles/featuredRoom.css";
 import { useSelector } from "react-redux";
 import useFetchData from "./useFetchApi";
 import { fetchFlats } from "../actions/products";
 import { useEffect } from "react";
+import SingleRoom from "./SingleRoom";
 
 const RoomSelfContain = () => {
   const url = "https://qurent-a1b03-default-rtdb.firebaseio.com/rooms.json";
-  const { fetchData } = useFetchData(url, "Self Contain", fetchFlats);
+  const { fetchData } = useFetchData(url, "Self-Contain", fetchFlats);
 
   useEffect(() => {
     fetchData();
@@ -22,12 +21,16 @@ const RoomSelfContain = () => {
   if (loading) {
     return <Loading title="featured rooms" />;
   }
+
+  if (error) {
+    return <p>Something happened. Please refresh your browser</p>;
+  }
   return (
     <section className="featured__rooms">
       <h3>Room Self Contain</h3>
       <article className="room__list">
         {flats.map((room) => {
-          return <FeaturedRoom key={room.id} room={room} />;
+          return <SingleRoom key={room.id} room={room} />;
         })}
       </article>
     </section>
