@@ -29,9 +29,12 @@ const SingleRoom = ({ room }) => {
           <p>76</p>
         </div>
         <article className="Single__room__description">
-          <p className="title">{title}</p>
+          <p className="Single__room__title">{title}</p>
+          <p className="single__room__price">
+            &#8358; {price} <span className="per__annum">per annum</span>
+          </p>
           <div className="single__room__facilities">
-            <Facility facility={propertyFacilities} />;
+            <Facility facility={propertyFacilities} />
           </div>
           <div className="single__room__location">icon {location}</div>
         </article>

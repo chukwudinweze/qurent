@@ -11,9 +11,8 @@
 }
 
 .single_room__highlight {
-  border: 3px solid green;
   display: flex;
-  height: 80%;
+  height: 75%;
   width: 100%;
 }
 
@@ -24,6 +23,7 @@
   position: relative;
   display: flex;
   align-items: center;
+  margin-right: 5px;
 }
 
 .single__room__image__container img {
@@ -33,6 +33,17 @@
   max-height: 100%;
 }
 
+.Single__room__description {
+  border: 2px solid rgb(115, 170, 115);
+  width: 65%;
+  font-family: var(--banner-regular);
+  font-size: var(--small__size);
+  text-align: left;
+  color: var(--black-color);
+  background: rgb(241, 239, 239);
+  /* transform: scaleY(1.03); */
+}
+
 .room__contact__detail {
-  height: 20%;
+  height: 25%;
 }
