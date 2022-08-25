@@ -19,7 +19,7 @@ const SingleRoom = ({ room }) => {
     // title = title.substring(0, 20);
     price = price.toLocaleString();
   }
-  const [main, ...minor] = pictures;
+  const [main] = pictures;
   return (
     <article className="single__room__wrapper">
       <Link to="/room-details" className="single_room__highlight">
@@ -29,12 +29,15 @@ const SingleRoom = ({ room }) => {
           <p>76</p>
         </div>
         <article className="Single__room__description">
-          <p className="Single__room__title">{title}</p>
+          <p className="single__room__title">{title}</p>
           <p className="single__room__price">
-            &#8358; {price} <span className="per__annum">per annum</span>
+            &#8358;{price} <span className="per__annum">per annum</span>
           </p>
           <div className="single__room__facilities">
-            <Facility facility={propertyFacilities} />
+            {propertyFacilities.map((facility) => (
+              <Facility key={facility} facility={facility} />
+            ))}
+            {/* <Facility facility={propertyFacilities} /> */}
           </div>
           <div className="single__room__location">icon {location}</div>
         </article>

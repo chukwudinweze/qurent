@@ -8,6 +8,7 @@
   display: flex;
   align-items: flex-start;
   flex-direction: column;
+  font-family: var(--room__description);
 }
 
 .single_room__highlight {
@@ -36,14 +37,41 @@
 .Single__room__description {
   border: 2px solid rgb(115, 170, 115);
   width: 65%;
-  font-family: var(--banner-regular);
+  /* font-family: var(--banner-regular); */
+  /* font-family: var(----room__description); */
   font-size: var(--small__size);
   text-align: left;
   color: var(--black-color);
-  background: rgb(241, 239, 239);
-  /* transform: scaleY(1.03); */
+  text-transform: capitalize;
+}
+
+.single__room__title {
+  font-size: 1.125em;
+  text-overflow: ellipsis;
+}
+
+.single__room__price {
+  margin: 0.3125rem 0;
+  color: var(--brand__color);
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.single__room__price span {
+  text-transform: none;
+  font-weight: 500;
+  font-size: 14px;
 }
 
 .room__contact__detail {
   height: 25%;
+}
+
+.single__room__facilities {
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }

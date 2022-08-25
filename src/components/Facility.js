@@ -1,9 +1,14 @@
 import React from "react";
+import "../Styles/facility.css";
 
 const Facility = ({ facility }) => {
   console.log(facility);
-  const [firstFacility, secondFaacility, ...facilities] = facility;
-  return <p>{firstFacility}</p>;
+  return (
+    <>
+      {" "}
+      <p className="single__room__facility">{facility}</p>
+    </>
+  );
 };
 
 export default Facility;

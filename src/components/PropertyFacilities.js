@@ -1,8 +1,8 @@
 const PropertyFacilities = [
   "Balcony",
   "Dishwasher",
-  "Pop Ceiling",
-  "Pvc ceiling",
+  "POP Ceiling",
+  "PVC ceiling",
   "Tiled Floor",
   "Prepaid Meter",
   "Postpaid Meter",

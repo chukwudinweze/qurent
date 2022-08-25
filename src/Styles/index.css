@@ -1,5 +1,6 @@
 /* gogle fonts import */
-@import url("https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,700;1,400&family=Fauna+One&family=Noto+Serif:wght@400;700&family=Oswald:wght@200;300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,700;1,400&family=Fauna+One&family=Noto+Serif:wght@400;700&family=Oswald:wght@200;300;400;500;600;700&family=Roboto+Condensed:wght@300;400;500;600&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap"); */
 
 /* variable declarartion */
 :root {
@@ -8,6 +9,7 @@
   --banner-regular-two: "Noto Serif", serif;
   --room__regular: "Fauna One", serif;
   --heading: "Oswald", sans-serif;
+  --room__description: "Roboto Condensed", sans-serif;
   /* colors */
   --orange__brand: rgb(243, 108, 74);
   --red__brand: rgb(218, 8, 8);
