@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Facility from "./Facility";
+import LocationOnIcon from "@material-ui/icons/LocationOn";
+
 import "../Styles/SingleRoom.css";
 
 const SingleRoom = ({ room }) => {
@@ -39,7 +41,12 @@ const SingleRoom = ({ room }) => {
             ))}
             {/* <Facility facility={propertyFacilities} /> */}
           </div>
-          <div className="single__room__location">icon {location}</div>
+          <div className="single__room__location">
+            <LocationOnIcon
+              style={{ fontSize: "0.938rem", transform: "scaleX(1.2)" }}
+            />{" "}
+            {location}
+          </div>
         </article>
       </Link>
       <div className="room__contact__detail">
