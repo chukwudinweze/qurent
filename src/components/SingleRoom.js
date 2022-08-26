@@ -2,8 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Facility from "./Facility";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
+import PhoneInTalkIcon from "@material-ui/icons/PhoneInTalk";
+import MessageIcon from "@material-ui/icons/Message";
+import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
 
 import "../Styles/SingleRoom.css";
+import ContactAgent from "./ContactAgent";
 
 const SingleRoom = ({ room }) => {
   let {
@@ -27,8 +31,10 @@ const SingleRoom = ({ room }) => {
       <Link to="/room-details" className="single_room__highlight">
         <div className="single__room__image__container">
           <img src={pictures && main} alt={title} />
-          <p className="num__of__pictures">{pictures && pictures.length}</p>
-          <p>76</p>
+          <div className="num__of__pictures">
+            <p>{pictures && pictures.length}</p>
+            <PhotoCameraIcon style={{ fontSize: "0.82rem" }} />
+          </div>
         </div>
         <article className="Single__room__description">
           <p className="single__room__title">{title}</p>
@@ -50,8 +56,30 @@ const SingleRoom = ({ room }) => {
         </article>
       </Link>
       <div className="room__contact__detail">
-        <button>{phoneNumber}</button>
-        <button>show contact</button>
+        <ContactAgent
+          typeOfContact="Tel"
+          phoneNumber={phoneNumber}
+          label="Call Agent"
+          icon={
+            <PhoneInTalkIcon
+              style={{
+                fontSize: "1.188rem",
+                marginRight: "0.313rem",
+              }}
+            />
+          }
+        />
+        <ContactAgent
+          typeOfContact="sms"
+          phoneNumber={phoneNumber}
+          label="Chat Agent"
+          icon={
+            <MessageIcon
+              style={{ fontSize: "1.25rem", marginRight: "0.313rem" }}
+            />
+          }
+        />
+        <ContactAgent />
       </div>
     </article>
   );

@@ -1,5 +1,4 @@
 .single__room__wrapper {
-  border: 0.5px solid rgb(171, 169, 169);
   overflow: hidden;
   margin-bottom: 1rem;
   height: 150px;
@@ -10,6 +9,7 @@
   flex-direction: column;
   font-family: var(--room__description);
   border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
 
 .single_room__highlight {
@@ -34,6 +34,28 @@
   max-height: 100%;
 }
 
+.num__of__pictures {
+  /* size */
+  width: 25%;
+  height: 17%;
+  /* appearance */
+  font-family: var(--banner-regular-two);
+  font-size: 0.75rem;
+  color: var(--white);
+  background: rgba(2, 2, 2, 0.55);
+  border-top-right-radius: 5px;
+  /* position */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  /* center child item */
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  /* z-index */
+  z-index: 1000000;
+}
+
 .Single__room__description {
   width: 65%;
   font-size: var(--small__size);
@@ -50,6 +72,7 @@
   display: inline-block;
   position: relative;
   overflow: hidden;
+  color: rgb(79, 79, 79);
 }
 
 .single__room__price {
@@ -82,20 +105,9 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.room__contact__detail {
-  height: 25%;
-}
 
 .room__contact__detail {
-  border-bottom: 2px solid red;
   width: 100%;
   display: flex;
-  justify-content: space-evenly;
-}
-
-.room__contact__detail button {
-  justify-self: start;
-  border-right: 1px solid red;
-  text-align: left;
-  width: 50%;
+  height: 25%;
 }
