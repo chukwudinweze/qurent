@@ -65,7 +65,7 @@
   text-transform: capitalize;
   padding-left: 0.313rem;
   border-bottom: 0.5px solid rgb(171, 169, 169);
-  /* background-color: #fff; */
+  padding-top: 0.188rem;
 }
 
 .single__room__title {
@@ -74,7 +74,7 @@
   display: inline-block;
   position: relative;
   overflow: hidden;
-  color: rgb(79, 79, 79);
+  color: rgb(67, 67, 67);
 }
 
 .single__room__price {

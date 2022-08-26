@@ -9,7 +9,7 @@ const ContactAgent = ({ typeOfContact, phoneNumber, label, icon, title }) => {
       <a
         href={`${typeOfContact}:${phoneNumber}${
           typeOfContact === "sms"
-            ? `?&body= Hello, Could you please confirm whether this ${title} you listed on qurent.ng is still available?`
+            ? `?&body= Hello, Could you please confirm whether the ${title} you listed on qurent.ng is still available?`
             : ""
         }`}
       >

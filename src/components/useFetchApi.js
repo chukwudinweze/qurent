@@ -35,12 +35,6 @@ const useFetchData = (url, typeOfDispatch) => {
           featured: data[key].featured,
         };
         dispatch(typeOfDispatch(loadedProperty));
-
-        // check if the property fetched has the category same as
-        // the one provided in the componets this custom hook is being called
-        // if (loadedProperty.category === category) {
-        //   dispatch(typeOfDispatch(loadedProperty));
-        // }
       }
     } catch (error) {
       console.log(error.message);

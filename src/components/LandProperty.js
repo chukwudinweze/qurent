@@ -10,7 +10,7 @@ import "../Styles/propertyCategory.css";
 
 const LandProperty = () => {
   const url =
-    "https://qurent-a1b03-default-rtdb.firebaseio.com/property/lands.json";
+    "https://qurent-a1b03-default-rtdb.firebaseio.com/property/land.json";
   const { fetchData } = useFetchData(url, fetchLands);
 
   useEffect(() => {
@@ -34,12 +34,12 @@ const LandProperty = () => {
     return <p>No property listed in this category, Please check out others</p>;
   }
   return (
-    <section className="room__self__contain">
-      <PageHeader titleLeft="Room self contain" style={{ color: "red" }} />
+    <section className="room__self__contain ">
+      <PageHeader titleLeft="Lands for sale" />
 
-      <article className="room__list">
+      <article className="room__list ">
         {lands.map((property) => {
-          return <SingleProperty key={property.id} room={property} />;
+          return <SingleProperty key={property.id} property={property} />;
         })}
       </article>
     </section>
