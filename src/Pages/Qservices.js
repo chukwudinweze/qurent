@@ -2,7 +2,7 @@ import React from "react";
 // import SingleRoom from "../components/SingleRoom";
 
 const Qservices = () => {
-  return <section>services</section>;
+  return <section className="page__background"></section>;
 };
 
 export default Qservices;

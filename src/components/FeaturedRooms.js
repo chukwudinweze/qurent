@@ -10,12 +10,13 @@ import { setFetchData } from "../actions/products";
 
 const FeaturedRooms = () => {
   const dispatch = useDispatch();
-  const url = "https://qurent-a1b03-default-rtdb.firebaseio.com/rooms.json";
+  const url =
+    "https://qurent-a1b03-default-rtdb.firebaseio.com/properties.json";
   const { fetchData } = useFetchData(url, setFetchData);
 
   const featuredRooms = useSelector((state) => state.products.properties);
-  console.log("lets see", featuredRooms);
   const loading = useSelector((state) => state.uiInteraction.loading);
+  const error = useSelector((state) => state.uiInteraction.error);
 
   useEffect(() => {
     try {
@@ -27,6 +28,14 @@ const FeaturedRooms = () => {
 
   if (loading) {
     return <Loading title="featured rooms" />;
+  }
+
+  if (error) {
+    return <p>Something happened. Please refresh your browser</p>;
+  }
+
+  if (!loading && !error && featuredRooms.length === 0) {
+    return <p>No property listed in this category, Please check out others</p>;
   }
   return (
     <section className="featured__rooms">

@@ -2,7 +2,11 @@ import React from "react";
 import RoomSelfContain from "../components/RoomSelfContain";
 
 const SelfContain = () => {
-  return <RoomSelfContain />;
+  return (
+    <section className="page__background">
+      <RoomSelfContain />
+    </section>
+  );
 };
 
 export default SelfContain;

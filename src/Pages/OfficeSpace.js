@@ -1,7 +1,7 @@
 import React from "react";
 
 const OfficeSpace = () => {
-  return <section className="office__space">hello from office space</section>;
+  return <section className="page__background"></section>;
 };
 
 export default OfficeSpace;

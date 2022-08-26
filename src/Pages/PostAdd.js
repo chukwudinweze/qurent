@@ -4,7 +4,7 @@ import PostProperty from "../components/PostProperty";
 
 const PostAdd = () => {
   return (
-    <section className="post__add">
+    <section className="post__add page__background">
       <PageHeader titleLeft="post ad" titleRight="clear" />
       <PostProperty />
     </section>
