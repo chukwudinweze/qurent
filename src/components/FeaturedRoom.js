@@ -5,18 +5,20 @@ import "../Styles/room.css";
 
 const FeaturedRoom = ({ room }) => {
   let { title, price, pictures, id } = room;
-  // format title and price
+  // format title and price if and only if title,pictures and price was returned
+  let coverPicture;
   if (title && price && pictures) {
     title = title.substring(0, 20);
     price = price.toLocaleString();
+    let [firstImage] = pictures;
+    coverPicture = firstImage;
   }
 
-  const [main, ...minor] = pictures;
   return (
     room && (
       <Link to="/room-details" className="room__wrapper">
         <div className="image__container">
-          <img src={pictures && main} alt={title} />
+          <img src={pictures && coverPicture} alt={title} />
           <p className="no__of__pictures">{pictures && pictures.length}</p>
         </div>
         <article className="room__details">

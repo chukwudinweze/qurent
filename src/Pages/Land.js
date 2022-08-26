@@ -1,7 +1,8 @@
 import React from "react";
+import LandProperty from "../components/LandProperty";
 
 const Land = () => {
-  return <section className="land">hello from land</section>;
+  return <LandProperty />;
 };
 
 export default Land;

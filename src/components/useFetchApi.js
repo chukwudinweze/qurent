@@ -3,7 +3,7 @@ import { useCallback } from "react";
 import { setError, setLoading } from "../actions/uiInteraction";
 import "../Styles/featuredRoom.css";
 
-const useFetchData = (url, category, typeOfDispatch) => {
+const useFetchData = (url, typeOfDispatch) => {
   const dispatch = useDispatch();
 
   const fetchData = useCallback(async () => {
@@ -34,16 +34,20 @@ const useFetchData = (url, category, typeOfDispatch) => {
           phoneNumber: data[key].phoneNumber,
           featured: data[key].featured,
         };
-        if (loadedProperty.category === category) {
-          dispatch(typeOfDispatch(loadedProperty));
-        }
+        dispatch(typeOfDispatch(loadedProperty));
+
+        // check if the property fetched has the category same as
+        // the one provided in the componets this custom hook is being called
+        // if (loadedProperty.category === category) {
+        //   dispatch(typeOfDispatch(loadedProperty));
+        // }
       }
     } catch (error) {
       console.log(error.message);
       dispatch(setError(true));
     }
     dispatch(setLoading(false));
-  }, [category, dispatch, url, typeOfDispatch]);
+  }, [dispatch, url, typeOfDispatch]);
 
   return { fetchData };
 };

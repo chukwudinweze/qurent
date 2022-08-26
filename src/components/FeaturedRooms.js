@@ -6,14 +6,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import useFetchData from "./useFetchApi";
 import { setError } from "../actions/uiInteraction";
-import { fetchFlats, fetchStores, setFetchData } from "../actions/products";
+import { setFetchData } from "../actions/products";
 
 const FeaturedRooms = () => {
   const dispatch = useDispatch();
   const url = "https://qurent-a1b03-default-rtdb.firebaseio.com/rooms.json";
-  const { fetchData } = useFetchData(url, "Self Contain", setFetchData);
+  const { fetchData } = useFetchData(url, setFetchData);
 
   const featuredRooms = useSelector((state) => state.products.properties);
+  console.log("lets see", featuredRooms);
   const loading = useSelector((state) => state.uiInteraction.loading);
 
   useEffect(() => {

@@ -9,7 +9,7 @@ export const postProperty = (property) => ({
 
 // redux middleware dispatching to redux store and to the firebase
 export const startPostProperty = (property) => {
-  const { pictures } = property;
+  const { pictures, category } = property;
   let fileLists = [];
   for (let i = 0; i < pictures.length; i++) {
     let file = pictures[i];
@@ -61,7 +61,7 @@ export const startPostProperty = (property) => {
     const upLoadToFirestore = async (data) => {
       try {
         const response = await fetch(
-          "https://qurent-a1b03-default-rtdb.firebaseio.com/rooms.json",
+          `https://qurent-a1b03-default-rtdb.firebaseio.com/property/${category}.json`,
           {
             method: "POST",
             body: JSON.stringify(data),
@@ -119,7 +119,7 @@ export const fetchSingleRooms = (data) => ({
 });
 
 export const fetchStores = (data) => ({
-  type: "FETCH_STORES",
+  type: "FETCH_SHOPS",
   data,
 });
 

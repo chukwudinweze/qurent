@@ -375,6 +375,13 @@ const PostProperty = () => {
                       formik.touched.propertyCondition &&
                       formik.errors.propertyCondition
                     }
+                    style={
+                      formik.values.category === "land"
+                        ? {
+                            display: "none",
+                          }
+                        : { display: "flex" }
+                    }
                     id="propertyCondition"
                     name="propertyCondition"
                     label="Condition*"
@@ -399,7 +406,7 @@ const PostProperty = () => {
                   <TextField
                     // if the value of the category is flat, display this textfield, if not don't display it to the user
                     style={
-                      formik.values.category === "Flat"
+                      formik.values.category === "flat"
                         ? {
                             display: "flex",
                           }
@@ -458,7 +465,15 @@ const PostProperty = () => {
                   </ClickAwayListener>
                 </div>
 
-                <div>
+                <div
+                  style={
+                    formik.values.category === "land"
+                      ? {
+                          display: "none",
+                        }
+                      : { display: "flex" }
+                  }
+                >
                   <FormControl fullWidth className={classes.formControl}>
                     <InputLabel id="demo-mutiple-checkbox-label">
                       Facilities (optional)
@@ -517,7 +532,6 @@ const PostProperty = () => {
                     error={
                       formik.touched.phoneNumber && formik.errors.phoneNumber
                     }
-                    type="number"
                     name="phoneNumber"
                     id="phoneNumber"
                     label="Phone Number*"

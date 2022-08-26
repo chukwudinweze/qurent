@@ -1,30 +1,30 @@
 const FormRoomCategory = [
   {
-    value: "Flat",
+    value: "flat",
     label: "Flat",
   },
   {
-    value: "Self-Contain",
+    value: "selfContain",
     label: "Self Contain",
   },
   {
-    value: "Single-Room",
+    value: "singleRoom",
     label: "Single Room",
   },
   {
-    value: "Shop",
+    value: "shops",
     label: "Shop",
   },
   {
-    value: "Office-Space",
+    value: "office",
     label: "Office Space",
   },
   {
-    value: "Event-Center",
+    value: "eventCenter",
     label: "Hall/Event Center",
   },
   {
-    value: "Land",
+    value: "land",
     label: "Land",
   },
 ];

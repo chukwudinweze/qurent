@@ -8,15 +8,9 @@ const validationSchema = () => {
     localGvt: yup.string().required("Local government is required"),
     category: yup.string().required("Property category is required"),
     location: yup.string().required("Location is required"),
-    propertyFor: yup
-      .string()
-      .required("Indicate if you want to sell or rent out"),
-    propertyAdress: yup.string().required("Address is required"),
-    propertyCondition: yup
-      .string()
-      .required("Condition of property is equired"),
+
     numberOfRooms: yup.string().when("category", {
-      is: "Flat",
+      is: "flat",
       then: yup.string().required("Number of rooms is required"),
     }),
     price: yup
@@ -32,9 +26,10 @@ const validationSchema = () => {
     phoneNumber: yup
       .string()
       .matches(phoneRegExp, "Phone number is not valid")
+      .min(11, "Phone number should be 11 numbers")
+      .max(11, "Phone number should be 11 numbers")
       .required("Phone number is required"),
   });
-
   return validations;
 };
 

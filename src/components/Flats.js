@@ -2,23 +2,23 @@ import React from "react";
 import Loading from "./Loading";
 import { useSelector } from "react-redux";
 import useFetchData from "./useFetchApi";
-import { fetchSelfContain } from "../actions/products";
+import { fetchFlats } from "../actions/products";
 import { useEffect } from "react";
 import SingleProperty from "./SingleProperty";
 import "../Styles/propertyCategory.css";
 import PageHeader from "./PageHeader";
 
-const RoomSelfContain = () => {
+const Flats = () => {
   const url =
-    "https://qurent-a1b03-default-rtdb.firebaseio.com/property/selfContain.json";
-  const { fetchData } = useFetchData(url, fetchSelfContain);
+    "https://qurent-a1b03-default-rtdb.firebaseio.com/property/flats.json";
+  const { fetchData } = useFetchData(url, fetchFlats);
 
   useEffect(() => {
     fetchData();
   }, [fetchData]);
 
   // call current states to update components
-  const selfContains = useSelector((state) => state.products.selfContain);
+  const selfContains = useSelector((state) => state.products.flats);
   const loading = useSelector((state) => state.uiInteraction.loading);
   const error = useSelector((state) => state.uiInteraction.error);
 
@@ -47,4 +47,4 @@ const RoomSelfContain = () => {
   );
 };
 
-export default RoomSelfContain;
+export default Flats;

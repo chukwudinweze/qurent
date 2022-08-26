@@ -3,10 +3,11 @@ const initialState = {
   featuredRooms: [],
   flats: [],
   singleRooms: [],
-  stores: [],
+  shops: [],
   selfContain: [],
   offices: [],
   lands: [],
+  eventCenters: [],
   savedProperties: [],
 };
 const products = (state = initialState, action) => {
@@ -63,7 +64,7 @@ const products = (state = initialState, action) => {
         return { ...state, singleRooms: [...state.singleRooms, action.data] };
       }
 
-    case "FETCH_STORES":
+    case "FETCH_SHOPS":
       duplicateData = state.stores.find((property) => {
         return property.id === action.data.id;
       });

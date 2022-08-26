@@ -2,23 +2,23 @@ import React from "react";
 import Loading from "./Loading";
 import { useSelector } from "react-redux";
 import useFetchData from "./useFetchApi";
-import { fetchSelfContain } from "../actions/products";
+import { fetchLands } from "../actions/products";
 import { useEffect } from "react";
 import SingleProperty from "./SingleProperty";
-import "../Styles/propertyCategory.css";
 import PageHeader from "./PageHeader";
+import "../Styles/propertyCategory.css";
 
-const RoomSelfContain = () => {
+const LandProperty = () => {
   const url =
-    "https://qurent-a1b03-default-rtdb.firebaseio.com/property/selfContain.json";
-  const { fetchData } = useFetchData(url, fetchSelfContain);
+    "https://qurent-a1b03-default-rtdb.firebaseio.com/property/lands.json";
+  const { fetchData } = useFetchData(url, fetchLands);
 
   useEffect(() => {
     fetchData();
   }, [fetchData]);
 
   // call current states to update components
-  const selfContains = useSelector((state) => state.products.selfContain);
+  const lands = useSelector((state) => state.products.lands);
   const loading = useSelector((state) => state.uiInteraction.loading);
   const error = useSelector((state) => state.uiInteraction.error);
 
@@ -30,21 +30,20 @@ const RoomSelfContain = () => {
     return <p>Something happened. Please refresh your browser</p>;
   }
 
-  if (!loading && !error && selfContains.length === 0) {
+  if (!loading && !error && lands.length === 0) {
     return <p>No property listed in this category, Please check out others</p>;
   }
-
   return (
     <section className="room__self__contain">
       <PageHeader titleLeft="Room self contain" style={{ color: "red" }} />
 
       <article className="room__list">
-        {selfContains.map((property) => {
-          return <SingleProperty key={property.id} property={property} />;
+        {lands.map((property) => {
+          return <SingleProperty key={property.id} room={property} />;
         })}
       </article>
     </section>
   );
 };
 
-export default RoomSelfContain;
+export default LandProperty;

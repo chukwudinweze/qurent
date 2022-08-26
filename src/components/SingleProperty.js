@@ -9,7 +9,7 @@ import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
 import "../Styles/SingleRoom.css";
 import ContactAgent from "./ContactAgent";
 
-const SingleRoom = ({ room }) => {
+const SingleProperty = ({ property }) => {
   let {
     title,
     price,
@@ -18,16 +18,21 @@ const SingleRoom = ({ room }) => {
     propertyFacilities,
     phoneNumber,
     location,
-  } = room;
+  } = property;
+
+  // format title and price if and only if title,pictures and price was returned
+  let coverPicture;
   if (title && price && pictures) {
     price = price.toLocaleString();
+    let [firstImage] = pictures;
+    coverPicture = firstImage;
   }
-  const [main] = pictures;
+
   return (
     <article className="single__room__wrapper">
       <Link to="/room-details" className="single_room__highlight">
         <div className="single__room__image__container">
-          <img src={pictures && main} alt={title} />
+          <img src={pictures && coverPicture} alt={title} />
           <div className="num__of__pictures">
             <p>{pictures && pictures.length}</p>
             <PhotoCameraIcon style={{ fontSize: "0.82rem" }} />
@@ -40,9 +45,10 @@ const SingleRoom = ({ room }) => {
           </p>
 
           <div className="single__room__facilities">
-            {propertyFacilities.map((facility) => (
-              <Facility key={facility} facility={facility} />
-            ))}
+            {propertyFacilities &&
+              propertyFacilities.map((facility) => (
+                <Facility key={facility} facility={facility} />
+              ))}
           </div>
 
           <div className="single__room__location">
@@ -84,4 +90,4 @@ const SingleRoom = ({ room }) => {
   );
 };
 
-export default SingleRoom;
+export default SingleProperty;
