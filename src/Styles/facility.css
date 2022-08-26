@@ -1,5 +1,4 @@
 .single__room__facility {
-  /* width: auto; */
   font-size: 11px;
   text-overflow: ellipsis;
   margin: 1px;
@@ -7,5 +6,4 @@
   color: var(--gray__font__color);
   border: 0.5px solid rgb(189, 189, 189);
   border-radius: 3px;
-  /* margin-bottom: 5px; */
 }

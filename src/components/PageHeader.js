@@ -3,6 +3,7 @@ import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import "../Styles/pageHeader.css";
 import { useHistory } from "react-router-dom";
 
+// header component that is fixed at the top of the category pages
 const PageHeader = ({ titleLeft, titleRight }) => {
   let history = useHistory();
   return (

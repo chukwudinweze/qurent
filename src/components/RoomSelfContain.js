@@ -16,6 +16,7 @@ const RoomSelfContain = () => {
     fetchData();
   }, [fetchData]);
 
+  // call current states to update components
   const flats = useSelector((state) => state.products.flats);
   const loading = useSelector((state) => state.uiInteraction.loading);
   const error = useSelector((state) => state.uiInteraction.error);

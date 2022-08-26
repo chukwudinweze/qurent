@@ -19,10 +19,7 @@ const SingleRoom = ({ room }) => {
     phoneNumber,
     location,
   } = room;
-  //   console.log("dddd", propertyFacilities);
-  // format title and price
   if (title && price && pictures) {
-    // title = title.substring(0, 20);
     price = price.toLocaleString();
   }
   const [main] = pictures;
