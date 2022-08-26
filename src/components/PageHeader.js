@@ -1,14 +1,21 @@
 import React from "react";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import "../Styles/pageHeader.css";
+import { useHistory } from "react-router-dom";
 
 const PageHeader = ({ titleLeft, titleRight }) => {
+  let history = useHistory();
   return (
     <div className="header__wrapper">
       <header className="page__header">
         {titleLeft && (
           <article className="title__left">
-            <button className="arrow__back__icon">
+            <button
+              onClick={() => {
+                history.goBack();
+              }}
+              className="arrow__back__icon"
+            >
               <ArrowBackIosIcon
                 style={{ fontSize: "2rem", color: "#20c063" }}
               />

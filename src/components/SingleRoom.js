@@ -41,12 +41,13 @@ const SingleRoom = ({ room }) => {
           <p className="single__room__price">
             &#8358;{price} <span className="per__annum">per annum</span>
           </p>
+
           <div className="single__room__facilities">
             {propertyFacilities.map((facility) => (
               <Facility key={facility} facility={facility} />
             ))}
-            {/* <Facility facility={propertyFacilities} /> */}
           </div>
+
           <div className="single__room__location">
             <LocationOnIcon
               style={{ fontSize: "0.938rem", transform: "scaleX(1.2)" }}
@@ -73,6 +74,7 @@ const SingleRoom = ({ room }) => {
           typeOfContact="sms"
           phoneNumber={phoneNumber}
           label="Chat Agent"
+          title={title}
           icon={
             <MessageIcon
               style={{ fontSize: "1.25rem", marginRight: "0.313rem" }}

@@ -5,6 +5,8 @@ import useFetchData from "./useFetchApi";
 import { fetchFlats } from "../actions/products";
 import { useEffect } from "react";
 import SingleRoom from "./SingleRoom";
+import "../Styles/roomSelfContain.css";
+import PageHeader from "./PageHeader";
 
 const RoomSelfContain = () => {
   const url = "https://qurent-a1b03-default-rtdb.firebaseio.com/rooms.json";
@@ -26,8 +28,9 @@ const RoomSelfContain = () => {
     return <p>Something happened. Please refresh your browser</p>;
   }
   return (
-    <section className="featured__rooms">
-      <h3>Room Self Contain</h3>
+    <section className="room__self__contain">
+      <PageHeader titleLeft="Room Self Contain" style={{ color: "red" }} />
+
       <article className="room__list">
         {flats.map((room) => {
           return <SingleRoom key={room.id} room={room} />;
