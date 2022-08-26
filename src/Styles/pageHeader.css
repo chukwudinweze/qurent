@@ -14,21 +14,24 @@
   align-items: center;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   font-family: var(--heading);
+  font-family: var(--room__description);
   z-index: 10000000;
 }
 .title__left {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: var(--brand__color);
 }
 .arrow__back__icon {
-  padding: 0, 4.5rem;
   background: var(--white);
   outline-color: var(--white);
+  padding: 0.438rem 1.25rem 0;
 }
 
 .title__left > p {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
+  font-weight: 600;
   color: var(--brand__color);
 }
 .title__right > button {

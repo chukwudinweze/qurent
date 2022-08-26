@@ -17,7 +17,7 @@ const PageHeader = ({ titleLeft, titleRight }) => {
               className="arrow__back__icon"
             >
               <ArrowBackIosIcon
-                style={{ fontSize: "2rem", color: "#20c063" }}
+                style={{ transform: "scaleY(0.8)", color: "#20c063" }}
               />
             </button>
             <p>{titleLeft}</p>

@@ -29,7 +29,7 @@ const RoomSelfContain = () => {
   }
   return (
     <section className="room__self__contain">
-      <PageHeader titleLeft="Room Self Contain" style={{ color: "red" }} />
+      <PageHeader titleLeft="Room self contain" style={{ color: "red" }} />
 
       <article className="room__list">
         {flats.map((room) => {
