@@ -1,6 +1,6 @@
 import React from "react";
 import Home from "./Pages/Home";
-import Rooms from "./Pages/Rooms";
+import Properties from "./Pages/Properties";
 import PostAdd from "./Pages/PostAdd";
 import Flat from "./Pages/Flat";
 import SelfContain from "./Pages/SelfContain";
@@ -13,7 +13,7 @@ import Qservices from "./Pages/Qservices";
 import Error from "./Pages/Error";
 import "./Styles/index.css";
 import { Route, Switch } from "react-router-dom";
-import RoomDetails from "./Pages/RoomDetails";
+import PropertyDetail from "./Pages/PropertyDetail";
 import SavedAds from "./Pages/SavedAds";
 import UserProfile from "./Pages/UserProfile";
 import NavLinks from "./components/NavLinks";
@@ -39,10 +39,6 @@ function App() {
       <Switch>
         <Route exact path="/">
           <Home />
-        </Route>
-
-        <Route exact path="/rooms">
-          <Rooms />
         </Route>
 
         <Route exact path="/post-ads">
@@ -81,8 +77,12 @@ function App() {
           <Qservices />
         </Route>
 
-        <Route exact path="/room-details">
-          <RoomDetails />
+        <Route exact path="/properties">
+          <Properties />
+        </Route>
+
+        <Route exact path="/properties/:id">
+          <PropertyDetail />
         </Route>
 
         <Route exact path="/saved-ads">

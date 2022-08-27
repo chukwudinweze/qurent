@@ -30,7 +30,7 @@ const SingleProperty = ({ property }) => {
 
   return (
     <article className="single__room__wrapper">
-      <Link to="/room-details" className="single_room__highlight">
+      <Link to={`/properties/${id}`} className="single_room__highlight">
         <div className="single__room__image__container">
           <img src={pictures && coverPicture} alt={title} />
           <div className="num__of__pictures">
