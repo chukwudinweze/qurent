@@ -7,11 +7,21 @@
   font-size: 17px;
   color: rgb(44, 43, 43);
   text-transform: capitalize;
-  line-height: 27px;
+  line-height: 25px;
   letter-spacing: -0.5px;
 }
 
 .room__detail_description h5 {
   font-size: 18px;
-  letter-spacing: -0.5px;
+  color: var(--brand__color);
+  margin-bottom: 10px;
+}
+
+.roomdetail__location {
+  font-size: 1.1rem;
+  color: rgb(134, 134, 134);
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
 }
