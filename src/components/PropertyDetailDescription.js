@@ -1,14 +1,18 @@
 import React from "react";
+import "../Styles/PropertyDetailDescription.css";
 
 const PropertyDetailDescription = () => {
   return (
-    <article>
-      top of the day Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-      Dicta culpa corporis eum asperiores. Odio ullam itaque quibusdam adipisci
-      necessitatibus deleniti culpa ipsum minima quas ducimus at aspernatur,
-      modi quasi vel quisquam a! Aspernatur, magnam illum praesentium quis eum
-      beatae tenetur. Accusamus obcaecati adipisci quis laborum vel, ipsum nisi
-      dolorum totam.
+    <article className="room__detail_description">
+      <h4 className>
+        3 bedroom flat for sale at UNN maing gate with a chip wonderful price
+      </h4>
+      <h5># 13,000,000</h5>
+      <p>icon Oyo, Ibadan, Bodija</p>
+      <div>
+        <button>call agen</button>
+        <button>chat agent</button>
+      </div>
     </article>
   );
 };

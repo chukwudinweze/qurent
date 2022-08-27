@@ -1,0 +1,17 @@
+.room__detail_description {
+  padding: 1.25rem 0.625rem 0;
+  font-family: var(--banner-regular-two);
+}
+
+.room__detail_description h4 {
+  font-size: 17px;
+  color: rgb(44, 43, 43);
+  text-transform: capitalize;
+  line-height: 27px;
+  letter-spacing: -0.5px;
+}
+
+.room__detail_description h5 {
+  font-size: 18px;
+  letter-spacing: -0.5px;
+}
