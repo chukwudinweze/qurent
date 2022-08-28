@@ -4,6 +4,7 @@ import LandProperty from "../components/LandProperty";
 const Land = () => {
   return (
     <section className="page__background">
+      {" "}
       <LandProperty />
     </section>
   );

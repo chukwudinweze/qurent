@@ -81,7 +81,7 @@ function App() {
           <Properties />
         </Route>
 
-        <Route exact path="/properties/:id">
+        <Route exact path="/properties/:propertyId">
           <PropertyDetail />
         </Route>
 

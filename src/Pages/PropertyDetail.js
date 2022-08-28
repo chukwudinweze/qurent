@@ -1,10 +1,10 @@
 import React from "react";
 import PageHeader from "../components/PageHeader";
-import ImageSlide from "../images/hero-img_640px.jpg";
 import PropertyDetailDescription from "../components/PropertyDetailDescription";
 import PropertyDetailSlide from "../components/PropertyDetailSlide";
-import fff from "../images/q-office.png";
 import "../Styles/homeSlide.css";
+import PropertyConditionHighlight from "../components/PropertyConditionHighlight";
+import PropertyDetailFacilities from "../components/PropertyDetailFacilities";
 
 const PropertyDetail = () => {
   return (
@@ -12,6 +12,8 @@ const PropertyDetail = () => {
       <PageHeader titleLeft={`Property Detail`} />
       <PropertyDetailSlide />
       <PropertyDetailDescription />
+      <PropertyConditionHighlight />
+      <PropertyDetailFacilities />
       <br />
       <br />
       hfhffjfjfj

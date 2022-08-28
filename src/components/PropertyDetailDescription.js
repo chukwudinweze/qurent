@@ -5,7 +5,6 @@ import PhoneInTalkIcon from "@material-ui/icons/PhoneInTalk";
 import MessageIcon from "@material-ui/icons/Message";
 
 import "../Styles/PropertyDetailDescription.css";
-import ContactAgent from "./ContactAgent";
 
 const PropertyDetailDescription = () => {
   return (
@@ -21,31 +20,21 @@ const PropertyDetailDescription = () => {
         location
       </div>
       <div className="roomdetail__contact__detail">
-        <ContactAgent
-          typeOfContact="Tel"
-          phoneNumber={`08060281867`}
-          label="Call Agent"
-          icon={
-            <PhoneInTalkIcon
-              style={{
-                fontSize: "1.188rem",
-                marginRight: "0.313rem",
-              }}
-            />
-          }
-        />
-        <ContactAgent
-          typeOfContact="sms"
-          phoneNumber={`08060281867`}
-          label="Chat Agent"
-          title={`title`}
-          icon={
-            <MessageIcon
-              style={{ fontSize: "1.25rem", marginRight: "0.313rem" }}
-            />
-          }
-        />
-        <ContactAgent />
+        <button className="callAgentNumber">
+          <a href={`Tel:${"08060281867"}`}>
+            <PhoneInTalkIcon />
+            <p>Call Agent</p>
+          </a>
+        </button>
+        <button className="smsAgentNumber">
+          {" "}
+          <a
+            href={`sms:${"08060281867"}?&body= Hello, Could you please confirm whether the ${"title"} you listed on qurent.ng is still available?
+        `}
+          >
+            <MessageIcon /> <p>Text Agent</p>
+          </a>
+        </button>
       </div>
     </article>
   );

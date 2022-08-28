@@ -14,7 +14,7 @@ const PropertyDetailSlide = ({ pictures }) => {
           options={{
             type: "loop",
             gap: "1rem",
-            width: "100vh",
+            width: "100%",
             height: "250px",
             autoplay: "true",
             pauseOnHover: "false",

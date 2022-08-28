@@ -1,0 +1,15 @@
+.contact__agent__button {
+  text-align: left;
+  max-width: 50%;
+  min-width: 50%;
+  border-right: 0.5px solid rgb(171, 169, 169);
+}
+
+.contact__agent__button a {
+  display: inline-block;
+  max-width: 100%;
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+  color: rgb(94, 94, 94);
+}

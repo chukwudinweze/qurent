@@ -1,20 +1,22 @@
 .room__detail_description {
   padding: 1.25rem 0.625rem 0;
   font-family: var(--banner-regular-two);
+  background: rgb(251, 250, 250);
+  padding-bottom: 30px;
 }
 
 .room__detail_description h4 {
   font-size: 17px;
   color: rgb(44, 43, 43);
   text-transform: capitalize;
-  line-height: 25px;
-  letter-spacing: -0.5px;
+  line-height: 1.563rem;
+  letter-spacing: -0.031ren;
 }
 
 .room__detail_description h5 {
-  font-size: 18px;
+  font-size: 1.125rem;
   color: var(--brand__color);
-  margin-bottom: 10px;
+  margin-bottom: 0.625rem;
 }
 
 .roomdetail__location {
@@ -24,4 +26,41 @@
   display: flex;
   align-items: center;
   margin-bottom: 20px;
+}
+
+.roomdetail__contact__detail {
+  display: flex;
+  justify-content: space-between;
+}
+
+.roomdetail__contact__detail button {
+  max-width: 50%;
+  text-align: center;
+  border: 1px solid var(--brand__color);
+  border-radius: 7px;
+}
+
+.roomdetail__contact__detail button a {
+  padding: 0.313rem 1.813rem;
+  display: flex;
+  white-space: nowrap;
+  font-size: 1rem;
+}
+
+.roomdetail__contact__detail button a p {
+  margin-left: 0.313rem;
+}
+
+.roomdetail__contact__detail .callAgentNumber a {
+  color: var(--brand__color);
+}
+
+.roomdetail__contact__detail .smsAgentNumber {
+  background: var(--brand__color);
+  color: var(--white);
+}
+
+.roomdetail__contact__detail .smsAgentNumber a {
+  background: var(--brand__color);
+  color: rgb(251, 250, 250);
 }

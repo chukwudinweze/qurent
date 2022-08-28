@@ -23,7 +23,12 @@ const LandProperty = () => {
   const error = useSelector((state) => state.uiInteraction.error);
 
   if (loading) {
-    return <Loading title="featured rooms" />;
+    return (
+      <>
+        <PageHeader titleLeft="Lands for sale" />
+        <Loading />
+      </>
+    );
   }
 
   if (error) {
@@ -34,7 +39,7 @@ const LandProperty = () => {
     return <p>No property listed in this category, Please check out others</p>;
   }
   return (
-    <section className="room__self__contain ">
+    <section className="page__background">
       <PageHeader titleLeft="Lands for sale" />
 
       <article className="room__list ">
