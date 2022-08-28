@@ -26,10 +26,6 @@ const PropertyDetailFacilities = () => {
           <CheckCircleOutlineIcon style={{ fontSize: "14px" }} />
           Post paid meter
         </li>
-        <li>
-          <CheckCircleOutlineIcon style={{ fontSize: "14px" }} />
-          Security
-        </li>
       </ul>
     </article>
   );
