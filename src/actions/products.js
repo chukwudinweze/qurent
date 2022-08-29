@@ -58,15 +58,18 @@ export const startPostProperty = (property) => {
       createdAt: new Date().getTime().toString(),
     };
 
-    const upLoadToFirestore = async (data, url) => {
+    const upLoadToFirestore = async (data) => {
       try {
-        const response = await fetch(url, {
-          method: "POST",
-          body: JSON.stringify(data),
-          headers: {
-            "Content-type": "application/json",
-          },
-        });
+        const response = await fetch(
+          "https://qurent-a1b03-default-rtdb.firebaseio.com/property.json",
+          {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+              "Content-type": "application/json",
+            },
+          }
+        );
         if (response.ok) {
           console.log("happy i am successful");
           dispatch(setSuccess(true, "uploaded successfully"));
@@ -84,14 +87,7 @@ export const startPostProperty = (property) => {
 
     let time = fileLists.length * 10000;
     setTimeout(() => {
-      upLoadToFirestore(
-        enhanceData,
-        `https://qurent-a1b03-default-rtdb.firebaseio.com/property/${category}.json`
-      );
-      upLoadToFirestore(
-        enhanceData,
-        "https://qurent-a1b03-default-rtdb.firebaseio.com/property/Allproperty.json"
-      );
+      upLoadToFirestore(enhanceData);
     }, time);
   };
 };

@@ -9,9 +9,8 @@ import "../Styles/propertyCategory.css";
 import PageHeader from "./PageHeader";
 
 const Flats = () => {
-  const url =
-    "https://qurent-a1b03-default-rtdb.firebaseio.com/property/flat.json";
-  const { fetchData } = useFetchData(url, fetchFlats);
+  const url = "https://qurent-a1b03-default-rtdb.firebaseio.com/property.json";
+  const { fetchData } = useFetchData(url, fetchFlats, "flat");
 
   useEffect(() => {
     fetchData();

@@ -2,8 +2,9 @@ import { useDispatch } from "react-redux";
 import { useCallback } from "react";
 import { setError, setLoading } from "../actions/uiInteraction";
 import "../Styles/featuredRoom.css";
+import { setFetchData } from "../actions/products";
 
-const useFetchData = (url, typeOfDispatch) => {
+const useFetchData = (url, typeOfDispatch = setFetchData, category = "") => {
   const dispatch = useDispatch();
 
   const fetchData = useCallback(async () => {
@@ -34,14 +35,17 @@ const useFetchData = (url, typeOfDispatch) => {
           phoneNumber: data[key].phoneNumber,
           featured: data[key].featured,
         };
-        dispatch(typeOfDispatch(loadedProperty));
+        if (loadedProperty.category === category) {
+          dispatch(typeOfDispatch(loadedProperty));
+        }
+        dispatch(setFetchData(loadedProperty));
       }
     } catch (error) {
       console.log(error.message);
       dispatch(setError(true));
     }
     dispatch(setLoading(false));
-  }, [dispatch, url, typeOfDispatch]);
+  }, [dispatch, url, typeOfDispatch, category]);
 
   return { fetchData };
 };

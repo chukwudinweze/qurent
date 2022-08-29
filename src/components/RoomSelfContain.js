@@ -9,8 +9,7 @@ import "../Styles/propertyCategory.css";
 import PageHeader from "./PageHeader";
 
 const RoomSelfContain = () => {
-  const url =
-    "https://qurent-a1b03-default-rtdb.firebaseio.com/property/selfContain.json";
+  const url = "https://qurent-a1b03-default-rtdb.firebaseio.com/property.json";
   const { fetchData } = useFetchData(url, fetchSelfContain);
 
   useEffect(() => {

@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Loading from "./Loading";
 import { useSelector } from "react-redux";
 import SingleProperty from "./SingleProperty";
 import "../Styles/propertyCategory.css";
 import PageHeader from "./PageHeader";
+import useFetchData from "./useFetchApi";
 
 const AllProperties = () => {
+  const url = "https://qurent-a1b03-default-rtdb.firebaseio.com/property.json";
+  const { fetchData } = useFetchData(url);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
   // call current states to update components
   const allProperties = useSelector((state) => state.products.properties);
   const loading = useSelector((state) => state.uiInteraction.loading);
