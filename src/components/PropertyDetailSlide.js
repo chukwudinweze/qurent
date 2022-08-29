@@ -25,7 +25,7 @@ const PropertyDetailSlide = ({ pictures }) => {
         >
           return{" "}
           {React.Children.toArray(
-            test.map((bannerData) => {
+            pictures.map((bannerData) => {
               return (
                 <SplideSlide>
                   <img

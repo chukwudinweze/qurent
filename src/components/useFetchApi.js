@@ -8,6 +8,7 @@ const useFetchData = (url, typeOfDispatch = setFetchData, category = "") => {
   const dispatch = useDispatch();
 
   const fetchData = useCallback(async () => {
+    console.log("running agin and again");
     dispatch(setLoading(true));
     try {
       const response = await fetch(url);

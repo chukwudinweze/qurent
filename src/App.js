@@ -34,8 +34,12 @@ const theme = createMuiTheme({
 });
 
 function App() {
-  const allProperties = useSelector((state) => state.products.properties);
-  console.log(allProperties);
+  const url = "https://qurent-a1b03-default-rtdb.firebaseio.com/property.json";
+  const { fetchData } = useFetchData(url, setFetchData);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   const success = useSelector((state) => state.uiInteraction.sucess);
   return (

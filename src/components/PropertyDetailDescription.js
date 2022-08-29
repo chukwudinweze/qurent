@@ -6,22 +6,24 @@ import MessageIcon from "@material-ui/icons/Message";
 
 import "../Styles/PropertyDetailDescription.css";
 
-const PropertyDetailDescription = () => {
+const PropertyDetailDescription = ({ description }) => {
+  let { title, price, location, phoneNumber } = description;
+  if (price) {
+    price = price.toLocaleString();
+  }
   return (
     <article className="room__detail_description">
-      <h4 className>
-        3 bedroom flat for sale at UNN maing gate with a chip wonderful price
-      </h4>
+      <h4>{title}</h4>
       <h5>
-        <NairaSymbol /> 13,000,000
+        <NairaSymbol /> {price}
       </h5>
       <div className="roomdetail__location">
         <LocationOnIcon style={{ fontSize: "1rem", transform: "scale(1.2)" }} />
-        location
+        {location}
       </div>
       <div className="roomdetail__contact__detail">
         <button className="callAgentNumber">
-          <a href={`Tel:${"08060281867"}`}>
+          <a href={`Tel:${phoneNumber}`}>
             <PhoneInTalkIcon />
             <p>Call Agent</p>
           </a>
@@ -29,7 +31,7 @@ const PropertyDetailDescription = () => {
         <button className="smsAgentNumber">
           {" "}
           <a
-            href={`sms:${"08060281867"}?&body= Hello, Could you please confirm whether the ${"title"} you listed on qurent.ng is still available?
+            href={`sms:${phoneNumber}?&body= Hello, Could you please confirm whether the ${"title"} you listed on qurent.ng is still available?
         `}
           >
             <MessageIcon /> <p>Text Agent</p>

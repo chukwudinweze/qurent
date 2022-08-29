@@ -12,6 +12,7 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import useFetchData from "../components/useFetchApi";
 import { setFetchData } from "../actions/products";
+import Facility from "../components/Facility";
 
 const PropertyDetail = () => {
   const params = useParams();
@@ -22,9 +23,6 @@ const PropertyDetail = () => {
 
   const { id } = params;
 
-  console.log("params", id);
-  console.log("all in all", allProperties);
-
   const url = "https://qurent-a1b03-default-rtdb.firebaseio.com/property.json";
   const { fetchData } = useFetchData(url, setFetchData);
 
@@ -32,32 +30,42 @@ const PropertyDetail = () => {
     fetchData();
   }, [fetchData]);
 
-  // call current states to update components
+  const propertId = allProperties.find((property) => {
+    return property.id === id;
+  });
+  const {
+    localGvt,
+    category,
+    pictures,
+    location,
+    propertyAdress,
+    propertyCondition,
+    numberOfRooms,
+    description,
+    propertyFacilities,
+    price,
+    title,
+    phoneNumber,
+  } = propertId;
 
-  // const propertId = allProperties.find((property) => {
-  //   return property.id === id;
-  // });
-  // const {
-  //   localGvt,
-  //   category,
-  //   pictures,
-  //   location,
-  //   propertyAdress,
-  //   propertyCondition,
-  //   numberOfRooms,
-  //   description,
-  //   propertyFacilities,
-  //   price,
-  //   title,
-  //   phoneNumber,
-  // } = propertId;
-
+  const furnished = propertyFacilities.find(
+    (facility) => facility === " Furnished"
+  );
+  const parkingSpace = propertyFacilities.find(
+    (facility) => facility === " Parking space"
+  );
   return (
     <section>
       <PageHeader titleLeft={`Property Detail`} />
-      <PropertyDetailSlide />
-      <PropertyDetailDescription />
-      <PropertyConditionHighlight />
+      <PropertyDetailSlide pictures={pictures} />
+      <PropertyDetailDescription
+        description={{ title, price, location, phoneNumber }}
+      />
+      <PropertyConditionHighlight
+        furnished={furnished}
+        parkingSpace={parkingSpace}
+        condition={propertyCondition}
+      />
       <PropertyDetailFacilities />
       <PropertyDetailBriefDesc />
       <DetailAttention />

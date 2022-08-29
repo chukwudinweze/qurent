@@ -7,6 +7,8 @@ const PropertyFacilities = [
   "Prepaid Meter",
   "Postpaid Meter",
   "Overhead Tank",
+  "Furnished",
+  "Parking space",
 ];
 
 export default PropertyFacilities;
