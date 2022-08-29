@@ -38,8 +38,6 @@ const PropertyDetail = () => {
   //   phoneNumber,
   // } = propertId;
 
-  // console.log(title);
-
   return (
     <section>
       <PageHeader titleLeft={`Property Detail`} />
