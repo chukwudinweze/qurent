@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Home from "./Pages/Home";
-import Properties from "./Pages/Properties";
 import PostAdd from "./Pages/PostAdd";
 import Flat from "./Pages/Flat";
 import SelfContain from "./Pages/SelfContain";
@@ -19,6 +18,9 @@ import UserProfile from "./Pages/UserProfile";
 import NavLinks from "./components/NavLinks";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 import { useSelector } from "react-redux";
+import AllProperties from "./components/AllProperties";
+import useFetchData from "./components/useFetchApi";
+import { setFetchData } from "./actions/products";
 
 // overides blue color as the primary color from material ui
 const theme = createMuiTheme({
@@ -32,6 +34,17 @@ const theme = createMuiTheme({
 });
 
 function App() {
+  const url =
+    "https://qurent-a1b03-default-rtdb.firebaseio.com/property/Allproperty.json";
+  const { fetchData } = useFetchData(url, setFetchData);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  const allProperties = useSelector((state) => state.products.properties);
+  console.log(allProperties);
+
   const success = useSelector((state) => state.uiInteraction.sucess);
   return (
     //  themeProvider applies the custom theme to post app component
@@ -78,10 +91,10 @@ function App() {
         </Route>
 
         <Route exact path="/properties">
-          <Properties />
+          <AllProperties />
         </Route>
 
-        <Route exact path="/properties/:propertyId">
+        <Route exact path="/properties/:id">
           <PropertyDetail />
         </Route>
 

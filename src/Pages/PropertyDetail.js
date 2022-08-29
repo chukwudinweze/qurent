@@ -5,8 +5,41 @@ import PropertyDetailSlide from "../components/PropertyDetailSlide";
 import "../Styles/homeSlide.css";
 import PropertyConditionHighlight from "../components/PropertyConditionHighlight";
 import PropertyDetailFacilities from "../components/PropertyDetailFacilities";
+import PropertyDetailBriefDesc from "../components/PropertyDetailBriefDesc";
+import DetailAttention from "../components/DetailAttention";
+import Footer from "../components/Footer";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const PropertyDetail = () => {
+  const params = useParams();
+
+  const { id } = params;
+  const allProperties = useSelector((state) => state.products.properties);
+
+  console.log("params", id);
+  console.log("all in all", allProperties);
+
+  // const propertId = allProperties.find((property) => {
+  //   return property.id === id;
+  // });
+  // const {
+  //   localGvt,
+  //   category,
+  //   pictures,
+  //   location,
+  //   propertyAdress,
+  //   propertyCondition,
+  //   numberOfRooms,
+  //   description,
+  //   propertyFacilities,
+  //   price,
+  //   title,
+  //   phoneNumber,
+  // } = propertId;
+
+  // console.log(title);
+
   return (
     <section>
       <PageHeader titleLeft={`Property Detail`} />
@@ -14,9 +47,9 @@ const PropertyDetail = () => {
       <PropertyDetailDescription />
       <PropertyConditionHighlight />
       <PropertyDetailFacilities />
-      <br />
-      <br />
-      hfhffjfjfj
+      <PropertyDetailBriefDesc />
+      <DetailAttention />
+      <Footer />
     </section>
   );
 };

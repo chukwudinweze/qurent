@@ -7,13 +7,15 @@
 }
 
 .property__condition__highlight p {
-  border: 2px solid var(--brand__color);
+  border: 1px solid var(--brand__color);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   letter-spacing: -0.5px;
   font-size: 15px;
   font-weight: 500;
   padding: 6px 4px;
   border-radius: 8px;
-  /* background: rgb(230, 228, 228); */
-  color: rgb(65, 64, 64);
+  background: rgb(244, 241, 241);
+  color: rgb(101, 100, 100);
   text-transform: capitalize;
 }

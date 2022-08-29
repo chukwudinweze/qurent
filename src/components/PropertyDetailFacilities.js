@@ -10,9 +10,9 @@ const PropertyDetailFacilities = () => {
       <ul>
         <li>
           <CheckCircleOutlineIcon
-            style={{ /*fontSize: "14px",*/ color: "#20c063" }}
+            style={{ fontSize: "16px", color: "#20c063" }}
           />
-          Balcony
+          <p>Balcony</p>
         </li>
         <li>
           <CheckCircleOutlineIcon style={{ fontSize: "14px" }} />

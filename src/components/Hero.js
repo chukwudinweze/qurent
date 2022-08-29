@@ -6,7 +6,7 @@ import "../Styles/hero.css";
 const Hero = () => {
   return (
     <section className="hero">
-      <Link to="/rooms" className="searchInput__wrapper">
+      <Link to="/properties" className="searchInput__wrapper">
         <input
           className="hero__search__input"
           type="text"
