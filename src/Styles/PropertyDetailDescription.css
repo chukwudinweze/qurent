@@ -20,8 +20,8 @@
 }
 
 .roomdetail__location {
-  font-size: 1.1rem;
-  color: rgb(134, 134, 134);
+  font-size: 1rem;
+  color: rgb(117, 115, 115);
   margin-top: 0.5rem;
   display: flex;
   align-items: center;
@@ -61,6 +61,5 @@
 }
 
 .roomdetail__contact__detail .smsAgentNumber a {
-  background: var(--brand__color);
   color: rgb(251, 250, 250);
 }

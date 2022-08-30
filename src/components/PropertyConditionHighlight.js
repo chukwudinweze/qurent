@@ -1,12 +1,16 @@
 import React from "react";
 import "../Styles/PropertyConditionHighlight.css";
 
-const PropertyConditionHighlight = ({ furnished, parkingSpace }) => {
+const PropertyConditionHighlight = ({ facilityHighlight, condition }) => {
+  const furnished = facilityHighlight.includes("furnished");
+  const parkingSpace = facilityHighlight.includes("parking space");
+
+  console.log("WE HAVE TO", furnished, parkingSpace, facilityHighlight);
   return (
     <article className="property__condition__highlight">
-      <p>Newly Built</p>
-      {furnished ? <p>Not Furnished</p> : <p>Not Furnished</p>}
-      {parkingSpace ? <p>car parking Space</p> : <p>No car parking Space</p>}
+      <p>{condition}</p>
+      {furnished ? <p>Furnished</p> : <p>Not Furnished</p>}
+      {parkingSpace ? <p>Parking Space</p> : <p>No Parking Space</p>}
     </article>
   );
 };

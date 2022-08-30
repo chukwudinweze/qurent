@@ -16,7 +16,7 @@ const FeaturedRoom = ({ room }) => {
 
   return (
     room && (
-      <Link to="/property/id" className="room__wrapper">
+      <Link to={`/properties/${id}`} className="room__wrapper">
         <div className="image__container">
           <img src={pictures && coverPicture} alt={title} />
           <p className="no__of__pictures">{pictures && pictures.length}</p>

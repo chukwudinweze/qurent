@@ -9,6 +9,7 @@ const PropertyFacilities = [
   "Overhead Tank",
   "Furnished",
   "Parking space",
+  "Furnished",
 ];
 
 export default PropertyFacilities;

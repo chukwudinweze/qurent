@@ -18,7 +18,7 @@ const PropertyDetailDescription = ({ description }) => {
         <NairaSymbol /> {price}
       </h5>
       <div className="roomdetail__location">
-        <LocationOnIcon style={{ fontSize: "1rem", transform: "scale(1.2)" }} />
+        <LocationOnIcon style={{ fontSize: "1rem" }} />
         {location}
       </div>
       <div className="roomdetail__contact__detail">

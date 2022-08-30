@@ -1,17 +1,18 @@
 .property__additional__information {
-  color: rgb(69, 68, 68);
+  color: rgb(5, 1, 1);
   background: rgb(251, 250, 250);
   margin-top: 20px;
   padding: 14px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
 .property__additional__information h6 {
-  font-size: 1.05rem;
+  font-size: 1rem;
   margin-bottom: 0.313rem;
-  letter-spacing: -1px;
 }
 
 .property__additional__information p {
+  font-size: 0.9rem;
   letter-spacing: -0.5px;
-  line-height: 25px;
+  line-height: 20px;
 }
