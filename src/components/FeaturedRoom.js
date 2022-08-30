@@ -17,17 +17,17 @@ const FeaturedRoom = ({ room }) => {
   }
 
   // get item from redux store and dispatch to the saveitem
-  const properties = useSelector((state) => state.products.properties);
-  const itemToSave = properties.find((property) => (property.id = id));
-  const dispatch = useDispatch();
+  // const properties = useSelector((state) => state.products.properties);
+  // const itemToSave = properties.find((property) => (property.id = id));
+  // const dispatch = useDispatch();
 
   // console.log(itemToSave);
-  const saveItemHandler = (event) => {
-    dispatch(fetchSavedProperty(itemToSave));
-    event.nativeEvent.stopPropagation();
-    console.log("what i am doing I dont know");
-    // event.preventDefault();
-  };
+  // const saveItemHandler = (event) => {
+  //   dispatch(fetchSavedProperty(itemToSave));
+  //   event.nativeEvent.stopPropagation();
+  //   console.log("what i am doing I dont know");
+  //   // event.preventDefault();
+  // };
 
   return (
     room && (
@@ -41,7 +41,7 @@ const FeaturedRoom = ({ room }) => {
           <div className="price__fav__container">
             <p className="price">&#8358; {price && price}</p>
             <button
-              onClickCapture={saveItemHandler}
+              // onClickCapture={saveItemHandler}
               style={{
                 color: "#20c063",
                 marginRight: "0.3125rem",
