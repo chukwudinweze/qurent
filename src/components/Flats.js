@@ -22,7 +22,12 @@ const Flats = () => {
   const error = useSelector((state) => state.uiInteraction.error);
 
   if (loading) {
-    return <Loading title="featured rooms" />;
+    return (
+      <>
+        <PageHeader titleLeft="Flats" />;
+        <Loading title="Flats" />;
+      </>
+    );
   }
 
   if (error) {
@@ -35,7 +40,7 @@ const Flats = () => {
 
   return (
     <section className="room__self__contain">
-      <PageHeader titleLeft="Room self contain" style={{ color: "red" }} />
+      <PageHeader titleLeft="Flats" style={{ color: "red" }} />
 
       <article className="room__list">
         {selfContains.map((property) => {

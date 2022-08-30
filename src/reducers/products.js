@@ -107,6 +107,19 @@ const products = (state = initialState, action) => {
       } else {
         return { ...state, lands: [...state.lands, action.data] };
       }
+    // case "FETCH_SAVED_PROPERTIES":
+    //   duplicateData = state.savedProperties.find((property) => {
+    //     return property.id === action.data.id;
+    //   });
+
+    //   if (duplicateData) {
+    //     return { ...state };
+    //   } else {
+    //     return {
+    //       ...state,
+    //       savedProperties: [...state.savedProperties, action.data],
+    //     };
+    //   }
 
     default:
       return state;

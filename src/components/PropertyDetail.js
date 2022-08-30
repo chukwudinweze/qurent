@@ -19,11 +19,11 @@ const PropertyDetail = () => {
   const params = useParams();
   const { id } = params;
 
-  const properties = useSelector((state) => state.products.properties);
+  //   const properties = useSelector((state) => state.products.properties);
   const loading = useSelector((state) => state.uiInteraction.loading);
   const error = useSelector((state) => state.uiInteraction.error);
 
-  const itemToSave = properties.find((property) => (property.id = id));
+  //   const itemToSave = properties.find((property) => (property.id = id));
 
   useEffect(() => {
     const fetchcv = async () => {
@@ -59,7 +59,7 @@ const PropertyDetail = () => {
             location: propertyData.location,
             phoneNumber: propertyData.phoneNumber,
             id: propertyData.id,
-            itemToSave,
+            itemToSave: propertyData,
           }}
         />
       )}

@@ -109,6 +109,12 @@ export const fetchSavedProperty = (data) => ({
   data,
 });
 
+export const setFetchSavedProperty = (data) => {
+  return (dispatch) => {
+    dispatch(fetchSavedProperty(data));
+  };
+};
+
 export const fetchFeaturedRooms = (data) => ({
   type: "FETCH_FEATURED_ROOMS",
   data,
