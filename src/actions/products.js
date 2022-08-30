@@ -1,6 +1,7 @@
 import { storage } from "../components/firebase/firebase";
 import { setError, setLoading, setSuccess } from "../actions/uiInteraction";
 import { Message } from "@material-ui/icons";
+import { useSelector } from "react-redux";
 
 export const postProperty = (property) => ({
   type: "POST_PROPERTY",
@@ -102,6 +103,11 @@ export const setFetchData = (data) => {
     dispatch(fetchData(data));
   };
 };
+
+export const fetchSavedProperty = (data) => ({
+  type: "FETCH_SAVED_PROPERTIES",
+  data,
+});
 
 export const fetchFeaturedRooms = (data) => ({
   type: "FETCH_FEATURED_ROOMS",
