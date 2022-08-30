@@ -17,6 +17,7 @@ const useFetchRoomDetail = (id) => {
       }
       const data = await response.json();
       setData(data);
+      console.log(data, "response was okay");
     } catch (error) {
       console.log(error.message);
       dispatch(setError(true));
@@ -24,7 +25,7 @@ const useFetchRoomDetail = (id) => {
     dispatch(setLoading(false));
   }, [dispatch, id]);
   console.log(data);
-  return { fetchRoomDetail };
+  return { fetchRoomDetail, data };
 };
 
 export default useFetchRoomDetail;

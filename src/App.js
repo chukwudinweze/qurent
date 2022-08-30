@@ -12,7 +12,7 @@ import Qservices from "./Pages/Qservices";
 import Error from "./Pages/Error";
 import "./Styles/index.css";
 import { Route, Switch } from "react-router-dom";
-import PropertyDetail from "./Pages/PropertyDetail";
+import PropertyDetailPage from "./Pages/PropertyDetailPage";
 import SavedAds from "./Pages/SavedAds";
 import UserProfile from "./Pages/UserProfile";
 import NavLinks from "./components/NavLinks";
@@ -91,7 +91,7 @@ function App() {
         </Route>
 
         <Route exact path="/properties/:id">
-          <PropertyDetail />
+          <PropertyDetailPage />
         </Route>
 
         <Route exact path="/saved-ads">

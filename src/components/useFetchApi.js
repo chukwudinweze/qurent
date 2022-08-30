@@ -36,6 +36,7 @@ const useFetchData = (url, typeOfDispatch = setFetchData, category = "") => {
           phoneNumber: data[key].phoneNumber,
           featured: data[key].featured,
         };
+        console.log("stillloading", loadedProperty);
         if (loadedProperty.category === category) {
           dispatch(typeOfDispatch(loadedProperty));
         }
