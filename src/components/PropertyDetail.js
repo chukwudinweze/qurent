@@ -35,7 +35,7 @@ const PropertyDetail = () => {
           throw new Error("could not fetch data");
         }
         const data = await response.json();
-        setPropertyData(data);
+        setPropertyData({ ...data, id });
       } catch (error) {
         console.log(error);
       }

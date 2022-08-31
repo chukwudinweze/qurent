@@ -11,6 +11,8 @@ import { fetchSavedProperty } from "../actions/products";
 
 const PropertyDetailDescription = ({ description }) => {
   let { title, price, location, phoneNumber, itemToSave } = description;
+
+  console.log("we check again", itemToSave);
   if (price) {
     price = price.toLocaleString();
   }
@@ -19,7 +21,7 @@ const PropertyDetailDescription = ({ description }) => {
 
   const saveItemHandler = () => {
     dispatch(fetchSavedProperty(itemToSave));
-    console.log(itemToSave.id);
+    console.log("checking", itemToSave.id);
   };
   return (
     <article className="room__detail_description">

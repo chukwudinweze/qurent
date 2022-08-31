@@ -43,7 +43,13 @@ const LandProperty = () => {
 
       <article className="room__list ">
         {lands.map((property) => {
-          return <SingleProperty key={property.id} property={property} />;
+          return (
+            <SingleProperty
+              key={property.id}
+              property={property}
+              deleteBtn={false}
+            />
+          );
         })}
       </article>
     </section>

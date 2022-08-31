@@ -107,20 +107,24 @@ const products = (state = initialState, action) => {
       } else {
         return { ...state, lands: [...state.lands, action.data] };
       }
-    // case "FETCH_SAVED_PROPERTIES":
-    //   duplicateData = state.savedProperties.find((property) => {
-    //     return property.id === action.data.id;
-    //   });
+    case "FETCH_SAVED_PROPERTIES":
+      duplicateData = state.savedProperties.find((property) => {
+        return property.id === action.data.id;
+      });
 
-    //   if (duplicateData) {
-    //     return { ...state };
-    //   } else {
-    //     return {
-    //       ...state,
-    //       savedProperties: [...state.savedProperties, action.data],
-    //     };
-    //   }
-
+      if (duplicateData) {
+        return { ...state };
+      } else {
+        return {
+          ...state,
+          savedProperties: [...state.savedProperties, action.data],
+        };
+      }
+    case "REMOVE_SAVED_PROPERTIES":
+      let UpdatedItems = state.savedProperties.filter((property) => {
+        return property.id !== action.id;
+      });
+      return { ...state, savedProperties: [...UpdatedItems] };
     default:
       return state;
   }

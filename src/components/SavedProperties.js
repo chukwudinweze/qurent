@@ -8,16 +8,11 @@ import SingleProperty from "./SingleProperty";
 import "../Styles/propertyCategory.css";
 import PageHeader from "./PageHeader";
 
-const Flats = () => {
-  const url = "https://qurent-a1b03-default-rtdb.firebaseio.com/property.json";
-  const { fetchData } = useFetchData(url, fetchFlats, "flat");
-
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
-
+const SavedProperties = () => {
   // call current states to update components
-  const selfContains = useSelector((state) => state.products.flats);
+  const savedProperties = useSelector(
+    (state) => state.products.savedProperties
+  );
   const loading = useSelector((state) => state.uiInteraction.loading);
   const error = useSelector((state) => state.uiInteraction.error);
 
@@ -34,27 +29,28 @@ const Flats = () => {
     return <p>Something happened. Please refresh your browser</p>;
   }
 
-  if (!loading && !error && selfContains.length === 0) {
-    return <p>No property listed in this category, Please check out others</p>;
+  if (!loading && !error && savedProperties.length === 0) {
+    return <p>You have no property saved yet</p>;
   }
 
   return (
     <section className="room__self__contain">
-      <PageHeader titleLeft="Flats" style={{ color: "red" }} />
+      <PageHeader titleLeft="Your Saved Properties" style={{ color: "red" }} />
 
       <article className="room__list">
-        {selfContains.map((property) => {
-          return (
-            <SingleProperty
-              key={property.id}
-              property={property}
-              deleteBtn={false}
-            />
-          );
-        })}
+        {savedProperties &&
+          savedProperties.map((property) => {
+            return (
+              <SingleProperty
+                key={property.id}
+                property={property}
+                deleteBtn={true}
+              />
+            );
+          })}
       </article>
     </section>
   );
 };
 
-export default Flats;
+export default SavedProperties;

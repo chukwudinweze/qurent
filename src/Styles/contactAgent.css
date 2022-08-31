@@ -1,8 +1,7 @@
 .contact__agent__button {
   text-align: left;
-  max-width: 50%;
-  min-width: 50%;
   border-right: 0.5px solid rgb(171, 169, 169);
+  flex: 1;
 }
 
 .contact__agent__button a {

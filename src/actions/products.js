@@ -115,6 +115,11 @@ export const setFetchSavedProperty = (data) => {
   };
 };
 
+export const removeSavedItem = (id) => ({
+  type: "REMOVE_SAVED_PROPERTIES",
+  id,
+});
+
 export const fetchFeaturedRooms = (data) => ({
   type: "FETCH_FEATURED_ROOMS",
   data,

@@ -39,7 +39,13 @@ const AllProperties = () => {
 
       <article className="room__list">
         {allProperties.map((property) => {
-          return <SingleProperty key={property.id} property={property} />;
+          return (
+            <SingleProperty
+              key={property.id}
+              property={property}
+              deleteBtn={false}
+            />
+          );
         })}
       </article>
     </section>

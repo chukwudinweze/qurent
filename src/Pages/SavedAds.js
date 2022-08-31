@@ -1,7 +1,12 @@
 import React from "react";
+import SavedProperties from "../components/SavedProperties";
 
 const SavedAds = () => {
-  return <div>hello from saved ads</div>;
+  return (
+    <section className="page__background">
+      <SavedProperties />
+    </section>
+  );
 };
 
 export default SavedAds;

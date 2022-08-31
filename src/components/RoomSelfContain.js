@@ -39,7 +39,13 @@ const RoomSelfContain = () => {
 
       <article className="room__list">
         {selfContains.map((property) => {
-          return <SingleProperty key={property.id} property={property} />;
+          return (
+            <SingleProperty
+              key={property.id}
+              property={property}
+              deleteBtn={false}
+            />
+          );
         })}
       </article>
     </section>

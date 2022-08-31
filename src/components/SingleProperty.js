@@ -8,8 +8,11 @@ import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
 
 import "../Styles/SingleRoom.css";
 import ContactAgent from "./ContactAgent";
+import { useDispatch } from "react-redux";
+import { removeSavedItem } from "../actions/products";
 
-const SingleProperty = ({ property }) => {
+const SingleProperty = ({ property, deleteBtn }) => {
+  const dispatch = useDispatch();
   let {
     title,
     price,
@@ -27,6 +30,10 @@ const SingleProperty = ({ property }) => {
     let [firstImage] = pictures;
     coverPicture = firstImage;
   }
+
+  const removeItemHandler = () => {
+    dispatch(removeSavedItem(id));
+  };
 
   return (
     <article className="single__room__wrapper">
@@ -59,7 +66,7 @@ const SingleProperty = ({ property }) => {
           </div>
         </article>
       </Link>
-      <div className="room__contact__detail">
+      <div className="single__room__contact__detail">
         <ContactAgent
           typeOfContact="Tel"
           phoneNumber={phoneNumber}
@@ -84,7 +91,11 @@ const SingleProperty = ({ property }) => {
             />
           }
         />
-        <ContactAgent />
+        {deleteBtn && (
+          <button className="delete__property" onClick={removeItemHandler}>
+            Remove
+          </button>
+        )}
       </div>
     </article>
   );
