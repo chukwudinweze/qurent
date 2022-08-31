@@ -2,6 +2,7 @@ const InitialState = {
   expand: false,
   loading: false,
   error: false,
+  errorUpload: false,
   errorMsg: "",
   success: false,
   successMsg: "",
@@ -34,6 +35,12 @@ const uiInteraction = (state = InitialState, action) => {
       return {
         ...state,
         errorMsg: action.message,
+      };
+    case "ERROR__UPLOAD":
+      return {
+        ...state,
+        errorUpload: action.value,
+        errorMsg: action.errorMsg,
       };
     default:
       return state;

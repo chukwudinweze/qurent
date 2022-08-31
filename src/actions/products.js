@@ -1,5 +1,10 @@
 import { storage } from "../components/firebase/firebase";
-import { setError, setLoading, setSuccess } from "../actions/uiInteraction";
+import {
+  setError,
+  setErrorUploading,
+  setLoading,
+  setSuccess,
+} from "../actions/uiInteraction";
 import { Message } from "@material-ui/icons";
 import { useSelector } from "react-redux";
 
@@ -19,7 +24,7 @@ export const startPostProperty = (property) => {
   return (dispatch) => {
     dispatch(setLoading(true));
     dispatch(setSuccess(false));
-    dispatch(setError(false));
+    dispatch(setErrorUploading(false));
     let storeImgUrls = [];
     fileLists.forEach((file) => {
       const uploadTask = storage.ref(`images/${file.name}`).put(file);
@@ -32,8 +37,7 @@ export const startPostProperty = (property) => {
           console.log(progress);
         },
         (error) => {
-          console.log("fre:..........", error);
-          dispatch(setError(true));
+          dispatch(setErrorUploading(true));
         },
         // call back to get url from firebase storage
         () => {
@@ -80,7 +84,7 @@ export const startPostProperty = (property) => {
           });
         }
       } catch (error) {
-        dispatch(setError(true));
+        dispatch(setErrorUploading(true));
       }
       dispatch(setLoading(false));
       dispatch(setSuccess(false, "ended"));

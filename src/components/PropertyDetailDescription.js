@@ -31,7 +31,7 @@ const PropertyDetailDescription = ({ description }) => {
           <NairaSymbol /> {price}
         </h5>
         <button onClickCapture={saveItemHandler}>
-          <BookmarkBorderIcon style={{ color: "#fff" }} />
+          <BookmarkBorderIcon style={{ color: "#20c063" }} />
         </button>
       </div>
       <div className="roomdetail__location">

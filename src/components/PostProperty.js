@@ -32,6 +32,8 @@ import "../Styles/postproperty.css";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import MenuProps from "./MenuProps";
+import { useEffect } from "react";
+import { useRef } from "react";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -97,7 +99,7 @@ const PostProperty = () => {
   // get the current state. This is mainly used to style post ad button
   const loading = useSelector((state) => state.uiInteraction.loading);
   const success = useSelector((state) => state.uiInteraction.success);
-  const error = useSelector((state) => state.uiInteraction.error);
+  const error = useSelector((state) => state.uiInteraction.errorUpload);
 
   // dispatching to the redux store
   const dispatch = useDispatch();

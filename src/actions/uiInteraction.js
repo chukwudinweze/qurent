@@ -18,3 +18,9 @@ export const setSuccess = (value, successMsg = "") => ({
   value,
   successMsg,
 });
+
+export const setErrorUploading = (value, successMsg = "") => ({
+  type: "ERROR__UPLOAD",
+  value,
+  successMsg,
+});
