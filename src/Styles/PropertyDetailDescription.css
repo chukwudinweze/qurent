@@ -25,7 +25,13 @@
   color: #20c063;
   margin-right: 0.3125rem;
   padding: 5px 10px;
-  background: rgb(251, 250, 250);
+  background-color: #20c063;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .room__detail_description h5 {

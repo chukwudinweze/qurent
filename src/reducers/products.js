@@ -1,3 +1,8 @@
+let dataFromLocalStorage = localStorage.getItem("savedItem");
+const initialSavedItems = dataFromLocalStorage
+  ? JSON.parse(dataFromLocalStorage)
+  : [];
+
 const initialState = {
   properties: [],
   featuredRooms: [],
@@ -8,8 +13,9 @@ const initialState = {
   offices: [],
   lands: [],
   eventCenters: [],
-  savedProperties: [],
+  savedProperties: initialSavedItems,
 };
+
 const products = (state = initialState, action) => {
   let duplicateData;
   switch (action.type) {
@@ -115,16 +121,24 @@ const products = (state = initialState, action) => {
       if (duplicateData) {
         return { ...state };
       } else {
+        const savedState = [...state.savedProperties, action.data];
+        const serialisedState = JSON.stringify(savedState);
+        localStorage.setItem("savedItem", serialisedState);
+        console.log("nothing in the console");
         return {
           ...state,
           savedProperties: [...state.savedProperties, action.data],
         };
       }
     case "REMOVE_SAVED_PROPERTIES":
-      let UpdatedItems = state.savedProperties.filter((property) => {
+      let updatedItems = state.savedProperties.filter((property) => {
         return property.id !== action.id;
       });
-      return { ...state, savedProperties: [...UpdatedItems] };
+
+      const serialisedState = JSON.stringify(updatedItems);
+      console.log(serialisedState);
+      localStorage.setItem("savedItem", serialisedState);
+      return { ...state, savedProperties: [...updatedItems] };
     default:
       return state;
   }
