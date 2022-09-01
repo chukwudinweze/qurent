@@ -1,11 +1,8 @@
 import React from "react";
+import QurentLoaderGif from "./QurentLoaderGif";
 
-const Loading = ({ title }) => {
-  return (
-    <div>
-      <h3>{title && title}</h3>
-    </div>
-  );
+const Loading = () => {
+  return <QurentLoaderGif />;
 };
 
 export default Loading;
