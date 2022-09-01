@@ -22,7 +22,7 @@ const RoomSelfContain = () => {
   const error = useSelector((state) => state.uiInteraction.error);
 
   if (loading) {
-    return <Loading title="featured rooms" />;
+    return <Loading />;
   }
 
   if (error) {

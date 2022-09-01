@@ -27,7 +27,7 @@ const FeaturedRooms = () => {
   }, [fetchData, dispatch]);
 
   if (loading) {
-    return <Loading title="featured rooms" />;
+    return <Loading />;
   }
 
   if (error) {

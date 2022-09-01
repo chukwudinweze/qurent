@@ -25,7 +25,7 @@ const Flats = () => {
     return (
       <>
         <PageHeader titleLeft="Flats" />;
-        <Loading title="Flats" />;
+        <Loading />;
       </>
     );
   }

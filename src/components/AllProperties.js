@@ -22,7 +22,7 @@ const AllProperties = () => {
   console.log(allProperties);
 
   if (loading) {
-    return <Loading title="All properties" />;
+    return <Loading />;
   }
 
   if (error) {

@@ -1,5 +1,5 @@
 import React from "react";
-import loadingGif from "../images/qurentGIFLoader.gif";
+import loadingGif from "../images/qurentMobileGifLoader.gif";
 import "../Styles/qurentLoaderGif.css";
 
 const QurentLoaderGif = () => {
