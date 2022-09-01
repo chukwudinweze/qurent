@@ -20,7 +20,7 @@ const SavedProperties = () => {
     return (
       <>
         <PageHeader titleLeft="Flats" />;
-        <Loading title="Flats" />;
+        <Loading />;
       </>
     );
   }
