@@ -3,6 +3,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  width: 300px;
 }
 
 .gifContainer img {
