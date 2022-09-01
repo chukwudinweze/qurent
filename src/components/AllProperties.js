@@ -35,7 +35,7 @@ const AllProperties = () => {
 
   return (
     <section className="room__self__contain">
-      <PageHeader titleLeft="All PropertiesS" style={{ color: "red" }} />
+      <PageHeader titleLeft="All Properties" style={{ color: "red" }} />
 
       <article className="room__list">
         {allProperties.map((property) => {
