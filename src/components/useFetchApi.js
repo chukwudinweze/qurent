@@ -8,7 +8,6 @@ const useFetchData = (url, typeOfDispatch = setFetchData, category = "") => {
   const dispatch = useDispatch();
 
   const fetchData = useCallback(async () => {
-    console.log("running agin and again");
     dispatch(setLoading(true));
     try {
       const response = await fetch(url);
@@ -36,15 +35,13 @@ const useFetchData = (url, typeOfDispatch = setFetchData, category = "") => {
           phoneNumber: data[key].phoneNumber,
           featured: data[key].featured,
         };
-        console.log("stillloading", loadedProperty);
         if (loadedProperty.category === category) {
           dispatch(typeOfDispatch(loadedProperty));
         }
         dispatch(setFetchData(loadedProperty));
       }
     } catch (error) {
-      console.log(error.message);
-      dispatch(setError(true));
+      dispatch(setError(true, error.message));
     }
     dispatch(setLoading(false));
   }, [dispatch, url, typeOfDispatch, category]);

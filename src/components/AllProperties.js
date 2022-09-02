@@ -5,21 +5,42 @@ import SingleProperty from "./SingleProperty";
 import "../Styles/propertyCategory.css";
 import PageHeader from "./PageHeader";
 import useFetchData from "./useFetchApi";
+import { useState } from "react";
+import getUniqueParameter from "./getUniqueParameter";
 
 const AllProperties = () => {
-  const url = "https://qurent-a1b03-default-rtdb.firebaseio.com/property.json";
-  const { fetchData } = useFetchData(url);
-
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
-
+  const [query, setQuery] = useState({
+    localGvt: "localGvt",
+    location: "location",
+    numberOfRooms: "numberOfRooms",
+    price: "price",
+    propertyCondition: "propertyCondition",
+  });
   // call current states to update components
-  const allProperties = useSelector((state) => state.products.properties);
+  let allProperties = useSelector((state) => state.products.properties);
   const loading = useSelector((state) => state.uiInteraction.loading);
   const error = useSelector((state) => state.uiInteraction.error);
 
-  console.log(allProperties);
+  // get unique search parameters using the utility function below
+  let localgvts = getUniqueParameter(allProperties, "localGvt");
+  // includ a select default value
+  localgvts = ["Local Government", ...localgvts];
+
+  let sortedRooms;
+
+  const handleQuery = (e) => {
+    e.preventDefault();
+    let name = e.target.name;
+    let value = e.target.value;
+    setQuery({ [name]: value });
+    console.log("i am mad mannnnnn", query.localGvt);
+  };
+
+  // if (gg === "All") {
+  //   sortedRooms = allProperties;
+  // } else {
+  //   sortedRooms = allProperties.filter((property) => property.localGvt === gg);
+  // }
 
   if (loading) {
     return <Loading />;
@@ -36,7 +57,20 @@ const AllProperties = () => {
   return (
     <section className="room__self__contain">
       <PageHeader titleLeft="All Properties" style={{ color: "red" }} />
-
+      <form>
+        <select
+          name="localGvt"
+          id="localGvt"
+          value={query.localGvt}
+          onChange={handleQuery}
+        >
+          {localgvts.map((localgvt) => (
+            <option key={localgvt} value={localgvt}>
+              {localgvt}
+            </option>
+          ))}
+        </select>
+      </form>
       <article className="room__list">
         {allProperties.map((property) => {
           return (
