@@ -21,6 +21,7 @@ const SingleProperty = ({ property, deleteBtn }) => {
     propertyFacilities,
     phoneNumber,
     location,
+    category,
   } = property;
 
   // format title and price if and only if title,pictures and price was returned
@@ -48,7 +49,12 @@ const SingleProperty = ({ property, deleteBtn }) => {
         <article className="Single__room__description">
           <p className="single__room__title">{title}</p>
           <p className="single__room__price">
-            &#8358;{price} <span className="per__annum">per annum</span>
+            &#8358;{price}{" "}
+            {category === "land" ? (
+              ""
+            ) : (
+              <span className="per__annum">per annum</span>
+            )}
           </p>
 
           <div className="single__room__facilities">

@@ -6,13 +6,14 @@ import "../Styles/propertyCategory.css";
 import PageHeader from "./PageHeader";
 import { useState } from "react";
 import getUniqueParameter from "./getUniqueParameter";
+import PropertyCondition from "./PropertyCondition";
 
 const AllProperties = () => {
   const [query, setQuery] = useState({
     location: "location",
     numberOfRooms: "numberOfRooms",
     price: "price",
-    propertyCondition: "propertyCondition",
+    propertyCondition: "condition",
   });
   // call current states to update components
   let allProperties = useSelector((state) => state.products.properties);
@@ -24,14 +25,19 @@ const AllProperties = () => {
   // include local government as the select default value
   propertyLocation = ["location", ...propertyLocation];
 
+  // property condition option value
+  let condtions = ["condition", ...PropertyCondition];
+
   let sortedRooms = allProperties;
 
   const handleQuery = (e) => {
     e.preventDefault();
     let name = e.target.name;
     let value = e.target.value;
-    setQuery({ [name]: value });
-    console.log("location is", query.location);
+    setQuery({ ...query, [name]: value });
+
+    console.log(query);
+    console.log(sortedRooms);
   };
 
   if (query.location !== "location") {
@@ -39,7 +45,13 @@ const AllProperties = () => {
       (property) => property.location === query.location
     );
   }
-  console.log("letrsssss", sortedRooms);
+
+  if (query.propertyCondition !== "condition") {
+    sortedRooms = sortedRooms.filter(
+      (property) => property.propertyCondition === query.propertyCondition
+    );
+  }
+
   if (loading) {
     return <Loading />;
   }
@@ -65,6 +77,18 @@ const AllProperties = () => {
           {propertyLocation.map((location) => (
             <option key={location} value={location}>
               {location}
+            </option>
+          ))}
+        </select>
+        <select
+          name="propertyCondition"
+          id="propertyCondition"
+          value={query.propertyCondition}
+          onChange={handleQuery}
+        >
+          {condtions.map((condition) => (
+            <option key={condition} value={condition}>
+              {condition}
             </option>
           ))}
         </select>

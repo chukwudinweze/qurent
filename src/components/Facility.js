@@ -2,7 +2,6 @@ import React from "react";
 import "../Styles/facility.css";
 
 const Facility = ({ facility }) => {
-  console.log(facility);
   return (
     <>
       {" "}
