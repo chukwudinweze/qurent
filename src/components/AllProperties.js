@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import SingleProperty from "./SingleProperty";
 import "../Styles/propertyCategory.css";
 import PageHeader from "./PageHeader";
-import useFetchData from "./useFetchApi";
 import { useState } from "react";
 import getUniqueParameter from "./getUniqueParameter";
 
