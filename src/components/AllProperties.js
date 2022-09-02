@@ -94,7 +94,7 @@ const AllProperties = () => {
           ))}
         </select>
       </form>
-      <div>{!loading &&!error && sortedRooms.length === 0
+      <div>{!loading &&!error && sortedRooms.length === 0&&<p>Unfortunately no property matched your search parameters</p>
 }</div>
       <article className="room__list">
         {sortedRooms.map((property) => {
