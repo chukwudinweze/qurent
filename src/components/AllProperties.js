@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Loading from "./Loading";
 import { useSelector } from "react-redux";
 import SingleProperty from "./SingleProperty";
