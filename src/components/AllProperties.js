@@ -12,7 +12,9 @@ const AllProperties = () => {
   const [query, setQuery] = useState({
     location: "location",
     numberOfRooms: "numberOfRooms",
-    price: "price",
+    price: 0,
+    maxPrize: 0,
+    minPrize: 0,
     propertyCondition: "condition",
   });
   // call current states to update components
@@ -60,8 +62,7 @@ const AllProperties = () => {
     return <p>Something happened. Please refresh your browser</p>;
   }
 
-  if (!loading && !error && allProperties.length === 0) {
-    return <p>No property listed in this category, Please check out others</p>;
+  if (
   }
 
   return (
@@ -93,6 +94,8 @@ const AllProperties = () => {
           ))}
         </select>
       </form>
+      <div>{!loading &&!error && sortedRooms.length === 0
+}</div>
       <article className="room__list">
         {sortedRooms.map((property) => {
           return (
