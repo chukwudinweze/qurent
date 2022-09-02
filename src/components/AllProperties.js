@@ -10,7 +10,6 @@ import getUniqueParameter from "./getUniqueParameter";
 
 const AllProperties = () => {
   const [query, setQuery] = useState({
-    localGvt: "localGvt",
     location: "location",
     numberOfRooms: "numberOfRooms",
     price: "price",
@@ -22,26 +21,26 @@ const AllProperties = () => {
   const error = useSelector((state) => state.uiInteraction.error);
 
   // get unique search parameters using the utility function below
-  let localgvts = getUniqueParameter(allProperties, "localGvt");
-  // includ a select default value
-  localgvts = ["Local Government", ...localgvts];
+  let propertyLocation = getUniqueParameter(allProperties, "location");
+  // include local government as the select default value
+  propertyLocation = ["location", ...propertyLocation];
 
-  let sortedRooms;
+  let sortedRooms = allProperties;
 
   const handleQuery = (e) => {
     e.preventDefault();
     let name = e.target.name;
     let value = e.target.value;
     setQuery({ [name]: value });
-    console.log("i am mad mannnnnn", query.localGvt);
+    console.log("location is", query.location);
   };
 
-  // if (gg === "All") {
-  //   sortedRooms = allProperties;
-  // } else {
-  //   sortedRooms = allProperties.filter((property) => property.localGvt === gg);
-  // }
-
+  if (query.location !== "location") {
+    sortedRooms = allProperties.filter(
+      (property) => property.location === query.location
+    );
+  }
+  console.log("letrsssss", sortedRooms);
   if (loading) {
     return <Loading />;
   }
@@ -59,20 +58,20 @@ const AllProperties = () => {
       <PageHeader titleLeft="All Properties" style={{ color: "red" }} />
       <form>
         <select
-          name="localGvt"
-          id="localGvt"
-          value={query.localGvt}
+          name="location"
+          id="location"
+          value={query.location}
           onChange={handleQuery}
         >
-          {localgvts.map((localgvt) => (
-            <option key={localgvt} value={localgvt}>
-              {localgvt}
+          {propertyLocation.map((location) => (
+            <option key={location} value={location}>
+              {location}
             </option>
           ))}
         </select>
       </form>
       <article className="room__list">
-        {allProperties.map((property) => {
+        {sortedRooms.map((property) => {
           return (
             <SingleProperty
               key={property.id}
