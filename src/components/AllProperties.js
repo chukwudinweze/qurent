@@ -9,6 +9,7 @@ import getUniqueParameter from "./getUniqueParameter";
 import PropertyCondition from "./PropertyCondition";
 import { Slider } from "@material-ui/core";
 import "../Styles/allProperties.css";
+import ErrorSearching from "./ErrorSearching";
 
 const AllProperties = () => {
   const [query, setQuery] = useState({
@@ -132,9 +133,7 @@ const AllProperties = () => {
         </div>
       </form>
       <div>
-        {!loading && !error && sortedRooms.length === 0 && (
-          <p>Unfortunately no property matched your search parameters</p>
-        )}
+        {!loading && !error && sortedRooms.length === 0 && <ErrorSearching />}
       </div>
       <article className="room__list">
         {sortedRooms.map((property) => {

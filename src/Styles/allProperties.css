@@ -1,0 +1,56 @@
+.filter__form {
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+  margin: 5px 5px;
+  padding: 0 5px;
+}
+
+.location__condition__filter {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.location__condition__filter select {
+  width: 100%;
+  padding: 3px 10px;
+  font-size: 1rem;
+  outline: none;
+  color: rgb(117, 115, 115);
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+.filter__location {
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  margin-right: 10px;
+  flex: 1;
+  border-radius: 5px;
+}
+
+.filter__condition {
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  flex: 1;
+  border-radius: 5px;
+}
+.filter__price {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  border-radius: 5px;
+}
+.filter__price p:first-child {
+  font-size: 0.9rem;
+}
+.filter__price p {
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: rgb(92, 92, 92);
+}
+.filter__price p:first-child {
+  margin: 5px 0;
+}
