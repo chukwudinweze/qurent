@@ -115,7 +115,7 @@ const AllProperties = () => {
             </select>
           </div>
         </div>
-        <div style={{ overflow: "hidden" }} className="filter__group">
+        <div style={{ overflow: "hidden" }} className="filter__price">
           <p>Price Range</p>
           <p>
             &#8358;{formatedMinPrice} - &#8358;{formatedMaxPrice}
