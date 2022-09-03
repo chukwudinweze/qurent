@@ -18,9 +18,9 @@ import UserProfile from "./Pages/UserProfile";
 import NavLinks from "./components/NavLinks";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 import { useSelector } from "react-redux";
-import AllProperties from "./components/AllProperties";
 import useFetchData from "./components/useFetchApi";
 import { setFetchData } from "./actions/products";
+import AllpropertiesPage from "./Pages/AllpropertiesPage";
 
 // overides blue color as the primary color from material ui
 const theme = createMuiTheme({
@@ -87,7 +87,7 @@ function App() {
         </Route>
 
         <Route exact path="/properties">
-          <AllProperties />
+          <AllpropertiesPage />
         </Route>
 
         <Route exact path="/properties/:id">

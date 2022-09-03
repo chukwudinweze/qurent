@@ -52,6 +52,6 @@ li {
   list-style-type: none;
 }
 
-/* .page__background {
-  background: rgb(239, 237, 237);
-} */
+.page__background {
+  margin-bottom: 150px;
+}

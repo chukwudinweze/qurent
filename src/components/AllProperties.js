@@ -15,7 +15,7 @@ const AllProperties = () => {
   const [query, setQuery] = useState({
     location: "location",
     propertyCondition: "condition",
-    price: [0, 20000000],
+    price: [10000, 20000000],
   });
 
   // format price to add comas used as price filter label
@@ -83,7 +83,7 @@ const AllProperties = () => {
   }
 
   return (
-    <section className="room__self__contain">
+    <section>
       <PageHeader titleLeft="All Properties" style={{ color: "red" }} />
       <form className="filter__form">
         <div className="location__condition__filter">
@@ -126,8 +126,8 @@ const AllProperties = () => {
             disableSwap
             value={query.price}
             onChange={handleQuery}
-            min={0}
-            max={maxPropertyPrice + 3000000}
+            min={10000}
+            max={maxPropertyPrice}
             style={{ transform: "scaleY(1.5)" }}
           />
         </div>
