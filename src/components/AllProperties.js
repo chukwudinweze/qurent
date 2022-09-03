@@ -8,6 +8,7 @@ import { useState } from "react";
 import getUniqueParameter from "./getUniqueParameter";
 import PropertyCondition from "./PropertyCondition";
 import { Slider } from "@material-ui/core";
+import "../Styles/allProperties.css";
 
 const AllProperties = () => {
   const [query, setQuery] = useState({
@@ -31,6 +32,8 @@ const AllProperties = () => {
   let maxPropertyPrice = Math.max(
     ...allProperties.map((properties) => properties.price)
   );
+  // adding one million to the maxprice
+  // maxPropertyPrice += 1000000;
 
   // get unique search parameters using the utility function below
   let propertyLocation = getUniqueParameter(allProperties, "location");
@@ -81,34 +84,36 @@ const AllProperties = () => {
   return (
     <section className="room__self__contain">
       <PageHeader titleLeft="All Properties" style={{ color: "red" }} />
-      <form>
-        <div className="filter__group">
-          <select
-            name="location"
-            id="location"
-            value={query.location}
-            onChange={handleQuery}
-          >
-            {propertyLocation.map((location) => (
-              <option key={location} value={location}>
-                {location}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="filter__group">
-          <select
-            name="propertyCondition"
-            id="propertyCondition"
-            value={query.propertyCondition}
-            onChange={handleQuery}
-          >
-            {condtions.map((condition) => (
-              <option key={condition} value={condition}>
-                {condition}
-              </option>
-            ))}
-          </select>
+      <form className="filter__form">
+        <div className="location__condition__filter">
+          <div className="filter__location">
+            <select
+              name="location"
+              id="location"
+              value={query.location}
+              onChange={handleQuery}
+            >
+              {propertyLocation.map((location) => (
+                <option key={location} value={location}>
+                  {location}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="filter__condition">
+            <select
+              name="propertyCondition"
+              id="propertyCondition"
+              value={query.propertyCondition}
+              onChange={handleQuery}
+            >
+              {condtions.map((condition) => (
+                <option key={condition} value={condition}>
+                  {condition}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
         <div style={{ overflow: "hidden" }} className="filter__group">
           <p>Price Range</p>
@@ -117,26 +122,14 @@ const AllProperties = () => {
           </p>
           <Slider
             name="price"
+            disableSwap
             value={query.price}
             onChange={handleQuery}
             min={0}
-            max={maxPropertyPrice}
+            max={maxPropertyPrice + 3000000}
             style={{ transform: "scaleY(1.5)" }}
           />
         </div>
-        {/* <div className="filter__group">
-          <label htmlFor="price"> &#8358; {formatedLabelPrice}</label>
-          <input
-            type="range"
-            name="price"
-            id="price"
-            max={maxPrice}
-            min="0"
-            value={query.price}
-            onChange={handleQuery}
-            style={{ width: "100%" }}
-          />
-        </div> */}
       </form>
       <div>
         {!loading && !error && sortedRooms.length === 0 && (
