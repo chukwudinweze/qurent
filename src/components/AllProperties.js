@@ -33,8 +33,6 @@ const AllProperties = () => {
   let maxPropertyPrice = Math.max(
     ...allProperties.map((properties) => properties.price)
   );
-  // adding one million to the maxprice
-  // maxPropertyPrice += 1000000;
 
   // get unique search parameters using the utility function below
   let propertyLocation = getUniqueParameter(allProperties, "location");
@@ -83,8 +81,8 @@ const AllProperties = () => {
   }
 
   return (
-    <section>
-      <PageHeader titleLeft="All Properties" style={{ color: "red" }} />
+    <section style={{ marginBottom: "1.875rem" }}>
+      <PageHeader titleLeft="All Properties" />
       <form className="filter__form">
         <div className="location__condition__filter">
           <div className="filter__location">
