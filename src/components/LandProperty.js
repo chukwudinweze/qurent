@@ -9,7 +9,6 @@ import PageHeader from "./PageHeader";
 import "../Styles/propertyCategory.css";
 import { useState } from "react";
 import getUniqueParameter from "./getUniqueParameter";
-import PropertyCondition from "./PropertyCondition";
 import { Slider } from "@material-ui/core";
 import ErrorSearching from "./ErrorSearching";
 
@@ -103,7 +102,7 @@ const LandProperty = () => {
           </div>
         </div>
         <div style={{ overflow: "hidden" }} className="filter__price">
-          <p>Price Range</p>
+          <p>Select Price Range</p>
           <p>
             &#8358;{formatedMinPrice} - &#8358;{formatedMaxPrice}
           </p>

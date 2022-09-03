@@ -28,7 +28,7 @@ const AllProperties = () => {
   const loading = useSelector((state) => state.uiInteraction.loading);
   const error = useSelector((state) => state.uiInteraction.error);
   let allProperties = useSelector((state) => state.products.properties);
-  let sortedRooms = allProperties;
+  let sortedProperties = allProperties;
   // get maximum price
   let maxPropertyPrice = Math.max(
     ...allProperties.map((properties) => properties.price)
@@ -56,18 +56,18 @@ const AllProperties = () => {
 
   // filter items depending on the current query state
   if (query.location !== "location") {
-    sortedRooms = allProperties.filter(
+    sortedProperties = allProperties.filter(
       (property) => property.location === query.location
     );
   }
 
   if (query.propertyCondition !== "condition") {
-    sortedRooms = sortedRooms.filter(
+    sortedProperties = sortedProperties.filter(
       (property) => property.propertyCondition === query.propertyCondition
     );
   }
 
-  sortedRooms = sortedRooms.filter((property) => {
+  sortedProperties = sortedProperties.filter((property) => {
     return property.price >= minPrice && property.price <= maxPrice;
   });
 
@@ -115,7 +115,7 @@ const AllProperties = () => {
           </div>
         </div>
         <div style={{ overflow: "hidden" }} className="filter__price">
-          <p>Price Range</p>
+          <p>Select Price Range</p>
           <p>
             &#8358;{formatedMinPrice} - &#8358;{formatedMaxPrice}
           </p>
@@ -131,10 +131,12 @@ const AllProperties = () => {
         </div>
       </form>
       <div>
-        {!loading && !error && sortedRooms.length === 0 && <ErrorSearching />}
+        {!loading && !error && sortedProperties.length === 0 && (
+          <ErrorSearching />
+        )}
       </div>
       <article className="room__list">
-        {sortedRooms.map((property) => {
+        {sortedProperties.map((property) => {
           return (
             <SingleProperty
               key={property.id}
