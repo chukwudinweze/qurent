@@ -7,6 +7,7 @@ import PageHeader from "./PageHeader";
 import { useState } from "react";
 import getUniqueParameter from "./getUniqueParameter";
 import PropertyCondition from "./PropertyCondition";
+import { Slider } from "@material-ui/core";
 
 const AllProperties = () => {
   let allProperties = useSelector((state) => state.products.properties);
@@ -16,9 +17,9 @@ const AllProperties = () => {
 
   const [query, setQuery] = useState({
     location: "location",
-    numberOfRooms: "numberOfRooms",
     price: 10000000,
     propertyCondition: "condition",
+    range: [0, 20000000],
   });
 
   // format price to add comas used as price filter label
@@ -40,11 +41,21 @@ const AllProperties = () => {
 
   let sortedRooms = allProperties;
 
-  const handleQuery = (e) => {
+  const handleQuery = (e, data) => {
     e.preventDefault();
-    let name = e.target.name;
-    let value = e.target.value;
+    let name;
+    if (e.target.name !== "location" && e.target.name !== "propertyCondition") {
+      name = "range";
+    } else {
+      name = e.target.name;
+    }
+    let value = name === "range" ? data : e.target.value;
     setQuery({ ...query, [name]: value });
+
+    console.log("min", query.range[0]);
+    console.log("max", query.range[1]);
+
+    // console.log(name);
   };
 
   if (query.location !== "location") {
@@ -60,7 +71,7 @@ const AllProperties = () => {
   }
 
   sortedRooms = sortedRooms.filter((property) => {
-    return property.price >= formatedPrice;
+    return property.price <= formatedPrice;
   });
 
   if (loading) {
@@ -103,7 +114,17 @@ const AllProperties = () => {
             ))}
           </select>
         </div>
-        <div className="filter__group">
+        <div style={{ overflow: "hidden" }} className="filter__group">
+          <Slider
+            name="range"
+            value={query.range}
+            onChange={handleQuery}
+            min={0}
+            max={maxPrice}
+            style={{ transform: "scaleY(1.5)" }}
+          />
+        </div>
+        {/* <div className="filter__group">
           <label htmlFor="price"> &#8358; {formatedLabelPrice}</label>
           <input
             type="range"
@@ -115,7 +136,7 @@ const AllProperties = () => {
             onChange={handleQuery}
             style={{ width: "100%" }}
           />
-        </div>
+        </div> */}
       </form>
       <div>
         {!loading && !error && sortedRooms.length === 0 && (
