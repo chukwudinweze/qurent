@@ -66,7 +66,7 @@ const AllProperties = () => {
   }
 
   sortedRooms = sortedRooms.filter((property) => {
-    return property.price >= minPrice && property.pric <= maxPrice;
+    return property.price >= minPrice && property.price <= maxPrice;
   });
 
   // render
