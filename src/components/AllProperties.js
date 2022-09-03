@@ -9,16 +9,24 @@ import getUniqueParameter from "./getUniqueParameter";
 import PropertyCondition from "./PropertyCondition";
 
 const AllProperties = () => {
+  let allProperties = useSelector((state) => state.products.properties);
+  let maxPrice = Math.max(
+    ...allProperties.map((properties) => properties.price)
+  );
+
   const [query, setQuery] = useState({
     location: "location",
     numberOfRooms: "numberOfRooms",
-    price: 0,
-    maxPrize: 0,
-    minPrize: 0,
+    price: 10000000,
     propertyCondition: "condition",
   });
+
+  // format price to add comas used as price filter label
+  let formatedPrice = +query.price;
+  let formatedLabelPrice = formatedPrice.toLocaleString();
+
   // call current states to update components
-  let allProperties = useSelector((state) => state.products.properties);
+
   const loading = useSelector((state) => state.uiInteraction.loading);
   const error = useSelector((state) => state.uiInteraction.error);
 
@@ -37,9 +45,6 @@ const AllProperties = () => {
     let name = e.target.name;
     let value = e.target.value;
     setQuery({ ...query, [name]: value });
-
-    console.log(query);
-    console.log(sortedRooms);
   };
 
   if (query.location !== "location") {
@@ -54,6 +59,10 @@ const AllProperties = () => {
     );
   }
 
+  sortedRooms = sortedRooms.filter((property) => {
+    return property.price >= formatedPrice;
+  });
+
   if (loading) {
     return <Loading />;
   }
@@ -62,40 +71,57 @@ const AllProperties = () => {
     return <p>Something happened. Please refresh your browser</p>;
   }
 
-  if (
-  }
-
   return (
     <section className="room__self__contain">
       <PageHeader titleLeft="All Properties" style={{ color: "red" }} />
       <form>
-        <select
-          name="location"
-          id="location"
-          value={query.location}
-          onChange={handleQuery}
-        >
-          {propertyLocation.map((location) => (
-            <option key={location} value={location}>
-              {location}
-            </option>
-          ))}
-        </select>
-        <select
-          name="propertyCondition"
-          id="propertyCondition"
-          value={query.propertyCondition}
-          onChange={handleQuery}
-        >
-          {condtions.map((condition) => (
-            <option key={condition} value={condition}>
-              {condition}
-            </option>
-          ))}
-        </select>
+        <div className="filter__group">
+          <select
+            name="location"
+            id="location"
+            value={query.location}
+            onChange={handleQuery}
+          >
+            {propertyLocation.map((location) => (
+              <option key={location} value={location}>
+                {location}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="filter__group">
+          <select
+            name="propertyCondition"
+            id="propertyCondition"
+            value={query.propertyCondition}
+            onChange={handleQuery}
+          >
+            {condtions.map((condition) => (
+              <option key={condition} value={condition}>
+                {condition}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="filter__group">
+          <label htmlFor="price"> &#8358; {formatedLabelPrice}</label>
+          <input
+            type="range"
+            name="price"
+            id="price"
+            max={maxPrice}
+            min="0"
+            value={query.price}
+            onChange={handleQuery}
+            style={{ width: "100%" }}
+          />
+        </div>
       </form>
-      <div>{!loading &&!error && sortedRooms.length === 0&&<p>Unfortunately no property matched your search parameters</p>
-}</div>
+      <div>
+        {!loading && !error && sortedRooms.length === 0 && (
+          <p>Unfortunately no property matched your search parameters</p>
+        )}
+      </div>
       <article className="room__list">
         {sortedRooms.map((property) => {
           return (
