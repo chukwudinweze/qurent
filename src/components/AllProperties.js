@@ -10,26 +10,27 @@ import PropertyCondition from "./PropertyCondition";
 import { Slider } from "@material-ui/core";
 
 const AllProperties = () => {
-  let allProperties = useSelector((state) => state.products.properties);
-  let maxPrice = Math.max(
-    ...allProperties.map((properties) => properties.price)
-  );
-
   const [query, setQuery] = useState({
     location: "location",
-    price: 10000000,
     propertyCondition: "condition",
-    range: [0, 20000000],
+    price: [0, 20000000],
   });
 
   // format price to add comas used as price filter label
-  let formatedPrice = +query.price;
-  let formatedLabelPrice = formatedPrice.toLocaleString();
+  let minPrice = +query.price[0];
+  let maxPrice = +query.price[1];
+  let formatedMinPrice = minPrice.toLocaleString();
+  let formatedMaxPrice = maxPrice.toLocaleString();
 
   // call current states to update components
-
   const loading = useSelector((state) => state.uiInteraction.loading);
   const error = useSelector((state) => state.uiInteraction.error);
+  let allProperties = useSelector((state) => state.products.properties);
+  let sortedRooms = allProperties;
+  // get maximum price
+  let maxPropertyPrice = Math.max(
+    ...allProperties.map((properties) => properties.price)
+  );
 
   // get unique search parameters using the utility function below
   let propertyLocation = getUniqueParameter(allProperties, "location");
@@ -39,25 +40,19 @@ const AllProperties = () => {
   // property condition option value
   let condtions = ["condition", ...PropertyCondition];
 
-  let sortedRooms = allProperties;
-
   const handleQuery = (e, data) => {
     e.preventDefault();
     let name;
     if (e.target.name !== "location" && e.target.name !== "propertyCondition") {
-      name = "range";
+      name = "price";
     } else {
       name = e.target.name;
     }
-    let value = name === "range" ? data : e.target.value;
+    let value = name === "price" ? data : e.target.value;
     setQuery({ ...query, [name]: value });
-
-    console.log("min", query.range[0]);
-    console.log("max", query.range[1]);
-
-    // console.log(name);
   };
 
+  // filter items depending on the current query state
   if (query.location !== "location") {
     sortedRooms = allProperties.filter(
       (property) => property.location === query.location
@@ -71,9 +66,10 @@ const AllProperties = () => {
   }
 
   sortedRooms = sortedRooms.filter((property) => {
-    return property.price <= formatedPrice;
+    return property.price >= minPrice && property.pric <= maxPrice;
   });
 
+  // render
   if (loading) {
     return <Loading />;
   }
@@ -115,12 +111,16 @@ const AllProperties = () => {
           </select>
         </div>
         <div style={{ overflow: "hidden" }} className="filter__group">
+          <p>Price Range</p>
+          <p>
+            &#8358;{formatedMinPrice} - &#8358;{formatedMaxPrice}
+          </p>
           <Slider
-            name="range"
-            value={query.range}
+            name="price"
+            value={query.price}
             onChange={handleQuery}
             min={0}
-            max={maxPrice}
+            max={maxPropertyPrice}
             style={{ transform: "scaleY(1.5)" }}
           />
         </div>
