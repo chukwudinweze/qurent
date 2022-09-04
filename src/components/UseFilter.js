@@ -1,9 +1,8 @@
-import React from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import getUniqueParameter from "./getUniqueParameter";
 
-const UseFilter = (allprops) => {
+const UseFilter = (allProperty) => {
   const [query, setQuery] = useState({
     location: "location",
     propertyCondition: "condition",
