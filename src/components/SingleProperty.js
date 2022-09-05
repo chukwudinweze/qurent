@@ -45,7 +45,8 @@ const SingleProperty = ({ property, deleteBtn }) => {
             alt={title}
           />
           <div className="num__of__pictures">
-            <p>{pictures && pictures.length}</p>
+            {pictures && <p>{pictures.length}</p>}
+            {!pictures && <p>{0}</p>}
             <PhotoCameraIcon style={{ fontSize: "0.82rem" }} />
           </div>
         </div>
