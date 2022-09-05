@@ -1,11 +1,9 @@
 import React from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
-import ImageSlide from "../images/hero-img_640px.jpg";
-import fff from "../images/q-office.png";
 import "../Styles/property__detail__slide.css";
+import ImagePlaceHolder from "../images/imagePlaceHolder.png";
 
 const PropertyDetailSlide = ({ pictures }) => {
-  const test = [ImageSlide, fff, ImageSlide, ImageSlide, ImageSlide];
   return (
     <section>
       <article className="property__detail__slide">
@@ -23,19 +21,27 @@ const PropertyDetailSlide = ({ pictures }) => {
             cover: true,
           }}
         >
-          return{" "}
-          {React.Children.toArray(
-            pictures.map((bannerData) => {
+          {pictures &&
+            pictures.map((bannerData, index) => {
               return (
-                <SplideSlide>
+                <SplideSlide key={index}>
                   <img
-                    src={bannerData}
+                    src={bannerData || ImagePlaceHolder}
                     data-splide-lazy="path-to-the-image"
-                    alt=""
+                    alt="property slide"
                   />
                 </SplideSlide>
               );
-            })
+            })}
+
+          {!pictures && (
+            <SplideSlide>
+              <img
+                src={ImagePlaceHolder}
+                alt="property slide"
+                data-splide-lazy="path-to-the-image"
+              />
+            </SplideSlide>
           )}
         </Splide>
       </article>

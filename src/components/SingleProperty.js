@@ -5,11 +5,11 @@ import LocationOnIcon from "@material-ui/icons/LocationOn";
 import PhoneInTalkIcon from "@material-ui/icons/PhoneInTalk";
 import MessageIcon from "@material-ui/icons/Message";
 import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
-
 import "../Styles/SingleRoom.css";
 import ContactAgent from "./ContactAgent";
 import { useDispatch } from "react-redux";
 import { removeSavedItem } from "../actions/products";
+import ImagePlaceHolder from "../images/imagePlaceHolder.png";
 
 const SingleProperty = ({ property, deleteBtn }) => {
   const dispatch = useDispatch();
@@ -40,7 +40,10 @@ const SingleProperty = ({ property, deleteBtn }) => {
     <article className="single__room__wrapper">
       <Link to={`/properties/${id}`} className="single_room__highlight">
         <div className="single__room__image__container">
-          <img src={pictures && coverPicture} alt={title} />
+          <img
+            src={(pictures && coverPicture) || ImagePlaceHolder}
+            alt={title}
+          />
           <div className="num__of__pictures">
             <p>{pictures && pictures.length}</p>
             <PhotoCameraIcon style={{ fontSize: "0.82rem" }} />

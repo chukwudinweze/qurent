@@ -1,4 +1,6 @@
 import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
+import ImagePlaceHolder from "../images/imagePlaceHolder.png";
+
 import React from "react";
 import { Link } from "react-router-dom";
 import "../Styles/room.css";
@@ -19,8 +21,12 @@ const FeaturedRoom = ({ room }) => {
     room && (
       <Link to={`/properties/${id}`} className="room__wrapper">
         <div className="image__container">
-          <img src={pictures && coverPicture} alt={title} />
+          <img
+            src={(pictures && coverPicture) || ImagePlaceHolder}
+            alt={title}
+          />
           <p className="no__of__pictures">{pictures && pictures.length}</p>
+          <p className="no__of__pictures">{!pictures && 0}</p>
         </div>
         <article className="room__details">
           <p className="title">{title}...</p>

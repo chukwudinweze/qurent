@@ -150,7 +150,7 @@ export const fetchSelfContain = (data) => ({
 });
 
 export const fetchOfficeSpace = (data) => ({
-  type: "FETCH_OFFICE_SPACE",
+  type: "FETCH_OFFICES",
   data,
 });
 
