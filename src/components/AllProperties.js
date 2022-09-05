@@ -10,8 +10,18 @@ import PropertyCondition from "./PropertyCondition";
 import { Slider } from "@material-ui/core";
 import "../Styles/allProperties.css";
 import ErrorSearching from "./ErrorSearching";
+import useFetchData from "./useFetchApi";
+import { setFetchData } from "../actions/products";
+import { useEffect } from "react";
 
 const AllProperties = () => {
+  const url = "https://qurent-a1b03-default-rtdb.firebaseio.com/property.json";
+  const { fetchData } = useFetchData(url, setFetchData);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
   const [query, setQuery] = useState({
     location: "location",
     propertyCondition: "condition",
