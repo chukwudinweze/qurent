@@ -158,3 +158,8 @@ export const fetchLands = (data) => ({
   type: "FETCH_LANDS",
   data,
 });
+
+export const fetchEventCenters = (data) => ({
+  type: "FETCH_EVENT_CENTER",
+  data,
+});

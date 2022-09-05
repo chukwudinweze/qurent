@@ -114,6 +114,18 @@ const products = (state = initialState, action) => {
       } else {
         return { ...state, lands: [...state.lands, action.data] };
       }
+
+    case "FETCH_EVENT_CENTER":
+      duplicateData = state.eventCenters.find((property) => {
+        return property.id === action.data.id;
+      });
+
+      if (duplicateData) {
+        return { ...state };
+      } else {
+        return { ...state, eventCenters: [...state.eventCenters, action.data] };
+      }
+
     case "FETCH_SAVED_PROPERTIES":
       duplicateData = state.savedProperties.find((property) => {
         return property.id === action.data.id;
