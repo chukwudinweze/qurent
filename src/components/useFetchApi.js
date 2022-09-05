@@ -41,6 +41,7 @@ const useFetchData = (url, typeOfDispatch = setFetchData, category = "") => {
         dispatch(setFetchData(loadedProperty));
       }
     } catch (error) {
+      console.log(error);
       dispatch(setError(true, error.message));
     }
     dispatch(setLoading(false));

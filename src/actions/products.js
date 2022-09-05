@@ -139,7 +139,7 @@ export const fetchSingleRooms = (data) => ({
   data,
 });
 
-export const fetchStores = (data) => ({
+export const fetchShops = (data) => ({
   type: "FETCH_SHOPS",
   data,
 });

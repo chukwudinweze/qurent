@@ -71,14 +71,15 @@ const products = (state = initialState, action) => {
       }
 
     case "FETCH_SHOPS":
-      duplicateData = state.stores.find((property) => {
+      duplicateData = state.shops.find((property) => {
         return property.id === action.data.id;
       });
 
       if (duplicateData) {
         return { ...state };
       } else {
-        return { ...state, stores: [...state.stores, action.data] };
+        console.log("second", action.data);
+        return { ...state, shops: [...state.shops, action.data] };
       }
 
     case "FETCH_SELF_CONTAIN":
