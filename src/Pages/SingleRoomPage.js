@@ -1,7 +1,14 @@
 import React from "react";
+import SingleRoom from "../components/SingleRoom";
+import Footer from "../components/Footer";
 
-const SingleRoom = () => {
-  return <section className="page__background">hello from single room</section>;
+const SingleRoomPage = () => {
+  return (
+    <section className="page__background">
+      <SingleRoom />
+      <Footer />
+    </section>
+  );
 };
 
-export default SingleRoom;
+export default SingleRoomPage;

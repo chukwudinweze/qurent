@@ -2,7 +2,7 @@ import React from "react";
 import Loading from "./Loading";
 import { useSelector } from "react-redux";
 import useFetchData from "./useFetchApi";
-import { fetchShops } from "../actions/products";
+import { fetchSingleRooms } from "../actions/products";
 import { useEffect } from "react";
 import SingleProperty from "./SingleProperty";
 import "../Styles/propertyCategory.css";
@@ -13,9 +13,9 @@ import { Slider } from "@material-ui/core";
 import ErrorSearching from "./ErrorSearching";
 import { useState } from "react";
 
-const ShopCategory = () => {
+const SingleRoom = () => {
   const url = "https://qurent-a1b03-default-rtdb.firebaseio.com/property.json";
-  const { fetchData } = useFetchData(url, fetchShops, "shops");
+  const { fetchData } = useFetchData(url, fetchSingleRooms, "singleRoom");
 
   useEffect(() => {
     fetchData();
@@ -34,18 +34,18 @@ const ShopCategory = () => {
   let formatedMaxPrice = maxPrice.toLocaleString();
 
   // call current states to update components
-  const shops = useSelector((state) => state.products.shops);
+  const singleRooms = useSelector((state) => state.products.singleRooms);
   const loading = useSelector((state) => state.uiInteraction.loading);
   const error = useSelector((state) => state.uiInteraction.error);
-  let sortedShops = shops;
+  let sortedSingleRooms = singleRooms;
 
   // get maximum price
   let maxPropertyPrice = Math.max(
-    ...shops.map((properties) => properties.price)
+    ...singleRooms.map((properties) => properties.price)
   );
 
   // get unique search parameters using the utility function below
-  let propertyLocation = getUniqueParameter(shops, "location");
+  let propertyLocation = getUniqueParameter(singleRooms, "location");
   // include local government as the select default value
   propertyLocation = ["location", ...propertyLocation];
 
@@ -66,18 +66,18 @@ const ShopCategory = () => {
 
   // filter items depending on the current query state
   if (query.location !== "location") {
-    sortedShops = shops.filter(
+    sortedSingleRooms = singleRooms.filter(
       (property) => property.location === query.location
     );
   }
 
   if (query.propertyCondition !== "condition") {
-    sortedShops = sortedShops.filter(
+    sortedSingleRooms = sortedSingleRooms.filter(
       (property) => property.propertyCondition === query.propertyCondition
     );
   }
 
-  sortedShops = sortedShops.filter((property) => {
+  sortedSingleRooms = sortedSingleRooms.filter((property) => {
     return property.price >= minPrice && property.price <= maxPrice;
   });
 
@@ -91,7 +91,7 @@ const ShopCategory = () => {
 
   return (
     <section className="room__self__contain">
-      <PageHeader titleLeft="Shops" style={{ color: "red" }} />
+      <PageHeader titleLeft="Singlr Rooms" style={{ color: "red" }} />
       <form className="filter__form">
         <div className="location__condition__filter">
           <div className="filter__location">
@@ -140,10 +140,12 @@ const ShopCategory = () => {
         </div>
       </form>
       <div>
-        {!loading && !error && sortedShops.length === 0 && <ErrorSearching />}
+        {!loading && !error && sortedSingleRooms.length === 0 && (
+          <ErrorSearching />
+        )}
       </div>
       <article className="room__list">
-        {sortedShops.map((property) => {
+        {sortedSingleRooms.map((property) => {
           return (
             <SingleProperty
               key={property.id}
@@ -157,4 +159,4 @@ const ShopCategory = () => {
   );
 };
 
-export default ShopCategory;
+export default SingleRoom;
