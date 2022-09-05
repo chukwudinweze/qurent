@@ -1,11 +1,12 @@
 import React from "react";
-import Loading from "../components/Loading";
-import QurentLoaderGif from "../components/QurentLoaderGif";
+import Footer from "../components/Footer";
+import OfficeSpaces from "../components/OfficesSpaces";
 
 const OfficeSpace = () => {
   return (
     <section className="page__background">
-      <Loading />
+      <OfficeSpaces />
+      <Footer />
     </section>
   );
 };
