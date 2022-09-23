@@ -1,12 +1,9 @@
 import { storage } from "../components/firebase/firebase";
 import {
-  setError,
   setErrorUploading,
   setLoading,
   setSuccess,
 } from "../actions/uiInteraction";
-import { Message } from "@material-ui/icons";
-import { useSelector } from "react-redux";
 
 export const postProperty = (property) => ({
   type: "POST_PROPERTY",
@@ -15,7 +12,7 @@ export const postProperty = (property) => ({
 
 // redux middleware dispatching to redux store and to the firebase
 export const startPostProperty = (property) => {
-  const { pictures, category } = property;
+  const { pictures } = property;
   let fileLists = [];
   for (let i = 0; i < pictures.length; i++) {
     let file = pictures[i];
