@@ -28,7 +28,7 @@
 /* set html root font size and set overflow-x */
 html {
   font-size: 16px;
-  overflow: auto;
+  overflow-x: auto;
 }
 /* overide default styles */
 * {
@@ -54,19 +54,4 @@ li {
 
 .page__background {
   margin-bottom: 3.125rem;
-}
-
-@media only screen and (min-width: 480px) {
-  #root {
-    visibility: hidden;
-    display: none;
-    z-index: 0;
-  }
-}
-@media only screen and (max-width: 480px) {
-  .mediaQuery {
-    visibility: hidden;
-    display: none;
-    z-index: 0;
-  }
 }

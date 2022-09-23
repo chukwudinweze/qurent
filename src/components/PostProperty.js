@@ -32,8 +32,6 @@ import "../Styles/postproperty.css";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import MenuProps from "./MenuProps";
-import { useEffect } from "react";
-import { useRef } from "react";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -103,8 +101,9 @@ const PostProperty = () => {
 
   // dispatching to the redux store
   const dispatch = useDispatch();
-  const onSubmit = (value) => {
+  const onSubmit = (value, { resetForm }) => {
     dispatch(startPostProperty(value));
+    resetForm({ value: "" });
   };
   const initialValues = {
     localGvt: "",
