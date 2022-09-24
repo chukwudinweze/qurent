@@ -6,16 +6,26 @@ import { validationSchema } from "./LoginFormValidation";
 import "../Styles/LoginForm.css";
 import { useState } from "react";
 import Logo from "../images/logo.png";
+import { setUser } from "../actions/user";
+import { useDispatch } from "react-redux";
 
 const LoginForm = () => {
   const [login, setLogin] = useState(true);
+
+  const dispatch = useDispatch();
+
+  // initial formik values
   const initialValues = {
     email: "",
     password: "",
   };
 
+  // dynamic url for login and signup  end point
+  const url = login
+    ? "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDP1Wo9ZXDH7eHhmZz3b7yD1li4noBmlCY"
+    : "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDP1Wo9ZXDH7eHhmZz3b7yD1li4noBmlCY";
   const onSubmit = (value, { resetForm }) => {
-    console.log(value);
+    dispatch(setUser(value, url));
   };
   return (
     <section className="register__form__section">
