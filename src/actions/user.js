@@ -26,7 +26,7 @@ export const setUser = (data, url) => {
           return response.json();
         } else {
           return response.json().then((data) => {
-            console.log(data.error.message);
+            // console.log(data.error.message.toString());
             throw new Error(data.error.message);
           });
         }
@@ -36,7 +36,8 @@ export const setUser = (data, url) => {
         dispatch(getToken(data.idToken));
       })
       .catch((error) => {
-        dispatch(setErrorAuth(true, error));
+        console.log(error);
+        dispatch(setErrorAuth(true, "error"));
       });
   };
 };

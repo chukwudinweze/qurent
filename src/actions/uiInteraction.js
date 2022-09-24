@@ -7,10 +7,10 @@ export const setLoading = (value) => ({
   value,
 });
 
-export const setError = (value, ErrorMsg = "") => ({
+export const setError = (value, errorMsg = "") => ({
   type: "ERROR",
   value,
-  ErrorMsg,
+  errorMsg,
 });
 
 export const setSuccess = (value, successMsg = "") => ({
@@ -19,14 +19,14 @@ export const setSuccess = (value, successMsg = "") => ({
   successMsg,
 });
 
-export const setErrorUploading = (value, successMsg = "") => ({
+export const setErrorUploading = (value, errorMsg = "") => ({
   type: "ERROR__UPLOAD",
   value,
-  successMsg,
+  errorMsg,
 });
 
-export const setErrorAuth = (value, successMsg = "") => ({
+export const setErrorAuth = (value, errorMsg = "") => ({
   type: "ERROR__AUTH",
   value,
-  successMsg,
+  errorMsg,
 });
