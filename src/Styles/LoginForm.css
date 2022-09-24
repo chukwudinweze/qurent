@@ -14,6 +14,22 @@
     rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
 }
 
+.logo__image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  overflow: hidden;
+  border-radius: 10px;
+  justify-self: flex-end;
+  margin-left: auto;
+  right: 0;
+}
+
+.logo__image img {
+  max-width: 100%;
+}
+
 strong {
   font-size: 24px;
   line-height: 80px;

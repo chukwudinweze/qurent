@@ -5,6 +5,7 @@ import { Form, Formik } from "formik";
 import { validationSchema } from "./LoginFormValidation";
 import "../Styles/LoginForm.css";
 import { useState } from "react";
+import Logo from "../images/logo.png";
 
 const LoginForm = () => {
   const [login, setLogin] = useState(true);
@@ -19,6 +20,9 @@ const LoginForm = () => {
   return (
     <section className="register__form__section">
       <article className="register__form__article">
+        <div className="logo__image">
+          <img src={Logo} alt="logo" />
+        </div>
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
