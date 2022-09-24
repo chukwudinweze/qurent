@@ -24,3 +24,9 @@ export const setErrorUploading = (value, successMsg = "") => ({
   value,
   successMsg,
 });
+
+export const setErrorAuth = (value, successMsg = "") => ({
+  type: "ERROR__AUTH",
+  value,
+  successMsg,
+});

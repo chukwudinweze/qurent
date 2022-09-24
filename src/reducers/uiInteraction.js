@@ -3,6 +3,7 @@ const InitialState = {
   loading: false,
   error: false,
   errorUpload: false,
+  errorAuth: false,
   errorMsg: "",
   success: false,
   successMsg: "",
@@ -40,6 +41,12 @@ const uiInteraction = (state = InitialState, action) => {
       return {
         ...state,
         errorUpload: action.value,
+        errorMsg: action.errorMsg,
+      };
+    case "ERROR__AUTH":
+      return {
+        ...state,
+        errorAuth: action.value,
         errorMsg: action.errorMsg,
       };
     default:

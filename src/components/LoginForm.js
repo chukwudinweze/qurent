@@ -8,11 +8,16 @@ import { useState } from "react";
 import Logo from "../images/logo.png";
 import { setUser } from "../actions/user";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 const LoginForm = () => {
   const [login, setLogin] = useState(true);
 
   const dispatch = useDispatch();
+
+  // get the current state. This is mainly used to style post ad button
+  const loading = useSelector((state) => state.uiInteraction.loading);
+  const error = useSelector((state) => state.uiInteraction.errorAuth);
 
   // initial formik values
   const initialValues = {
@@ -27,6 +32,7 @@ const LoginForm = () => {
   const onSubmit = (value, { resetForm }) => {
     dispatch(setUser(value, url));
   };
+
   return (
     <section className="register__form__section">
       <article className="register__form__article">
