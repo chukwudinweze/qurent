@@ -10,28 +10,33 @@ export const getToken = () => ({
 
 export const setUser = (data, url) => {
   return (dispatch) => {
-    let user = data;
-    try {
-      console.log("hgggggggggggggggggg");
-      const handleAuth = async (userData) => {
-        dispatch(setLoading(true));
-        const response = await fetch(url, {
-          method: "POST",
-          body: JSON.stringify(userData),
-        });
-        if (!response.ok) {
+    let user = { ...data, returnSecureToken: true };
+
+    dispatch(setLoading(true));
+    fetch(url, {
+      method: "POST",
+      body: JSON.stringify(user),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        dispatch(setLoading(false));
+        if (response.ok) {
+          return response.json();
+        } else {
           return response.json().then((data) => {
-            throw new Error("Upload unsuccessful, Please try again later");
+            console.log(data.error.message);
+            throw new Error(data.error.message);
           });
         }
-        const data = await response.json();
+      })
+      .then((data) => {
         console.log(data);
-      };
-      handleAuth(user);
-    } catch (error) {
-      console.log(error);
-      dispatch(setErrorAuth(true));
-    }
-    dispatch(setLoading(false));
+        dispatch(getToken(data.idToken));
+      })
+      .catch((error) => {
+        dispatch(setErrorAuth(true, error));
+      });
   };
 };

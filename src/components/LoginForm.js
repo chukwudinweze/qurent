@@ -18,6 +18,7 @@ const LoginForm = () => {
   // get the current state. This is mainly used to style post ad button
   const loading = useSelector((state) => state.uiInteraction.loading);
   const error = useSelector((state) => state.uiInteraction.errorAuth);
+  const errorMsg = useSelector((state) => state.uiInteraction.errorMsg);
 
   // initial formik values
   const initialValues = {
@@ -108,6 +109,7 @@ const LoginForm = () => {
             {login ? "Sign up" : "Login"}
           </Button>
         </p>
+        <p className="error">{error && errorMsg}</p>
       </article>
     </section>
   );
