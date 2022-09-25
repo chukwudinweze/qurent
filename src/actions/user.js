@@ -1,4 +1,4 @@
-import { setError, setErrorAuth, setLoading } from "./uiInteraction";
+import { setErrorAuth, setLoading } from "./uiInteraction";
 
 export const getUserEmail = (email) => ({
   type: "USER_EMAIL",
@@ -15,6 +15,7 @@ export const setUser = (data, url) => {
     let user = data;
 
     dispatch(setLoading(true));
+    dispatch(setErrorAuth(false));
     fetch(url, {
       method: "POST",
       body: JSON.stringify(user),

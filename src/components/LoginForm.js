@@ -90,8 +90,11 @@ const LoginForm = () => {
                     fullWidth
                     size="large"
                     style={{ background: "#20c063", color: "#fff" }}
+                    disabled={loading}
                   >
-                    {login ? "Login" : "Sign Up"}
+                    {login && !loading && "Login"}
+                    {!login && !loading && "Sign up"}
+                    {!login && loading && "Authenticating"}
                   </Button>
                 </div>
               </Form>
