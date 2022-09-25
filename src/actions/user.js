@@ -1,11 +1,11 @@
 import { setErrorAuth, setLoading } from "./uiInteraction";
 
-export const getUserEmail = (email) => ({
+export const setUserEmail = (email) => ({
   type: "USER_EMAIL",
   email,
 });
 
-export const getToken = (token) => ({
+export const setToken = (token) => ({
   type: "TOKEN",
   token,
 });
@@ -35,9 +35,9 @@ export const setUser = (data, url) => {
         }
       })
       .then((data) => {
-        console.log("data", data);
-        dispatch(getToken(data.idToken));
-        dispatch(getUserEmail(data.email));
+        console.log("data", data.email);
+        dispatch(setToken(data.idToken));
+        dispatch(setUserEmail(data.email));
       })
       .catch((error) => {
         dispatch(setErrorAuth(true, error.message));

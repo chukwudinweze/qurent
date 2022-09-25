@@ -44,9 +44,6 @@ const uiInteraction = (state = InitialState, action) => {
         errorMsg: action.errorMsg,
       };
     case "ERROR__AUTH":
-      console.log(action.errorMsg);
-      console.log(action);
-      console.log("ttttttttttttttttttttt");
       return {
         ...state,
         errorAuth: action.value,
