@@ -10,7 +10,7 @@ export const getToken = () => ({
 
 export const setUser = (data, url) => {
   return (dispatch) => {
-    let user = { ...data, returnSecureToken: true };
+    let user = data;
 
     dispatch(setLoading(true));
     fetch(url, {
@@ -26,18 +26,17 @@ export const setUser = (data, url) => {
           return response.json();
         } else {
           return response.json().then((data) => {
-            // console.log(data.error.message.toString());
-            throw new Error(data.error.message);
+            let errorMessage = `${data.error.message}!!`;
+            throw new Error(errorMessage);
           });
         }
       })
       .then((data) => {
-        console.log(data);
+        console.log("data", data);
         dispatch(getToken(data.idToken));
       })
       .catch((error) => {
-        console.log(error);
-        dispatch(setErrorAuth(true, "error"));
+        dispatch(setErrorAuth(true, error.message));
       });
   };
 };
