@@ -16,7 +16,7 @@ const LoginForm = () => {
   const dispatch = useDispatch();
 
   // get the current state. This is mainly used to style post ad button
-  const loading = useSelector((state) => state.uiInteraction.loading);
+  const loading = useSelector((state) => state.uiInteraction.authLoading);
   const error = useSelector((state) => state.uiInteraction.errorAuth);
   const errorMsg = useSelector((state) => state.uiInteraction.errorMsg);
 
@@ -33,9 +33,6 @@ const LoginForm = () => {
   const onSubmit = (value, { resetForm }) => {
     dispatch(setUser(value, url));
   };
-
-  console.log(login);
-  console.log(loading);
   return (
     <section className="register__form__section">
       <article className="register__form__article">

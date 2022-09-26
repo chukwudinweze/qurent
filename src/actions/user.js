@@ -1,7 +1,6 @@
 import { Redirect } from "react-router-dom";
-import { setErrorAuth, setLoading, setSuccess } from "./uiInteraction";
+import { setAuthLoading, setErrorAuth, setSuccess } from "./uiInteraction";
 
-//  return <Redirect to="/" />;
 export const setUserEmail = (email) => ({
   type: "USER_EMAIL",
   email,
@@ -17,8 +16,9 @@ export const setUser = (data, url) => {
     let user = data;
 
     dispatch(setSuccess(false));
-    dispatch(setLoading(true));
+    dispatch(setAuthLoading(true));
     dispatch(setErrorAuth(false));
+    // redirect to the homepage
     Redirect("/");
     fetch(url, {
       method: "POST",
@@ -28,7 +28,7 @@ export const setUser = (data, url) => {
       },
     })
       .then(async (response) => {
-        dispatch(setLoading(false));
+        dispatch(setAuthLoading(false));
         if (response.ok) {
           return response.json();
         } else {
@@ -43,6 +43,7 @@ export const setUser = (data, url) => {
         dispatch(setSuccess(true));
       })
       .catch((error) => {
+        dispatch(setAuthLoading(false));
         dispatch(setErrorAuth(true, error.message));
       });
   };

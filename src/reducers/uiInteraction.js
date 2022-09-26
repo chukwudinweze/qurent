@@ -1,6 +1,7 @@
 const InitialState = {
   expand: false,
   loading: false,
+  authLoading: false,
   error: false,
   errorUpload: false,
   errorAuth: false,
@@ -47,6 +48,12 @@ const uiInteraction = (state = InitialState, action) => {
       return {
         ...state,
         errorAuth: action.value,
+        errorMsg: action.errorMsg,
+      };
+    case "AUTH__LOADING":
+      return {
+        ...state,
+        authLoading: action.value,
         errorMsg: action.errorMsg,
       };
     default:

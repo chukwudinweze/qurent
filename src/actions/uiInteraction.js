@@ -30,3 +30,9 @@ export const setErrorAuth = (value, errorMsg = "") => ({
   value,
   errorMsg,
 });
+
+export const setAuthLoading = (value, errorMsg = "") => ({
+  type: "AUTH__LOADING",
+  value,
+  errorMsg,
+});
