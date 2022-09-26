@@ -3,7 +3,6 @@ import { useCallback } from "react";
 import { setError, setLoading } from "../actions/uiInteraction";
 import "../Styles/featuredRoom.css";
 import { setFetchData } from "../actions/products";
-import { setToken, setUserEmail } from "../actions/user";
 
 const useFetchData = (url, typeOfDispatch = setFetchData, category = "") => {
   const dispatch = useDispatch();
@@ -46,11 +45,6 @@ const useFetchData = (url, typeOfDispatch = setFetchData, category = "") => {
       dispatch(setError(true, error.message));
     }
     dispatch(setLoading(false));
-    console.log("before");
-    dispatch(setToken("ddddd"));
-    dispatch(setUserEmail("ddddnnd"));
-
-    console.log("after");
   }, [dispatch, url, typeOfDispatch, category]);
 
   return { fetchData };
