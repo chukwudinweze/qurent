@@ -1,3 +1,4 @@
+import { Redirect } from "react-router-dom";
 import { setErrorAuth, setLoading, setSuccess } from "./uiInteraction";
 
 //  return <Redirect to="/" />;
@@ -18,7 +19,7 @@ export const setUser = (data, url) => {
     dispatch(setSuccess(false));
     dispatch(setLoading(true));
     dispatch(setErrorAuth(false));
-
+    Redirect("/");
     fetch(url, {
       method: "POST",
       body: JSON.stringify(user),

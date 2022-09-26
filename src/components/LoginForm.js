@@ -34,6 +34,8 @@ const LoginForm = () => {
     dispatch(setUser(value, url));
   };
 
+  console.log(login);
+  console.log(loading);
   return (
     <section className="register__form__section">
       <article className="register__form__article">
@@ -92,9 +94,10 @@ const LoginForm = () => {
                     style={{ background: "#20c063", color: "#fff" }}
                     disabled={loading}
                   >
-                    {login && !loading && "Login"}
-                    {!login && !loading && "Sign up"}
-                    {!login && loading && "Authenticating"}
+                    {login && !loading && !error && "Login"}
+                    {!login && !loading && !error && "Sign up"}
+                    {!error && loading && "Authenticating"}
+                    {error && "Retry"}
                   </Button>
                 </div>
               </Form>

@@ -11,18 +11,19 @@ import Land from "./Pages/Land";
 import Qservices from "./Pages/Qservices";
 import Error from "./Pages/Error";
 import "./Styles/index.css";
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import PropertyDetailPage from "./Pages/PropertyDetailPage";
 import SavedAds from "./Pages/SavedAds";
 import UserProfile from "./Pages/UserProfile";
 import NavLinks from "./components/NavLinks";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
-import { useSelector } from "react-redux";
 import useFetchData from "./components/useFetchApi";
 import { setFetchData } from "./actions/products";
 import AllpropertiesPage from "./Pages/AllpropertiesPage";
+import { useSelector } from "react-redux";
+import LoginOrSignup from "./Pages/LoginOrSignup";
 
-// overides blue color as the primary color from material ui
+// overide blue color as the primary color from material ui
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -41,7 +42,7 @@ function App() {
     fetchData();
   }, [fetchData]);
 
-  const success = useSelector((state) => state.uiInteraction.sucess);
+  const isLoggedIn = useSelector((state) => !!state.user.token);
   return (
     //  themeProvider applies the custom theme to post app component
     <ThemeProvider theme={theme}>
@@ -49,9 +50,15 @@ function App() {
         <Route exact path="/">
           <Home />
         </Route>
+        {!isLoggedIn && (
+          <Route path="/auth">
+            <LoginOrSignup />
+          </Route>
+        )}
 
         <Route exact path="/post-ads">
-          <PostAdd />
+          {isLoggedIn && <PostAdd />}
+          {!isLoggedIn && <Redirect to="/auth" />}
         </Route>
 
         <Route exact path="/flat">
@@ -95,11 +102,13 @@ function App() {
         </Route>
 
         <Route exact path="/saved-ads">
-          <SavedAds />
+          {isLoggedIn && <SavedAds />}
+          {!isLoggedIn && <Redirect to="/auth" />}
         </Route>
 
         <Route exact path="/profile">
-          <UserProfile />
+          {isLoggedIn && <UserProfile />}
+          {!isLoggedIn && <Redirect to="/auth" />}
         </Route>
 
         <Route>

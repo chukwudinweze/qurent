@@ -1,12 +1,7 @@
 import React from "react";
-import LoginForm from "../components/LoginForm";
 
 const UserProfile = () => {
-  return (
-    <section>
-      <LoginForm />
-    </section>
-  );
+  return <section>user profile</section>;
 };
 
 export default UserProfile;
