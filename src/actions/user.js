@@ -1,5 +1,6 @@
-import { setErrorAuth, setLoading } from "./uiInteraction";
+import { setErrorAuth, setLoading, setSuccess } from "./uiInteraction";
 
+//  return <Redirect to="/" />;
 export const setUserEmail = (email) => ({
   type: "USER_EMAIL",
   email,
@@ -14,8 +15,10 @@ export const setUser = (data, url) => {
   return (dispatch) => {
     let user = data;
 
+    dispatch(setSuccess(false));
     dispatch(setLoading(true));
     dispatch(setErrorAuth(false));
+
     fetch(url, {
       method: "POST",
       body: JSON.stringify(user),
@@ -23,20 +26,20 @@ export const setUser = (data, url) => {
         "Content-Type": "application/json",
       },
     })
-      .then((response) => {
+      .then(async (response) => {
         dispatch(setLoading(false));
         if (response.ok) {
           return response.json();
         } else {
-          return response.json().then((data) => {
-            let errorMessage = `${data.error.message}!!`;
-            throw new Error(errorMessage);
-          });
+          const data = await response.json();
+          let errorMessage = `${data.error.message}!!`;
+          throw new Error(errorMessage);
         }
       })
       .then((data) => {
         dispatch(setToken(data.idToken));
         dispatch(setUserEmail(data.email));
+        dispatch(setSuccess(true));
       })
       .catch((error) => {
         dispatch(setErrorAuth(true, error.message));

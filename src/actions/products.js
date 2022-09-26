@@ -44,8 +44,6 @@ export const startPostProperty = (property) => {
             .getDownloadURL()
             .then((url) => {
               storeImgUrls.push(url);
-              console.log(url);
-              console.log("i am dispatching many times");
             })
             .catch((error) => {
               console.log("error", error);
@@ -73,7 +71,6 @@ export const startPostProperty = (property) => {
           }
         );
         if (response.ok) {
-          console.log("happy i am successful");
           dispatch(setSuccess(true, "uploaded successfully"));
         } else {
           return response.json().then((data) => {
