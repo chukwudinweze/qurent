@@ -86,7 +86,7 @@ export const startPostProperty = (property) => {
       dispatch(setLoading(false));
       dispatch(setSuccess(false, "ended"));
     };
-
+    // set waiting time waiting before data upload
     let time = fileLists.length * 10000;
     setTimeout(() => {
       upLoadToFirestore(enhanceData);

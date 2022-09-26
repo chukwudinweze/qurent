@@ -5,9 +5,11 @@ const InitialState = {
 const user = (state = InitialState, action) => {
   switch (action.type) {
     case "TOKEN":
-      return { ...InitialState, token: action.token };
+      console.log("i am hereeee");
+      return { ...state, token: action.token };
     case "USER_EMAIL":
-      return { ...InitialState, token: action.token };
+      console.log("i am not hereeee");
+      return { ...state, email: action.email };
     default:
       return state;
   }

@@ -8,25 +8,19 @@ import PropertyDetailBriefDesc from "../components/PropertyDetailBriefDesc";
 import DetailAttention from "../components/DetailAttention";
 import Footer from "../components/Footer";
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import Loading from "./Loading";
 import "../Styles/propertyDetail.css";
-import { fetchSavedProperty } from "../actions/products";
 
 const PropertyDetail = () => {
   const [propertyData, setPropertyData] = useState("");
   const params = useParams();
   const { id } = params;
 
-  //   const properties = useSelector((state) => state.products.properties);
-  const loading = useSelector((state) => state.uiInteraction.loading);
-  const error = useSelector((state) => state.uiInteraction.error);
-
   //   const itemToSave = properties.find((property) => (property.id = id));
 
   useEffect(() => {
-    const fetchcv = async () => {
+    const fetchPropertyDetails = async () => {
       try {
         const response = await fetch(
           `https://qurent-a1b03-default-rtdb.firebaseio.com/property/${id}.json`
@@ -40,7 +34,7 @@ const PropertyDetail = () => {
         console.log(error);
       }
     };
-    fetchcv();
+    fetchPropertyDetails();
   }, [id]);
 
   if (!propertyData) {

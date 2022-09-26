@@ -35,9 +35,10 @@ export const setUser = (data, url) => {
         }
       })
       .then((data) => {
-        console.log("data", data.email);
-        dispatch(setToken(data.idToken));
-        dispatch(setUserEmail(data.email));
+        console.log("data", data);
+        dispatch(setToken("data.idToken"));
+        dispatch(setUserEmail("hhhh"));
+        console.log("dispatched");
       })
       .catch((error) => {
         dispatch(setErrorAuth(true, error.message));
