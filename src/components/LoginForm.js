@@ -38,13 +38,11 @@ const LoginForm = () => {
     ? "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDP1Wo9ZXDH7eHhmZz3b7yD1li4noBmlCY"
     : "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDP1Wo9ZXDH7eHhmZz3b7yD1li4noBmlCY";
   const onSubmit = (user, { resetForm }) => {
-    // dispatch(setUser(value, url));
-    // let user = data;
-
     dispatch(setSuccess(false));
     dispatch(setAuthLoading(true));
     dispatch(setErrorAuth(false));
 
+    // fetch pai for  signin or signup
     fetch(url, {
       method: "POST",
       body: JSON.stringify(user),
@@ -66,8 +64,8 @@ const LoginForm = () => {
         dispatch(setToken(data.idToken));
         dispatch(setUserEmail(data.email));
         dispatch(setSuccess(true));
+        // redirect to homepage
         history.replace("/");
-        console.log("dooooooone");
       })
       .catch((error) => {
         dispatch(setAuthLoading(false));
@@ -90,7 +88,7 @@ const LoginForm = () => {
             return (
               <Form>
                 <strong>{login ? "Login" : "Welcome to qurent"}</strong>
-                <p>
+                <p className="welcome__msg">
                   {login
                     ? "Kindly enter your details to login"
                     : "Kindly enter correct details to sign up"}

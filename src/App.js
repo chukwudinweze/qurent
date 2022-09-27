@@ -14,7 +14,7 @@ import "./Styles/index.css";
 import { Redirect, Route, Switch } from "react-router-dom";
 import PropertyDetailPage from "./Pages/PropertyDetailPage";
 import SavedAds from "./Pages/SavedAds";
-import UserProfile from "./Pages/UserProfile";
+import UserProfile from "./Pages/UserProfilePage";
 import NavLinks from "./components/NavLinks";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 import useFetchData from "./components/useFetchApi";
