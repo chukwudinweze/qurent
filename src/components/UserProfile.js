@@ -4,25 +4,35 @@ import "../Styles/Userprofile.css";
 import { useState } from "react";
 
 const UserProfile = () => {
-  const [settingsBtnUnderline, setSettingsBtnUnderline] = useState(false);
+  const [settingsBtnUnderline, setSettingsBtnUnderline] = useState(true);
   const [detailBtnUnderline, setDetailBtnUnderline] = useState(false);
+  const settings = () => {
+    setSettingsBtnUnderline(true);
+    setDetailBtnUnderline(false);
+  };
+  const details = () => {
+    setDetailBtnUnderline(true);
+    setSettingsBtnUnderline(false);
+  };
   return (
     <section className="profile__details">
       <PageHeader titleLeft="Profile" />
       <nav>
         <button
+          onClick={settings}
           className={`${
             settingsBtnUnderline
-              ? "underline profile__details_btn"
+              ? "underlineBtn profile__details_btn"
               : "profile__details_btn"
           }`}
         >
           My Adverts
         </button>
         <button
+          onClick={details}
           className={`${
             detailBtnUnderline
-              ? "underline profile__details_btn "
+              ? "underlineBtn profile__details_btn "
               : "profile__details_btn"
           }`}
         >

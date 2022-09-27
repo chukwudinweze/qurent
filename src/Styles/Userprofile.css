@@ -7,13 +7,13 @@
 }
 
 .profile__details_btn {
-  border: 1px solid red;
   text-align: center;
   padding: 10px 50px;
   border-radius: 5px;
-  background: gray;
+  background: rgb(207, 203, 203);
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
 }
 
-.profile__details_btn .underline {
+.underlineBtn {
   border-bottom: 3px solid var(--brand__color);
 }
