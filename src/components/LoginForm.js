@@ -36,10 +36,6 @@ const LoginForm = () => {
     dispatch(setUser(value, url));
   };
 
-  if (isLoggedIn) {
-    <Redirect to="/" />;
-  }
-
   return (
     <section className="register__form__section">
       <article className="register__form__article">
