@@ -1,6 +1,19 @@
 .profile__details {
 }
 
-.profile__details button {
+.profile__details nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile__details_btn {
   border: 1px solid red;
+  text-align: center;
+  padding: 10px 50px;
+  border-radius: 5px;
+  background: gray;
+}
+
+.profile__details_btn .underline {
+  border-bottom: 3px solid var(--brand__color);
 }
