@@ -6,21 +6,26 @@ import { validationSchema } from "./LoginFormValidation";
 import "../Styles/LoginForm.css";
 import { useState } from "react";
 import Logo from "../images/logo.png";
-import { setUser } from "../actions/user";
+import { setToken, setUserEmail } from "../actions/user";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import {
+  setAuthLoading,
+  setErrorAuth,
+  setSuccess,
+} from "../actions/uiInteraction";
 
 const LoginForm = () => {
   const [login, setLogin] = useState(true);
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   // get the current state. This is mainly used to style post ad button
   const loading = useSelector((state) => state.uiInteraction.authLoading);
   const error = useSelector((state) => state.uiInteraction.errorAuth);
   const errorMsg = useSelector((state) => state.uiInteraction.errorMsg);
-  const isLoggedIn = useSelector((state) => state.user);
 
   // initial formik values
   const initialValues = {
@@ -32,8 +37,42 @@ const LoginForm = () => {
   const url = login
     ? "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDP1Wo9ZXDH7eHhmZz3b7yD1li4noBmlCY"
     : "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDP1Wo9ZXDH7eHhmZz3b7yD1li4noBmlCY";
-  const onSubmit = (value, { resetForm }) => {
-    dispatch(setUser(value, url));
+  const onSubmit = (user, { resetForm }) => {
+    // dispatch(setUser(value, url));
+    // let user = data;
+
+    dispatch(setSuccess(false));
+    dispatch(setAuthLoading(true));
+    dispatch(setErrorAuth(false));
+
+    fetch(url, {
+      method: "POST",
+      body: JSON.stringify(user),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then(async (response) => {
+        dispatch(setAuthLoading(false));
+        if (response.ok) {
+          return response.json();
+        } else {
+          const data = await response.json();
+          let errorMessage = `${data.error.message}!!`;
+          throw new Error(errorMessage);
+        }
+      })
+      .then((data) => {
+        dispatch(setToken(data.idToken));
+        dispatch(setUserEmail(data.email));
+        dispatch(setSuccess(true));
+        history.replace("/");
+        console.log("dooooooone");
+      })
+      .catch((error) => {
+        dispatch(setAuthLoading(false));
+        dispatch(setErrorAuth(true, error.message));
+      });
   };
 
   return (
