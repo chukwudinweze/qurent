@@ -8,6 +8,7 @@ const InitialState = {
   errorMsg: "",
   success: false,
   successMsg: "",
+  successUpload: "",
 };
 const uiInteraction = (state = InitialState, action) => {
   switch (action.type) {
@@ -54,6 +55,12 @@ const uiInteraction = (state = InitialState, action) => {
       return {
         ...state,
         authLoading: action.value,
+        errorMsg: action.errorMsg,
+      };
+    case "SUCCESS__UPLOAD":
+      return {
+        ...state,
+        successUpload: action.value,
         errorMsg: action.errorMsg,
       };
     default:

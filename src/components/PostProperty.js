@@ -96,7 +96,7 @@ const PostProperty = () => {
   // ..................................................................
   // get the current state. This is mainly used to style post ad button
   const loading = useSelector((state) => state.uiInteraction.loading);
-  const success = useSelector((state) => state.uiInteraction.success);
+  const success = useSelector((state) => state.uiInteraction.successUpload);
   const error = useSelector((state) => state.uiInteraction.errorUpload);
 
   // dispatching to the redux store

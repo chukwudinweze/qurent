@@ -2,7 +2,7 @@ import { storage } from "../components/firebase/firebase";
 import {
   setErrorUploading,
   setLoading,
-  setSuccess,
+  setSuccessUpload,
 } from "../actions/uiInteraction";
 
 export const postProperty = (property) => ({
@@ -20,7 +20,7 @@ export const startPostProperty = (property) => {
   }
   return (dispatch) => {
     dispatch(setLoading(true));
-    dispatch(setSuccess(false));
+    dispatch(setSuccessUpload(false));
     dispatch(setErrorUploading(false));
     let storeImgUrls = [];
     fileLists.forEach((file) => {
@@ -71,7 +71,7 @@ export const startPostProperty = (property) => {
           }
         );
         if (response.ok) {
-          dispatch(setSuccess(true, "uploaded successfully"));
+          dispatch(setSuccessUpload(true, "uploaded successfully"));
         } else {
           return response.json().then((data) => {
             throw new Error("Upload unsuccessful, Please try again later");
@@ -81,7 +81,7 @@ export const startPostProperty = (property) => {
         dispatch(setErrorUploading(true));
       }
       dispatch(setLoading(false));
-      dispatch(setSuccess(false, "ended"));
+      dispatch(setSuccessUpload(false, "ended"));
     };
     // set waiting time waiting before data upload
     let time = fileLists.length * 10000;

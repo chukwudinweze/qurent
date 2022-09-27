@@ -9,8 +9,10 @@ import Logo from "../images/logo.png";
 import { setUser } from "../actions/user";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 const LoginForm = () => {
+  console.log("gggggggggggggggggggggggggggggggggggg");
   const [login, setLogin] = useState(true);
 
   const dispatch = useDispatch();
@@ -19,6 +21,7 @@ const LoginForm = () => {
   const loading = useSelector((state) => state.uiInteraction.authLoading);
   const error = useSelector((state) => state.uiInteraction.errorAuth);
   const errorMsg = useSelector((state) => state.uiInteraction.errorMsg);
+  const isLoggedIn = useSelector((state) => state.user.token);
 
   // initial formik values
   const initialValues = {
@@ -33,6 +36,10 @@ const LoginForm = () => {
   const onSubmit = (value, { resetForm }) => {
     dispatch(setUser(value, url));
   };
+  console.log("token is", isLoggedIn);
+  if (isLoggedIn) {
+    return <Redirect to="/" />;
+  }
   return (
     <section className="register__form__section">
       <article className="register__form__article">

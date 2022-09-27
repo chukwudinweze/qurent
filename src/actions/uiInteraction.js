@@ -36,3 +36,9 @@ export const setAuthLoading = (value, errorMsg = "") => ({
   value,
   errorMsg,
 });
+
+export const setSuccessUpload = (value, errorMsg = "") => ({
+  type: "SUCCESS__UPLOAD",
+  value,
+  errorMsg,
+});

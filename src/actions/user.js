@@ -1,4 +1,3 @@
-import { Redirect } from "react-router-dom";
 import { setAuthLoading, setErrorAuth, setSuccess } from "./uiInteraction";
 
 export const setUserEmail = (email) => ({
@@ -18,8 +17,7 @@ export const setUser = (data, url) => {
     dispatch(setSuccess(false));
     dispatch(setAuthLoading(true));
     dispatch(setErrorAuth(false));
-    // redirect to the homepage
-    Redirect("/");
+
     fetch(url, {
       method: "POST",
       body: JSON.stringify(user),
