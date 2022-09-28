@@ -6,42 +6,42 @@ import SingleProperty from "./SingleProperty";
 import { useSelector } from "react-redux";
 
 const UserProfile = () => {
-  const [settingsBtnUnderline, setSettingsBtnUnderline] = useState(true);
-  const [detailBtnUnderline, setDetailBtnUnderline] = useState(false);
+  const [userSettingsActive, setUserSettingsActive] = useState(false);
+  const [userAdsActive, setUserAdsActive] = useState(true);
 
+  // get user's ads from redux store
   let allProperties = useSelector((state) => state.products.properties);
   let email = useSelector((state) => state.user.email);
-
   const myAds = allProperties.filter((property) => property.email === email);
 
-  console.log(myAds);
+  // handle state
   const settings = () => {
-    setSettingsBtnUnderline(true);
-    setDetailBtnUnderline(false);
+    setUserSettingsActive(true);
+    setUserAdsActive(false);
   };
   const details = () => {
-    setDetailBtnUnderline(true);
-    setSettingsBtnUnderline(false);
+    setUserAdsActive(true);
+    setUserSettingsActive(false);
   };
   return (
     <section className="profile__details">
       <PageHeader titleLeft="Profile" />
       <nav>
         <button
-          onClick={settings}
+          onClick={details}
           className={`${
-            settingsBtnUnderline
-              ? "underlineBtn profile__details_btn"
+            userAdsActive
+              ? "underlineBtn profile__details_btn "
               : "profile__details_btn"
           }`}
         >
           My Adverts
         </button>
         <button
-          onClick={details}
+          onClick={settings}
           className={`${
-            detailBtnUnderline
-              ? "underlineBtn profile__details_btn "
+            userSettingsActive
+              ? "underlineBtn profile__details_btn"
               : "profile__details_btn"
           }`}
         >
@@ -51,17 +51,20 @@ const UserProfile = () => {
       {/* <div>
         {!loading && !error && sortedFlats.length === 0 && <ErrorSearching />}
       </div> */}
-      <article className="room__list">
-        {allProperties.map((property) => {
-          return (
-            <SingleProperty
-              key={property.id}
-              property={property}
-              deleteBtn={false}
-            />
-          );
-        })}
-      </article>
+      {userAdsActive && (
+        <article className="room__list">
+          {myAds.map((property) => {
+            return (
+              <SingleProperty
+                key={property.id}
+                property={property}
+                deleteBtn={false}
+              />
+            );
+          })}
+        </article>
+      )}
+      {userSettingsActive && <article>my user profile</article>}
     </section>
   );
 };
