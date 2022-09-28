@@ -7,3 +7,8 @@ export const setToken = (token) => ({
   type: "TOKEN",
   token,
 });
+
+export const setMyAds = (ads) => ({
+  type: "MY_ADS",
+  ads,
+});

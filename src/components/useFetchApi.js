@@ -34,7 +34,9 @@ const useFetchData = (url, typeOfDispatch = setFetchData, category = "") => {
           title: data[key].title,
           phoneNumber: data[key].phoneNumber,
           featured: data[key].featured,
+          email: data[key].email,
         };
+        // check property category and dispatch with the right redux action
         if (loadedProperty.category === category) {
           dispatch(typeOfDispatch(loadedProperty));
         }

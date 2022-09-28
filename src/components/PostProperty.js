@@ -94,7 +94,8 @@ const PostProperty = () => {
     setDescription_Tooltip(true);
   };
   // ..................................................................
-  // get the current state. This is mainly used to style post ad button
+  // get the current state needed for the component.
+  const email = useSelector((state) => state.user.email);
   const loading = useSelector((state) => state.uiInteraction.loading);
   const success = useSelector((state) => state.uiInteraction.successUpload);
   const error = useSelector((state) => state.uiInteraction.errorUpload);
@@ -102,7 +103,7 @@ const PostProperty = () => {
   // dispatching to the redux store
   const dispatch = useDispatch();
   const onSubmit = (value, { resetForm }) => {
-    dispatch(startPostProperty(value));
+    dispatch(startPostProperty({ ...value, email }));
     resetForm({ value: "" });
   };
   const initialValues = {
