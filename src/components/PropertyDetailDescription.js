@@ -19,7 +19,6 @@ const PropertyDetailDescription = ({ description }) => {
     (property) => property.id === itemToSave.id
   );
 
-  console.log("we check again", itemToSave);
   if (price) {
     price = price.toLocaleString();
   }

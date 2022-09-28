@@ -9,11 +9,20 @@
 .profile__details_btn {
   text-align: center;
   padding: 10px 50px;
-  border-radius: 5px;
+  flex: 1;
   background: rgb(207, 203, 203);
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+  font-family: var(--room__description);
+  /* font-size: 20px; */
+  font-weight: 700;
+  border: 0.5px solid rgb(179, 177, 177);
 }
 
 .underlineBtn {
   border-bottom: 3px solid var(--brand__color);
 }
+
+/* --banner__regular: "Cardo", serif;
+  --banner-regular-two: "Noto Serif", serif;
+  --room__regular: "Fauna One", serif;
+  --heading: "Oswald", sans-serif;
+  --room__description: "Roboto Condensed", sans-serif; */
