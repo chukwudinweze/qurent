@@ -5,10 +5,10 @@ import PhoneInTalkIcon from "@material-ui/icons/PhoneInTalk";
 import MessageIcon from "@material-ui/icons/Message";
 import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import BookmarkIcon from "@material-ui/icons/Bookmark";
-import "../Styles/PropertyDetailDescription.css";
 import { useDispatch } from "react-redux";
 import { fetchSavedProperty, removeSavedItem } from "../actions/products";
 import { useSelector } from "react-redux";
+import "../Styles/PropertyDetailDescription.css";
 
 const PropertyDetailDescription = ({ description }) => {
   let { title, price, location, phoneNumber, itemToSave } = description;

@@ -4,6 +4,8 @@ import "../Styles/Userprofile.css";
 import { useState } from "react";
 import SingleProperty from "./SingleProperty";
 import { useSelector } from "react-redux";
+import ProfileDetails from "./ProfileDetails";
+import Footer from "./Footer";
 
 const UserProfile = () => {
   const [userSettingsActive, setUserSettingsActive] = useState(false);
@@ -64,7 +66,10 @@ const UserProfile = () => {
           })}
         </article>
       )}
-      {userSettingsActive && <article>my user profile</article>}
+      {userSettingsActive && (
+        <ProfileDetails email={email} numberOfAds={myAds.length} />
+      )}
+      <Footer />
     </section>
   );
 };
