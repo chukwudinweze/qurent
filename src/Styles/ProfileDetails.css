@@ -1,0 +1,22 @@
+.user__profile {
+  border: 1px solid red;
+}
+
+.profile__img__envelope {
+  /* border: 1px solid red; */
+  width: 100%;
+  overflow: hidden;
+  height: 250px;
+  width: 250px;
+  margin: auto;
+  margin-top: 30px;
+}
+
+.profile__img__envelope img {
+  max-width: 100%;
+}
+
+.user__profile p,
+.user__profile button {
+  border-bottom: 1px solid red;
+}
