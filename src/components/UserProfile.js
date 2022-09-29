@@ -15,9 +15,6 @@ const UserProfile = () => {
   let allProperties = useSelector((state) => state.products.properties);
   let email = useSelector((state) => state.user.email);
   const myAds = allProperties.filter((property) => property.email === email);
-  console.log("email is:", email);
-  let token = useSelector((state) => state.user.token);
-  console.log("token is:", token);
 
   // handle state
   const settings = () => {
