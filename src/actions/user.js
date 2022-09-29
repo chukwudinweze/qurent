@@ -12,3 +12,7 @@ export const setMyAds = (ads) => ({
   type: "MY_ADS",
   ads,
 });
+
+export const logOut = () => ({
+  type: "LOG_OUT",
+});

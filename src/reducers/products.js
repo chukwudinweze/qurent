@@ -137,7 +137,6 @@ const products = (state = initialState, action) => {
         const savedState = [...state.savedProperties, action.data];
         const serialisedState = JSON.stringify(savedState);
         localStorage.setItem("savedItem", serialisedState);
-        console.log("nothing in the console");
         return {
           ...state,
           savedProperties: [...state.savedProperties, action.data],
