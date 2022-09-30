@@ -1,0 +1,30 @@
+.empty__saved__item {
+  margin-top: 100px;
+  text-align: center;
+}
+
+.empty__saved__item .first__child {
+  text-align: center;
+  color: var(--brand__color);
+  font-family: var(--room__description);
+  font-size: 20px;
+}
+
+.wrapp_image {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.empty__saved__item .last__child {
+  font-family: var(--room__description);
+  color: rgb(105, 104, 104);
+  padding: 0 20px;
+  text-align: center;
+}
+
+.empty__saved__item button {
+  margin-top: 15px;
+  color: #fff;
+  background: var(--brand__color);
+}
