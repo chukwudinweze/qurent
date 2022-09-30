@@ -1,12 +1,10 @@
 import React from "react";
 import Loading from "./Loading";
 import { useSelector } from "react-redux";
-import useFetchData from "./useFetchApi";
-import { fetchFlats } from "../actions/products";
-import { useEffect } from "react";
 import SingleProperty from "./SingleProperty";
 import "../Styles/propertyCategory.css";
 import PageHeader from "./PageHeader";
+import EmptySavedItem from "./EmptySavedItem";
 
 const SavedProperties = () => {
   // call current states to update components
@@ -30,7 +28,7 @@ const SavedProperties = () => {
   }
 
   if (!loading && !error && savedProperties.length === 0) {
-    return <p>You have no property saved yet</p>;
+    return <EmptySavedItem />;
   }
 
   return (

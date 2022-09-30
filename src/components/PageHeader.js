@@ -24,11 +24,11 @@ const PageHeader = ({ titleLeft, titleRight }) => {
             <p>{titleLeft}</p>
           </article>
         )}
-        {titleRight && (
+        {/* {titleRight && (
           <article className="title__right">
             <button type="button">{titleRight}</button>
           </article>
-        )}
+        )} */}
       </header>
     </div>
   );
