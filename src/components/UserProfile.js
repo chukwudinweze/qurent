@@ -53,25 +53,25 @@ const UserProfile = () => {
           Settings
         </button>
       </nav>
-      {/* <div>
-        {!loading && !error && sortedFlats.length === 0 && <ErrorSearching />}
-      </div> */}
-      {userAdsActive && (
-        <article className="room__list">
-          {myAds.map((property) => {
-            return (
-              <SingleProperty
-                key={property.id}
-                property={property}
-                deleteBtn={false}
-              />
-            );
-          })}
-        </article>
-      )}
-      {userSettingsActive && (
-        <ProfileDetails email={email} numberOfAds={myAds.length} />
-      )}
+
+      <article className="profile__details__article">
+        {userAdsActive && (
+          <article className="room__list myadverts">
+            {myAds.map((property) => {
+              return (
+                <SingleProperty
+                  key={property.id}
+                  property={property}
+                  deleteBtn={false}
+                />
+              );
+            })}
+          </article>
+        )}
+        {userSettingsActive && (
+          <ProfileDetails email={email} numberOfAds={myAds.length} />
+        )}
+      </article>
       <Footer />
     </section>
   );

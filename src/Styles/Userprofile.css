@@ -1,9 +1,13 @@
 .profile__details {
+  margin-top: -8px;
 }
 
 .profile__details nav {
   display: flex;
   justify-content: space-between;
+}
+.profile__details__article {
+  margin-bottom: 100px;
 }
 
 .profile__details_btn {
@@ -19,4 +23,13 @@
 
 .underlineBtn {
   border-bottom: 3px solid var(--brand__color);
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .profile__details {
+    margin-top: -30px;
+  }
+  .profile__details__article {
+    padding: 30px 60px;
+  }
 }
