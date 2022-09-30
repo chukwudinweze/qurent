@@ -1,7 +1,7 @@
 .category {
   /* size */
   width: 33.333%;
-  height: 130px;
+  height: 8.125rem;
   /* appearance */
   font-family: var(--banner-regular-two);
   font-size: var(--small__size);
@@ -22,11 +22,22 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  width: 70px;
-  height: 50px;
+  width: 4.375rem;
+  height: 3.125rem;
   overflow: hidden;
 }
 
 .title {
   padding-top: 0.5rem;
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .category {
+    width: 33.333%;
+    height: 11.25rem;
+  }
+  .icon__wrapper {
+    width: 100px;
+    height: 80px;
+  }
 }

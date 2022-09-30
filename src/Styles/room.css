@@ -49,6 +49,8 @@
   font-size: var(--small__size);
   text-align: left;
   color: var(--black-color);
+  width: 100%;
+  padding: 0 5px;
 }
 
 .price__fav__container {
@@ -60,4 +62,33 @@
 .price {
   color: var(--brand__color);
   font-size: 1rem;
+}
+.title__ipad {
+  display: none;
+}
+
+.title__desktop {
+  display: none;
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .room__wrapper {
+    width: 45%;
+    height: 300px;
+    margin: 0.35rem;
+  }
+  .title__mobile {
+    display: none;
+  }
+  .title__ipad {
+    display: flex;
+  }
+  .title__desktop {
+    display: none;
+  }
+
+  .room__details {
+    /* border: 1px solid red; */
+    margin-top: 20px;
+  }
 }
