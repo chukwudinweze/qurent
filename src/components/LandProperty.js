@@ -73,14 +73,18 @@ const LandProperty = () => {
   if (loading) {
     return (
       <>
-        <PageHeader titleLeft="Lands for sale" />
         <Loading />
       </>
     );
   }
 
   if (error) {
-    return <NoInternetConnection />;
+    return (
+      <>
+        <PageHeader titleLeft="Lands for sale" />
+        <NoInternetConnection />
+      </>
+    );
   }
   return (
     <section className="page__background">

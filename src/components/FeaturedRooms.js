@@ -32,7 +32,12 @@ const FeaturedRooms = () => {
   }
 
   if (error) {
-    return <NoInternetConnection />;
+    return (
+      <>
+        <h3 style={{ marginTop: "10px" }}>Featured ads</h3>
+        <NoInternetConnection />
+      </>
+    );
   }
 
   if (!loading && !error && featuredRooms.length === 0) {

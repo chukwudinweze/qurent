@@ -87,7 +87,13 @@ const ShopCategory = () => {
   }
 
   if (error) {
-    return <NoInternetConnection />;
+    return (
+      <>
+        {" "}
+        <PageHeader titleLeft="Shops" style={{ color: "red" }} />
+        <NoInternetConnection />
+      </>
+    );
   }
 
   return (

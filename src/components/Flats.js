@@ -86,14 +86,18 @@ const Flats = () => {
   if (loading) {
     return (
       <>
-        <PageHeader titleLeft="Flats" />;
         <Loading />;
       </>
     );
   }
 
   if (error) {
-    return <NoInternetConnection />;
+    return (
+      <>
+        <PageHeader titleLeft="Flats" />;
+        <NoInternetConnection />
+      </>
+    );
   }
 
   if (!loading && !error && flats.length === 0) {

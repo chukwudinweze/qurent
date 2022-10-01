@@ -83,11 +83,20 @@ const OfficeSpaces = () => {
   });
 
   if (loading) {
-    return <Loading />;
+    return (
+      <>
+        <PageHeader titleLeft="Offices" style={{ color: "red" }} />
+        <Loading />
+      </>
+    );
   }
 
   if (error) {
-    return <NoInternetConnection />;
+    return (
+      <>
+        <NoInternetConnection />
+      </>
+    );
   }
 
   return (

@@ -88,7 +88,12 @@ const AllProperties = () => {
   }
 
   if (error) {
-    return <NoInternetConnection />;
+    return (
+      <>
+        <PageHeader titleLeft="All Properties" />
+        <NoInternetConnection />
+      </>
+    );
   }
 
   return (

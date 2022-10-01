@@ -87,7 +87,12 @@ const EventsHall = () => {
   }
 
   if (error) {
-    return <NoInternetConnection />;
+    return (
+      <>
+        <PageHeader titleLeft="Hall/Event Centers" style={{ color: "red" }} />
+        <NoInternetConnection />
+      </>
+    );
   }
 
   return (
