@@ -95,8 +95,8 @@
 
 @media only screen and (min-width: 1024px) {
   .room__wrapper {
-    width: 45%;
-    height: 300px;
+    width: 20%;
+    height: 250px;
   }
   .title__mobile {
     display: none;

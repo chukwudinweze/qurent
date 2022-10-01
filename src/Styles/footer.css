@@ -8,6 +8,10 @@
   padding: 0 0.5rem 0.75rem 0;
 }
 
+.footer__wrapper__desktop {
+  display: none;
+}
+
 .expand__footer__button {
   outline: var(--brand__color);
   background: var(--gray);
@@ -29,4 +33,10 @@
   text-align: center;
   background: var(--brand__color);
   padding: 1.25rem;
+}
+
+@media only screen and (min-width: 1024px) {
+  .expand__footer__wrapper {
+    display: none;
+  }
 }
