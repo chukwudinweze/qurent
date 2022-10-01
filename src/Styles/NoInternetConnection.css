@@ -1,0 +1,12 @@
+.no__internet div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+  overflow: hidden;
+}
+
+.no__internet div img {
+  max-width: 100%;
+}
