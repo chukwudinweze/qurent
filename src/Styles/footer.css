@@ -1,4 +1,5 @@
 .footer {
+  /* border: 1px solid red; */
 }
 
 .expand__footer__wrapper {
@@ -6,6 +7,14 @@
   justify-content: flex-end;
   align-items: flex-start;
   padding: 0 0.5rem 0.75rem 0;
+}
+
+.expand__Margin__Bottom {
+  margin-bottom: 2.5rem;
+}
+
+.close__Margin__Bottom {
+  margin-bottom: 0;
 }
 
 .footer__wrapper__desktop {
@@ -49,5 +58,8 @@
   .footer__links__wrapper {
     display: flex;
     justify-content: space-evenly;
+  }
+  .expand__Margin__Bottom {
+    margin: 0;
   }
 }

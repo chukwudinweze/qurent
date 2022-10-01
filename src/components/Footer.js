@@ -12,8 +12,11 @@ const Footer = () => {
   const dispatch = useDispatch();
   return (
     <section
-      className="footer"
-      style={expand ? { marginBottom: "0" } : { marginBottom: "2.5rem" }}
+      className={
+        expand
+          ? `footer close__Margin__Bottom`
+          : `footer expand__Margin__Bottom`
+      }
     >
       <div className="expand__footer__wrapper">
         <button
@@ -50,7 +53,7 @@ const Footer = () => {
           </p>
         </article>
       </div>
-      <div className="footer__wrapper footer__wrapper__desktop">
+      <div className="footer__wrapper__desktop">
         <Logo />
         <ul className="footer__links__wrapper">
           <FooterLinkItem title="About Qurenta" to={"/about-qurenta"} />
