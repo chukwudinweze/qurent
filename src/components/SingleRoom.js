@@ -12,6 +12,7 @@ import PropertyCondition from "./PropertyCondition";
 import { Slider } from "@material-ui/core";
 import ErrorSearching from "./ErrorSearching";
 import { useState } from "react";
+import NoInternetConnection from "./NoInternetConnection";
 
 const SingleRoom = () => {
   const url = "https://qurent-a1b03-default-rtdb.firebaseio.com/property.json";
@@ -86,7 +87,7 @@ const SingleRoom = () => {
   }
 
   if (error) {
-    return <p>Something happened. Please refresh your browser</p>;
+    return <NoInternetConnection />;
   }
 
   return (

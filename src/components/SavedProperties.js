@@ -5,6 +5,7 @@ import SingleProperty from "./SingleProperty";
 import "../Styles/propertyCategory.css";
 import PageHeader from "./PageHeader";
 import EmptySavedItem from "./EmptySavedItem";
+import NoInternetConnection from "./NoInternetConnection";
 
 const SavedProperties = () => {
   // call current states to update components
@@ -24,7 +25,7 @@ const SavedProperties = () => {
   }
 
   if (error) {
-    return <p>Something happened. Please refresh your browser</p>;
+    return <NoInternetConnection />;
   }
 
   if (!loading && !error && savedProperties.length === 0) {

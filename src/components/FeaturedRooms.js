@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import useFetchData from "./useFetchApi";
 import { setError } from "../actions/uiInteraction";
 import { setFetchData } from "../actions/products";
+import NoInternetConnection from "./NoInternetConnection";
 
 const FeaturedRooms = () => {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ const FeaturedRooms = () => {
   }
 
   if (error) {
-    return <p>Something happened. Please refresh your browser</p>;
+    return <NoInternetConnection />;
   }
 
   if (!loading && !error && featuredRooms.length === 0) {

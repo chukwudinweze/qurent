@@ -6,6 +6,9 @@ import SingleProperty from "./SingleProperty";
 import { useSelector } from "react-redux";
 import ProfileDetails from "./ProfileDetails";
 import Footer from "./Footer";
+import Loading from "./Loading";
+import NoInternetConnection from "./NoInternetConnection";
+import EmptySavedItem from "./EmptySavedItem";
 
 const UserProfile = () => {
   const [userSettingsActive, setUserSettingsActive] = useState(false);
@@ -15,9 +18,9 @@ const UserProfile = () => {
   let allProperties = useSelector((state) => state.products.properties);
   let email = useSelector((state) => state.user.email);
   const myAds = allProperties.filter((property) => property.email === email);
-  console.log("email is:", email);
-  let token = useSelector((state) => state.user.token);
-  console.log("token is:", token);
+
+  const loading = useSelector((state) => state.uiInteraction.loading);
+  const error = useSelector((state) => state.uiInteraction.error);
 
   // handle state
   const settings = () => {
@@ -28,6 +31,29 @@ const UserProfile = () => {
     setUserAdsActive(true);
     setUserSettingsActive(false);
   };
+
+  if (loading) {
+    return (
+      <>
+        <PageHeader titleLeft="Profile" />;
+        <Loading />;
+      </>
+    );
+  }
+
+  // if (error) {
+  //   return (
+  //     <>
+  //       <PageHeader titleLeft="Profile" />
+  //       <NoInternetConnection />
+  //     </>
+  //   );
+  // }
+
+  if (!loading && !error && myAds.length === 0) {
+    return <p>No adverts from you yet</p>;
+  }
+
   return (
     <section className="profile__details">
       <PageHeader titleLeft="Profile" />
@@ -54,24 +80,28 @@ const UserProfile = () => {
         </button>
       </nav>
 
-      <article className="profile__details__article">
-        {userAdsActive && (
-          <article className="room__list myadverts">
-            {myAds.map((property) => {
-              return (
-                <SingleProperty
-                  key={property.id}
-                  property={property}
-                  deleteBtn={false}
-                />
-              );
-            })}
-          </article>
-        )}
-        {userSettingsActive && (
-          <ProfileDetails email={email} numberOfAds={myAds.length} />
-        )}
-      </article>
+      {!error ? (
+        <article className="profile__details__article">
+          {userAdsActive && (
+            <article className="room__list myadverts">
+              {myAds.map((property) => {
+                return (
+                  <SingleProperty
+                    key={property.id}
+                    property={property}
+                    deleteBtn={false}
+                  />
+                );
+              })}
+            </article>
+          )}
+          {userSettingsActive && (
+            <ProfileDetails email={email} numberOfAds={myAds.length} />
+          )}
+        </article>
+      ) : (
+        <NoInternetConnection />
+      )}
       <Footer />
     </section>
   );
