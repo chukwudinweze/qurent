@@ -3,8 +3,8 @@
   margin-bottom: 1rem;
   height: 150px;
   width: 100%;
-  align-items: center;
   display: flex;
+  align-items: center;
   align-items: flex-start;
   flex-direction: column;
   font-family: var(--room__description);
@@ -121,4 +121,17 @@
   font-weight: 900;
   background: rgb(229, 8, 8);
   padding: 0 3px;
+}
+
+@media only screen and (min-width: 1024px) {
+  .single__room__wrapper {
+    height: 200px;
+  }
+
+  .single__room__facilities {
+    margin: 20px 0;
+  }
+  .single__room__location {
+    font-size: 1rem;
+  }
 }

@@ -153,7 +153,8 @@ const AllProperties = () => {
             <ErrorSearching />
           )}
         </div>
-        <article className="room__list">
+        {/* room__list and room__list__desktop class is from the featuredroom css style */}
+        <article className="room__list room__list__destop">
           {sortedProperties.map((property) => {
             return (
               <SingleProperty

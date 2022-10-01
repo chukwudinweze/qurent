@@ -1,6 +1,5 @@
 import React from "react";
 import EventsHall from "../components/EventsHall";
-import Footer from "../components/Footer";
 
 const EventCenter = () => {
   return (

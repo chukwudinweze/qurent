@@ -128,7 +128,7 @@ const LandProperty = () => {
           {!loading && !error && sortedLands.length === 0 && <ErrorSearching />}
         </div>
 
-        <article className="room__list ">
+        <article className="room__list">
           {sortedLands.map((property) => {
             return (
               <SingleProperty

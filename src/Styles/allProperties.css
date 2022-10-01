@@ -55,3 +55,16 @@
 .filter__price p:first-child {
   margin: 5px 0;
 }
+
+@media only screen and (min-width: 1024px) {
+  .filter__form {
+    padding: 0 150px;
+    margin: 0;
+  }
+  .filter__price p:first-child {
+    font-size: 1.3rem;
+  }
+  .filter__price p:first-child + p {
+    font-size: 1rem;
+  }
+}

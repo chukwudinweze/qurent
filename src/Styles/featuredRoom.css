@@ -33,7 +33,7 @@
 }
 
 @media only screen and (min-width: 1024px) {
-  .room__list {
-    justify-content: space-evenly;
+  .room__list__destop {
+    padding: 0 150px;
   }
 }
