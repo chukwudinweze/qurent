@@ -13,6 +13,7 @@ import ErrorSearching from "./ErrorSearching";
 import useFetchData from "./useFetchApi";
 import { setFetchData } from "../actions/products";
 import { useEffect } from "react";
+import NoInternetConnection from "./NoInternetConnection";
 
 const AllProperties = () => {
   const url = "https://qurent-a1b03-default-rtdb.firebaseio.com/property.json";
@@ -87,7 +88,7 @@ const AllProperties = () => {
   }
 
   if (error) {
-    return <p>Something happened. Please refresh your browser</p>;
+    return <NoInternetConnection />;
   }
 
   return (

@@ -12,6 +12,7 @@ import getUniqueParameter from "./getUniqueParameter";
 import PropertyCondition from "./PropertyCondition";
 import { Slider } from "@material-ui/core";
 import ErrorSearching from "./ErrorSearching";
+import NoInternetConnection from "./NoInternetConnection";
 
 const Flats = () => {
   const url = "https://qurent-a1b03-default-rtdb.firebaseio.com/property.json";
@@ -92,7 +93,7 @@ const Flats = () => {
   }
 
   if (error) {
-    return <p>Something happened. Please refresh your browser</p>;
+    return <NoInternetConnection />;
   }
 
   if (!loading && !error && flats.length === 0) {
