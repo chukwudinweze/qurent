@@ -92,3 +92,24 @@
     margin-top: 20px;
   }
 }
+
+@media only screen and (min-width: 1024px) {
+  .room__wrapper {
+    width: 45%;
+    height: 300px;
+  }
+  .title__mobile {
+    display: none;
+  }
+  .title__ipad {
+    display: none;
+  }
+  .title__desktop {
+    display: flex;
+  }
+
+  .room__details {
+    /* border: 1px solid red; */
+    margin-top: 20px;
+  }
+}

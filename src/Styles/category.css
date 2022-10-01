@@ -37,7 +37,17 @@
     height: 11.25rem;
   }
   .icon__wrapper {
-    width: 100px;
-    height: 80px;
+    width: 6.25rem;
+    height: 5rem;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .category {
+    width: 20%;
+    height: 11rem;
+  }
+  .icon__wrapper {
+    width: 6.25rem;
+    height: 5rem;
   }
 }

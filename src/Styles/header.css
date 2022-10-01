@@ -11,9 +11,16 @@
   z-index: 1000;
 }
 
+/* ipad screen layout */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
   .header {
-    border: 5px solid rgb(243, 5, 5);
     height: 100px;
+  }
+}
+
+/* desktop and laptop layout */
+@media only screen and (min-width: 1024px) {
+  .header {
+    height: 80px;
   }
 }
