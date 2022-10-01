@@ -50,7 +50,7 @@ const Footer = () => {
           </p>
         </article>
       </div>
-      <div className="footer__wrapper__desktop">
+      <div className="footer__wrapper footer__wrapper__desktop">
         <Logo />
         <ul className="footer__links__wrapper">
           <FooterLinkItem title="About Qurenta" to={"/about-qurenta"} />
@@ -60,6 +60,10 @@ const Footer = () => {
           />
           <FooterLinkItem title="FAQ" to={"/faq"} />
           <FooterLinkItem title="about qurenta" to={"/about-qurenta"} />
+          <FooterLinkItem title="Safty tips" to={"/about-qurenta"} />
+          <FooterLinkItem title="Our Instagram" to={"/about-qurenta"} />
+          <FooterLinkItem title="Our Facebook" to={"/about-qurenta"} />
+          <FooterLinkItem title="Our Twitter" to={"/about-qurenta"} />
         </ul>
         <article className="copyright">
           <p>free property listing in Nsukka</p>

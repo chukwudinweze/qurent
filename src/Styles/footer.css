@@ -36,7 +36,18 @@
 }
 
 @media only screen and (min-width: 1024px) {
+  .footer {
+    background: var(--brand__color);
+  }
   .expand__footer__wrapper {
     display: none;
+  }
+  .footer__wrapper__desktop {
+    display: flex;
+    flex-direction: column;
+  }
+  .footer__links__wrapper {
+    display: flex;
+    justify-content: space-evenly;
   }
 }
