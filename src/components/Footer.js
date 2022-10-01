@@ -34,7 +34,6 @@ const Footer = () => {
           </button>
         </div>
       )}
-
       {!error && (
         <div
           className="footer__wrapper"
@@ -58,7 +57,6 @@ const Footer = () => {
           </article>
         </div>
       )}
-
       <div className="footer__wrapper__desktop">
         <Logo />
         <ul className="footer__links__wrapper">

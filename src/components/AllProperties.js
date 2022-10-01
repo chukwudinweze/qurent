@@ -14,6 +14,7 @@ import useFetchData from "./useFetchApi";
 import { setFetchData } from "../actions/products";
 import { useEffect } from "react";
 import NoInternetConnection from "./NoInternetConnection";
+import Footer from "./Footer";
 
 const AllProperties = () => {
   const url = "https://qurent-a1b03-default-rtdb.firebaseio.com/property.json";
@@ -97,72 +98,75 @@ const AllProperties = () => {
   }
 
   return (
-    <section style={{ marginBottom: "1.875rem" }}>
-      <PageHeader titleLeft="All Properties" />
-      <form className="filter__form">
-        <div className="location__condition__filter">
-          <div className="filter__location">
-            <select
-              name="location"
-              id="location"
-              value={query.location}
-              onChange={handleQuery}
-            >
-              {propertyLocation.map((location) => (
-                <option key={location} value={location}>
-                  {location}
-                </option>
-              ))}
-            </select>
+    <>
+      <section style={{ marginBottom: "1.875rem" }}>
+        <PageHeader titleLeft="All Properties" />
+        <form className="filter__form">
+          <div className="location__condition__filter">
+            <div className="filter__location">
+              <select
+                name="location"
+                id="location"
+                value={query.location}
+                onChange={handleQuery}
+              >
+                {propertyLocation.map((location) => (
+                  <option key={location} value={location}>
+                    {location}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="filter__condition">
+              <select
+                name="propertyCondition"
+                id="propertyCondition"
+                value={query.propertyCondition}
+                onChange={handleQuery}
+              >
+                {condtions.map((condition) => (
+                  <option key={condition} value={condition}>
+                    {condition}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
-          <div className="filter__condition">
-            <select
-              name="propertyCondition"
-              id="propertyCondition"
-              value={query.propertyCondition}
+          <div style={{ overflow: "hidden" }} className="filter__price">
+            <p>Select Price Range</p>
+            <p>
+              &#8358;{formatedMinPrice} - &#8358;{formatedMaxPrice}
+            </p>
+            <Slider
+              name="price"
+              disableSwap
+              value={query.price}
               onChange={handleQuery}
-            >
-              {condtions.map((condition) => (
-                <option key={condition} value={condition}>
-                  {condition}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
-        <div style={{ overflow: "hidden" }} className="filter__price">
-          <p>Select Price Range</p>
-          <p>
-            &#8358;{formatedMinPrice} - &#8358;{formatedMaxPrice}
-          </p>
-          <Slider
-            name="price"
-            disableSwap
-            value={query.price}
-            onChange={handleQuery}
-            min={10000}
-            max={maxPropertyPrice}
-            style={{ transform: "scaleY(1.5)" }}
-          />
-        </div>
-      </form>
-      <div>
-        {!loading && !error && sortedProperties.length === 0 && (
-          <ErrorSearching />
-        )}
-      </div>
-      <article className="room__list">
-        {sortedProperties.map((property) => {
-          return (
-            <SingleProperty
-              key={property.id}
-              property={property}
-              deleteBtn={false}
+              min={10000}
+              max={maxPropertyPrice}
+              style={{ transform: "scaleY(1.5)" }}
             />
-          );
-        })}
-      </article>
-    </section>
+          </div>
+        </form>
+        <div>
+          {!loading && !error && sortedProperties.length === 0 && (
+            <ErrorSearching />
+          )}
+        </div>
+        <article className="room__list">
+          {sortedProperties.map((property) => {
+            return (
+              <SingleProperty
+                key={property.id}
+                property={property}
+                deleteBtn={false}
+              />
+            );
+          })}
+        </article>
+      </section>
+      <Footer />
+    </>
   );
 };
 

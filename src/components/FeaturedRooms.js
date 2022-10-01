@@ -40,9 +40,9 @@ const FeaturedRooms = () => {
     );
   }
 
-  if (!loading && !error && featuredRooms.length === 0) {
-    return <p>No property listed in this category, Please check out others</p>;
-  }
+  // if (!loading && !error && featuredRooms.length === 0) {
+  //   return <p>No property listed in this category, Please check out others</p>;
+  // }
   return (
     <section className="featured__rooms">
       <h3>featured ads</h3>

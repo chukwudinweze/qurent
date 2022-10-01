@@ -41,15 +41,6 @@ const UserProfile = () => {
     );
   }
 
-  // if (error) {
-  //   return (
-  //     <>
-  //       <PageHeader titleLeft="Profile" />
-  //       <NoInternetConnection />
-  //     </>
-  //   );
-  // }
-
   if (!loading && !error && myAds.length === 0) {
     return <p>No adverts from you yet</p>;
   }
@@ -79,7 +70,6 @@ const UserProfile = () => {
           Settings
         </button>
       </nav>
-
       {!error ? (
         <article className="profile__details__article">
           {userAdsActive && (

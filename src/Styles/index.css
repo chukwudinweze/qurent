@@ -57,8 +57,13 @@ li {
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
   .page__background {
-    /* background: rgb(174, 42, 42); */
     margin-bottom: 3.125rem;
     padding: 0 60px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .page__background {
+    margin-bottom: 0rem;
   }
 }

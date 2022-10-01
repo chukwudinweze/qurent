@@ -45,9 +45,6 @@
 }
 
 @media only screen and (min-width: 1024px) {
-  .footer {
-    background: var(--brand__color);
-  }
   .expand__footer__wrapper {
     display: none;
   }
@@ -61,5 +58,10 @@
   }
   .expand__Margin__Bottom {
     margin: 0;
+  }
+
+  .footer {
+    background: var(--brand__color);
+    margin-top: 40px;
   }
 }

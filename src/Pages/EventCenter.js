@@ -6,7 +6,6 @@ const EventCenter = () => {
   return (
     <section className="page__background">
       <EventsHall />
-      <Footer />
     </section>
   );
 };
