@@ -69,4 +69,8 @@
     height: 80vh;
     margin-top: 0px;
   }
+  .searchInput__wrapper .hero__search__input {
+    padding: 2.5rem;
+    font-size: 0.875rem;
+  }
 }

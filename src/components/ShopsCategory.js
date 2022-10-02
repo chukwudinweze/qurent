@@ -151,7 +151,7 @@ const ShopCategory = () => {
         <div>
           {!loading && !error && sortedShops.length === 0 && <ErrorSearching />}
         </div>
-        <article className="room__list">
+        <article className="room__list room__list__destop">
           {sortedShops.map((property) => {
             return (
               <SingleProperty

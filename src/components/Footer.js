@@ -47,7 +47,7 @@ const Footer = () => {
               to={"/terms-and-conditions"}
             />
             <FooterLinkItem title="FAQ" to={"/faq"} />
-            <FooterLinkItem title="about qurenta" to={"/about-qurenta"} />
+            <FooterLinkItem title="Safty Tips" to={"/about-qurenta"} />
           </ul>
           <article className="copyright">
             <p>free property listing in Nsukka</p>
@@ -66,8 +66,8 @@ const Footer = () => {
             to={"/terms-and-conditions"}
           />
           <FooterLinkItem title="FAQ" to={"/faq"} />
-          <FooterLinkItem title="about qurenta" to={"/about-qurenta"} />
-          <FooterLinkItem title="Safty tips" to={"/about-qurenta"} />
+          <FooterLinkItem title="About qurenta" to={"/about-qurenta"} />
+          <FooterLinkItem title="Safty Tips" to={"/about-qurenta"} />
           <FooterLinkItem title="Our Instagram" to={"/about-qurenta"} />
           <FooterLinkItem title="Our Facebook" to={"/about-qurenta"} />
           <FooterLinkItem title="Our Twitter" to={"/about-qurenta"} />

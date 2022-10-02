@@ -151,7 +151,7 @@ const RoomSelfContain = () => {
             <ErrorSearching />
           )}
         </div>
-        <article className="room__list">
+        <article className="room__list room__list__destop">
           {sortedRoomSelfcons.map((property) => {
             return (
               <SingleProperty

@@ -152,7 +152,7 @@ const EventsHall = () => {
             <ErrorSearching />
           )}
         </div>
-        <article className="room__list">
+        <article className="room__list room__list__destop">
           {sortedEventCenters.map((property) => {
             return (
               <SingleProperty
