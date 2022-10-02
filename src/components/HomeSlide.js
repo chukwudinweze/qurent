@@ -9,7 +9,7 @@ const bannerDatas = [
     img: ImageSlide,
     heading: "Rent a home",
     detail:
-      "We're creating a seamless online experience for people in nsukka, from shopping on the largest network, to applyiing and paying for rent",
+      "We're creating a seamless online experience for people in Nsukka, from shopping on the largest network, to applyiing and paying for rent",
     buttonLabel: "rent home",
     path: "/properties",
   },
