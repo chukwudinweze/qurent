@@ -69,8 +69,14 @@
     height: 80vh;
     margin-top: 0px;
   }
+  .searchInput__wrapper {
+    background: var(--white);
+    width: 50%;
+
+    border-radius: 0.312rem;
+  }
   .searchInput__wrapper .hero__search__input {
-    padding: 2.5rem;
-    font-size: 0.875rem;
+    padding: 0.5rem;
+    font-size: 1rem;
   }
 }

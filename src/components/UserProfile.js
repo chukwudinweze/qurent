@@ -46,52 +46,54 @@ const UserProfile = () => {
   }
 
   return (
-    <section className="profile__details">
+    <section className="profile__details ">
       <PageHeader titleLeft="Profile" />
-      <nav>
-        <button
-          onClick={details}
-          className={`${
-            userAdsActive
-              ? "underlineBtn profile__details_btn "
-              : "profile__details_btn"
-          }`}
-        >
-          My Adverts
-        </button>
-        <button
-          onClick={settings}
-          className={`${
-            userSettingsActive
-              ? "underlineBtn profile__details_btn"
-              : "profile__details_btn"
-          }`}
-        >
-          Settings
-        </button>
-      </nav>
-      {!error ? (
-        <article className="profile__details__article">
-          {userAdsActive && (
-            <article className="room__list myadverts">
-              {myAds.map((property) => {
-                return (
-                  <SingleProperty
-                    key={property.id}
-                    property={property}
-                    deleteBtn={false}
-                  />
-                );
-              })}
-            </article>
-          )}
-          {userSettingsActive && (
-            <ProfileDetails email={email} numberOfAds={myAds.length} />
-          )}
-        </article>
-      ) : (
-        <NoInternetConnection />
-      )}
+      <div className="room__list__destop">
+        <nav>
+          <button
+            onClick={details}
+            className={`${
+              userAdsActive
+                ? "underlineBtn profile__details_btn "
+                : "profile__details_btn"
+            }`}
+          >
+            My Adverts
+          </button>
+          <button
+            onClick={settings}
+            className={`${
+              userSettingsActive
+                ? "underlineBtn profile__details_btn"
+                : "profile__details_btn"
+            }`}
+          >
+            Settings
+          </button>
+        </nav>
+        {!error ? (
+          <article className="profile__details__article">
+            {userAdsActive && (
+              <article className="room__list myadverts ">
+                {myAds.map((property) => {
+                  return (
+                    <SingleProperty
+                      key={property.id}
+                      property={property}
+                      deleteBtn={false}
+                    />
+                  );
+                })}
+              </article>
+            )}
+            {userSettingsActive && (
+              <ProfileDetails email={email} numberOfAds={myAds.length} />
+            )}
+          </article>
+        ) : (
+          <NoInternetConnection />
+        )}
+      </div>
       <Footer />
     </section>
   );

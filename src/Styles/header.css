@@ -11,6 +11,19 @@
   z-index: 1000;
 }
 
+.saved__ads__desktop {
+  display: none;
+}
+
+.nav__desktop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.profile_avater {
+  margin-left: 50px;
+}
+
 /* ipad screen layout */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
   .header {
@@ -22,5 +35,16 @@
 @media only screen and (min-width: 1024px) {
   .header {
     height: 80px;
+  }
+  .saved__ads__desktop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid rgb(191, 218, 191);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    color: var(--brand__color);
+    background: rgb(205, 245, 221);
   }
 }
