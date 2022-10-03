@@ -9,6 +9,7 @@ import Footer from "./Footer";
 import Loading from "./Loading";
 import NoInternetConnection from "./NoInternetConnection";
 import EmptySavedItem from "./EmptySavedItem";
+import NoAdsPosted from "./NoAdsPosted";
 
 const UserProfile = () => {
   const [userSettingsActive, setUserSettingsActive] = useState(false);
@@ -41,9 +42,9 @@ const UserProfile = () => {
     );
   }
 
-  if (!loading && !error && myAds.length === 0) {
-    return <p>No adverts from you yet</p>;
-  }
+  // if (!loading && !error && myAds.length === 0) {
+  //   return <p>No adverts from you yet</p>;
+  // }
 
   return (
     <section className="profile__details ">
@@ -74,8 +75,22 @@ const UserProfile = () => {
         {!error ? (
           <article className="profile__details__article">
             {userAdsActive && (
-              <article className="room__list myadverts ">
-                {myAds.map((property) => {
+              <article className="room__list myadverts room__list__destop">
+                {!loading && !error && myAds.length === 0 ? (
+                  <NoAdsPosted />
+                ) : (
+                  myAds.map((property) => {
+                    return (
+                      <SingleProperty
+                        key={property.id}
+                        property={property}
+                        deleteBtn={false}
+                      />
+                    );
+                  })
+                )}
+
+                {/* {myAds.map((property) => {
                   return (
                     <SingleProperty
                       key={property.id}
@@ -83,7 +98,7 @@ const UserProfile = () => {
                       deleteBtn={false}
                     />
                   );
-                })}
+                })} */}
               </article>
             )}
             {userSettingsActive && (
