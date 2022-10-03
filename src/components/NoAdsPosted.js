@@ -16,7 +16,7 @@ const NoAdsPosted = () => {
         <img src={SavedItemEmpty} alt="you have no item saved" />
       </div>
       <p className="last__child">
-        Do you have a property to ren out?, You are only click away from showing
+        Do you have a property to ren out? You are only click away from showing
         your property to thousands of our users
       </p>
       <Button onClick={redirectHandler}>Post property</Button>
