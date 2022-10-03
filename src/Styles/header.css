@@ -25,14 +25,14 @@
 }
 
 /* ipad screen layout */
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+@media only screen and (min-device-width: 768px) and (max-device-width: 992px) {
   .header {
     height: 100px;
   }
 }
 
 /* desktop and laptop layout */
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 992px) {
   .header {
     height: 80px;
   }

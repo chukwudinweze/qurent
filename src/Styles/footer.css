@@ -44,7 +44,7 @@
   padding: 1.25rem;
 }
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 992px) {
   .expand__footer__wrapper {
     display: none;
   }
