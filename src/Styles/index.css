@@ -22,6 +22,9 @@
   /* font size */
   --small__size: 0.875rem;
   --medium__header: 1.25rem;
+
+  /* permits only ligh mode */
+  color-scheme: light only;
 }
 
 /* set html root font size and set overflow-x */
