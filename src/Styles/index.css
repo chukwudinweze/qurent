@@ -70,3 +70,12 @@ li {
     margin-bottom: 0rem;
   }
 }
+
+/* disable auto darkmode on samsung for this app */
+
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: var(--brand__color);
+    color: var(--black-color);
+  }
+}

@@ -16,6 +16,8 @@ const user = (state = InitialState, action) => {
     case "MY_ADS":
       return { ...state, myAdverts: [...state.myAdverts, action.ads] };
     case "LOG_OUT":
+      localStorage.removeItem("token");
+      localStorage.removeItem("email");
       return { ...state, token: "", email: "" };
     default:
       return state;

@@ -8,7 +8,6 @@ import ProfileDetails from "./ProfileDetails";
 import Footer from "./Footer";
 import Loading from "./Loading";
 import NoInternetConnection from "./NoInternetConnection";
-import EmptySavedItem from "./EmptySavedItem";
 import NoAdsPosted from "./NoAdsPosted";
 
 const UserProfile = () => {
@@ -89,16 +88,6 @@ const UserProfile = () => {
                     );
                   })
                 )}
-
-                {/* {myAds.map((property) => {
-                  return (
-                    <SingleProperty
-                      key={property.id}
-                      property={property}
-                      deleteBtn={false}
-                    />
-                  );
-                })} */}
               </article>
             )}
             {userSettingsActive && (
