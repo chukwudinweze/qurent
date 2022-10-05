@@ -43,38 +43,42 @@ const PropertyDetail = () => {
 
   return (
     <>
-      <PageHeader titleLeft={`Property Detail`} />
-      {propertyData && <PropertyDetailSlide pictures={propertyData.pictures} />}
-      {propertyData && (
-        <PropertyDetailDescription
-          description={{
-            title: propertyData.title,
-            price: propertyData.price,
-            location: propertyData.location,
-            phoneNumber: propertyData.phoneNumber,
-            id: propertyData.id,
-            itemToSave: propertyData,
-          }}
-        />
-      )}
-      <article className="boxshadowclass">
-        {propertyData.propertyFacilities && (
-          <PropertyConditionHighlight
-            facilityHighlight={propertyData.propertyFacilities}
-            condition={propertyData.propertyCondition}
-          />
-        )}
-        {propertyData.propertyFacilities && (
-          <PropertyDetailFacilities
-            facilities={propertyData.propertyFacilities}
-          />
+      <section className="room__list__destop room__list__destop__detail">
+        <PageHeader titleLeft={`Property Detail`} />
+        {propertyData && (
+          <PropertyDetailSlide pictures={propertyData.pictures} />
         )}
         {propertyData && (
-          <PropertyDetailBriefDesc description={propertyData.description} />
+          <PropertyDetailDescription
+            description={{
+              title: propertyData.title,
+              price: propertyData.price,
+              location: propertyData.location,
+              phoneNumber: propertyData.phoneNumber,
+              id: propertyData.id,
+              itemToSave: propertyData,
+            }}
+          />
         )}
-        {propertyData && <DetailAttention />}
-        {propertyData && <Footer />}
-      </article>
+        <article className="boxshadowclass">
+          {propertyData.propertyFacilities && (
+            <PropertyConditionHighlight
+              facilityHighlight={propertyData.propertyFacilities}
+              condition={propertyData.propertyCondition}
+            />
+          )}
+          {propertyData.propertyFacilities && (
+            <PropertyDetailFacilities
+              facilities={propertyData.propertyFacilities}
+            />
+          )}
+          {propertyData && (
+            <PropertyDetailBriefDesc description={propertyData.description} />
+          )}
+          {propertyData && <DetailAttention />}
+        </article>
+      </section>
+      {propertyData && <Footer />}
     </>
   );
 };

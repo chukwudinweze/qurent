@@ -69,6 +69,9 @@ li {
   .page__background {
     margin-bottom: 0rem;
   }
+  /* .room__list__destop__detail {
+    margin-top: 5px;
+  } */
 }
 
 /* disable auto darkmode on samsung for this app */
