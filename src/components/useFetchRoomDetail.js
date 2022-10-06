@@ -19,7 +19,7 @@ const useFetchRoomDetail = (id) => {
       setData(data);
       // console.log(data, "response was okay");
     } catch (error) {
-      console.log(error.message);
+      // console.log(error.message);
       dispatch(setError(true));
     }
     dispatch(setLoading(false));
