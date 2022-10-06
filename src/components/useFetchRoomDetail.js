@@ -24,7 +24,7 @@ const useFetchRoomDetail = (id) => {
     }
     dispatch(setLoading(false));
   }, [dispatch, id]);
-  console.log(data);
+  // console.log(data);
   return { fetchRoomDetail, data };
 };
 
